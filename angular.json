@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Tablon"
+    }
+  },
+  "defaultProject": "Tablon",
+  "cli": {
+    "analytics": "24262115-6464-4614-802d-fbd3cca3ec08"
+  }
 }
