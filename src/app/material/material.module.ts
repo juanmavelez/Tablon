@@ -1,9 +1,28 @@
 import { NgModule } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [],
-  imports: [MatToolbarModule],
-  exports: [MatToolbarModule],
+  imports: [
+    MatToolbarModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatMenuModule,
+    MatIconModule,
+  ],
+  exports: [
+    MatToolbarModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatMenuModule,
+    MatIconModule,
+  ],
 })
 export class MaterialModule {}

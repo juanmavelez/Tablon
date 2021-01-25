@@ -31,6 +31,9 @@
       ],
       "@environments/*": [
         "src/environments/*"
+      ],
+      "@courses/*": [
+        "src/app/courses/*"
       ]
     }
   }
