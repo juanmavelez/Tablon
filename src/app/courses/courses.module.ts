@@ -7,7 +7,11 @@ import { CourseDetailsComponent } from './components/course-details/course-detai
 import { CoursesListComponent } from './components/courses-list/courses-list.component';
 
 @NgModule({
-  declarations: [CoursesComponent, CourseDetailsComponent, CoursesListComponent],
+  declarations: [
+    CoursesComponent,
+    CourseDetailsComponent,
+    CoursesListComponent,
+  ],
   imports: [CommonModule, CoursesRoutingModule, MaterialModule],
 })
 export class CoursesModule {}
