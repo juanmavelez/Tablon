@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ICourse } from '@core/models/course.model';
-import { CourseService } from '@core/services/course.service';
+import { CourseService } from '@core/services/course/course.service';
 
 @Component({
   selector: 'app-courses-list',
@@ -16,6 +16,8 @@ export class CoursesListComponent implements OnInit {
     this.fetchCourses();
   }
   fetchCourses(): void {
-    this.courses = this.courseService.getAllCourses();
+    this.courseService
+      .getAllCourses()
+      .subscribe((courses) => console.log(courses));
   }
 }

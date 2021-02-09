@@ -1,38 +1,80 @@
 import { Injectable } from '@angular/core';
-import { ICourse } from '../models/course.model';
+import { ICourse } from '../../models/course.model';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '@environments/environment';
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
 export class CourseService {
-  courses: ICourse[] = [
+  /*    courses: ICourse[] = [
     {
       id: '00001',
       name: 'Course Name',
-      teacher: 'WierdTeacher',
-      description: 'This is a moak of a course',
-      date: '13/12/1994',
+      teacher: 'teacher1',
+      lessons: [
+        { name: 'class1', description: 'this is the first class' },
+        { name: 'class2', description: 'this is the second class' },
+        { name: 'class3', description: 'this is the third class' },
+      ],
+      tags: ['music', 'mathe', 'biologi'],
+      students: ['1', '2', '3', '4'],
+      description: 'description 1',
     },
     {
       id: '00002',
-      name: 'Course Name2',
-      teacher: 'WierdTeacher2',
-      description: 'This is a moak of a course2',
-      date: '13/12/1994',
+      name: 'Course Name two',
+      teacher: 'teacher2',
+      lessons: [
+        { name: 'class1', description: 'this is the first class' },
+        { name: 'class2', description: 'this is the second class' },
+        { name: 'class3', description: 'this is the third class' },
+      ],
+      tags: ['music', 'mathe', 'biologi'],
+      students: ['1', '2', '3', '4'],
+      description: 'description 2',
     },
     {
-      id: '00003',
-      name: 'Course Name3',
-      teacher: 'WierdTeacher',
-      description: 'This is a moak of a course3',
-      date: '13/12/1994',
+      id: '00001',
+      name: 'Course Name 3',
+      teacher: 'teacher1',
+      lessons: [
+        { name: 'class1', description: 'this is the first class' },
+        { name: 'class2', description: 'this is the second class' },
+        { name: 'class3', description: 'this is the third class' },
+      ],
+      tags: ['music', 'mathe', 'biologi'],
+      students: ['1', '2', '3', '4'],
+      description: 'description 3',
     },
-  ];
+  ]; */
 
-  getAllCourses(): ICourse[] {
+  /*   getAllCourses(): ICourse[] {
     return this.courses;
   }
   getCourse(idCourse: string): ICourse {
     return this.courses.find((course) => (course.id = idCourse));
+  } */
+  constructor(private http: HttpClient) {}
+
+  getAllCourses(): Observable<ICourse[]> {
+    return this.http.get<ICourse[]>(`${environment.API_URL}/courses`);
   }
-  constructor() {}
+
+  getCourse(id: string): Observable<ICourse> {
+    return this.http.get<ICourse>(`${environment.API_URL}/${id}`);
+  }
+
+  createCourse(product: ICourse): Observable<object> {
+    return this.http.post(`${environment.API_URL}`, product);
+  }
+
+  updateCourse(id: string, changes: Partial<ICourse>): Observable<any> {
+    return this.http.put(`${environment.API_URL}/${id}`, changes);
+  }
+
+  deleteCourse(id: string): Observable<any> {
+    return this.http.delete(`${environment.API_URL}/${id}`);
+  }
 }
