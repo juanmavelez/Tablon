@@ -50,7 +50,7 @@ export function app(): express.Express {
 }
 
 function run(): void {
-  const port = config.PORT || 4000;
+  const port = config.port || 4000;
 
   // Start up the Node server
   const server = app();

@@ -18,6 +18,6 @@ export class CoursesListComponent implements OnInit {
   fetchCourses(): void {
     this.courseService
       .getAllCourses()
-      .subscribe((courses) => console.log(courses));
+      .subscribe((courses) => (this.courses = courses.data));
   }
 }
