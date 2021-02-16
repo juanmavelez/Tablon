@@ -2,10 +2,12 @@
   <mat-toolbar-row class="toolbar-row">
     <a mat-button routerLink="/home" routerLinkActive="active">Tablon</a>
     <nav class="mat-toolbar-nav">
-      <a mat-button routerLink="/courses" routerLinkActive="active">My Courses</a>
-      <a mat-button routerLink="/products" routerLinkActive="active">My Classes</a>
-      <!--       <a mat-button routerLink="/contact" routerLinkActive="active">Book Classes</a> -->
+      <li><a routerLink="/courses" routerLinkActive="active">My Courses</a></li>
+      <li *ngIf="user">
+        <a mat-button routerLink="/profile" routerLinkActive="active">{{user.name}}</a>
+      </li>
     </nav>
+
     <button mat-icon-button [matMenuTriggerFor]="menu" class="matMenu" aria-label="Icon to open Menu">
       <span class="material-icons">
         more_vert
@@ -13,8 +15,9 @@
     </button>
     <mat-menu #menu="matMenu">
       <a mat-menu-item mat-button routerLink="/courses" routerLinkActive="active">My Courses</a>
-      <a mat-menu-item mat-button routerLink="/products" routerLinkActive="active">My Classes</a>
-      <!--       <a mat-menu-item mat-button routerLink="/contact" routerLinkActive="active">Book Classes</a> -->
+      <li *ngIf="user">
+        <a mat-button routerLink="/profile" routerLinkActive="active">{{user.name}}</a>
+      </li>
     </mat-menu>
   </mat-toolbar-row>
 

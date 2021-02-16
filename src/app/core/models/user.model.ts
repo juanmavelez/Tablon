@@ -6,3 +6,8 @@ export interface IUser {
   tags: string[];
   courses: string[];
 }
+
+export interface IResponseUser {
+  data: IUser;
+  message: string;
+}

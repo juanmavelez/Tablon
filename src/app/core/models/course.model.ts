@@ -8,3 +8,8 @@ export interface ICourse {
   students: string[];
   description: string;
 }
+
+export interface IResponseCourse {
+  data: ICourse[];
+  message: string;
+}
