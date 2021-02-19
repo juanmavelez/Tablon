@@ -1,0 +1,5 @@
+.courses-container{
+  display:grid;
+  width: 80%;
+  grid-template-columns: repeat(300px,1fr);
+}
