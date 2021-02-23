@@ -1,7 +1,7 @@
 import passport from 'passport';
 import { BasicStrategy } from 'passport-http';
 import { unauthorized } from '@hapi/boom';
-import environment from '@environment/environment';
+import { environment } from '@environments/environment';
 import axios from 'axios';
 
 passport.use(
