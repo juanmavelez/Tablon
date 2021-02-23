@@ -7,8 +7,7 @@ import { join } from 'path';
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
-
-import config from './config';
+import { environment } from './src/environments/environment';
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
@@ -50,7 +49,7 @@ export function app(): express.Express {
 }
 
 function run(): void {
-  const port = config.port || 4000;
+  const port = environment.PORT || 4000;
 
   // Start up the Node server
   const server = app();
