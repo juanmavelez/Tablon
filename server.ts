@@ -53,6 +53,15 @@ function run(): void {
 
   // Start up the Node server
   const server = app();
+
+  // Routes
+  server.use(express.json());
+  server.post('/auth/sign-in', async (res, req, next) => {});
+  server.post('/auth/sign-up', async (res, req, next) => {});
+  server.get('/users', async (res, req, next) => {});
+  server.post('/user-courses', async (res, req, next) => {});
+  server.delete('/user-courses/:userCoursesId', async (res, req, next) => {});
+
   server.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
