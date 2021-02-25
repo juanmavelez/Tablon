@@ -9,7 +9,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
 import { environment } from './src/environments/environment';
 
-import { authenticate } from 'passport';
+import * as passport from 'passport';
 
 import { unauthorized, badImplementation } from '@hapi/boom';
 import * as cookieParser from 'cookie-parser';
@@ -18,7 +18,7 @@ import { IAuthRequest } from './server/models/AuthRequest.model';
 const THIRTY_DAYS_IN_SEC = 2592000;
 const TWO_HOURS_IN_SEC = 7200;
 
-require('./server/utils/strategies/basic');
+import './server/utils/strategies/basic';
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
@@ -57,12 +57,14 @@ export function app(): express.Express {
       next: express.NextFunction
     ) => {
       const { remenberMe } = req.body;
-      authenticate('basic', (err: Error, data: IAuthRequest) => {
+      console.log('i get to here as spected');
+      passport.authenticate('basic', (err: Error, data: IAuthRequest) => {
+        console.log('i get to here man');
         try {
           if (err || !data) {
             next(unauthorized());
           }
-          req.login(data, { session: false }, async (err: Error) => {
+          req.login(data, { session: false }, async () => {
             if (err) {
               next(err);
             }
@@ -153,7 +155,6 @@ export function app(): express.Express {
       }
     }
   );
-
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
     res.render(indexHtml, {
