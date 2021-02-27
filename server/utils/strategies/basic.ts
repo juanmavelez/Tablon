@@ -6,7 +6,6 @@ import axios from 'axios';
 
 passport.use(
   new BasicStrategy(async (email: string, password: string, callback) => {
-    console.log('trying to use the basic strategy');
     try {
       const { data, status } = await axios({
         url: `${environment.API_URL}/auth/sign-in`,
@@ -24,7 +23,7 @@ passport.use(
       }
       return callback(null, data);
     } catch (err) {
-      callback(err);
+      callback(unauthorized(err));
     }
   })
 );

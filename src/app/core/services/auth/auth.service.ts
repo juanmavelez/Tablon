@@ -1,31 +1,22 @@
 import { Injectable } from '@angular/core';
-
-@Injectable()
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ISignInRequest } from '@core/models/signInRequest.model';
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  setLocalStorage(responseObj) {
-    // Adds the expiration time defined on the JWT to the current moment
-    const expiresAt = localStorage.setItem('id_token', responseObj.token);
-    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
-  }
+  login(email: string, password: string): Observable<any> {
+    const authorizationData = 'Basic ' + btoa(`${email}:${password}`);
+    const headerOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'appplication/json',
+        Authorization: authorizationData,
+      }),
+    };
 
-  logout() {
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('expires_at');
-  }
-
-  public isLoggedIn() {
-    return moment().isBefore(this.getExpiration());
-  }
-
-  isLoggedOut() {
-    return !this.isLoggedIn();
-  }
-
-  getExpiration() {
-    const expiration = localStorage.getItem('expires_at');
-    const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
+    return this.http.post<ISignInRequest>('/auth/sign-in', '', headerOptions);
   }
 }

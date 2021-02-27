@@ -41,14 +41,10 @@ export function app(): express.Express {
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
-  server.get(
-    '*.*',
-    express.static(distFolder, {
-      maxAge: '1y',
-    })
-  );
+
   server.use(express.json());
   server.use(cookieParser());
+
   server.post(
     '/auth/sign-in',
     async (
@@ -57,26 +53,24 @@ export function app(): express.Express {
       next: express.NextFunction
     ) => {
       const { remenberMe } = req.body;
-      console.log('i get to here as spected');
       passport.authenticate('basic', (err: Error, data: IAuthRequest) => {
-        console.log('i get to here man');
         try {
           if (err || !data) {
-            next(unauthorized());
-          }
-          req.login(data, { session: false }, async () => {
-            if (err) {
-              next(err);
-            }
-            const { token, ...user } = data;
-
-            res.cookie('token', token, {
-              httpOnly: environment.production,
-              secure: environment.production,
-              maxAge: remenberMe ? THIRTY_DAYS_IN_SEC : TWO_HOURS_IN_SEC,
+            next(unauthorized('Invalid input, please try again'));
+          } else {
+            req.login(data, { session: false }, async () => {
+              if (err) {
+                next(err);
+              }
+              const { token, ...user } = data;
+              res.cookie('token', token, {
+                httpOnly: environment.production,
+                secure: environment.production,
+                maxAge: remenberMe ? THIRTY_DAYS_IN_SEC : TWO_HOURS_IN_SEC,
+              });
+              res.status(200).json(user);
             });
-            res.status(200).json(user);
-          });
+          }
         } catch (err) {
           next(err);
         }
@@ -97,7 +91,6 @@ export function app(): express.Express {
           method: 'post',
           data: user,
         });
-
         res.status(201).json({ message: 'user created' });
       } catch (err) {
         next(err);
@@ -155,6 +148,13 @@ export function app(): express.Express {
       }
     }
   );
+  server.get(
+    '*.*',
+    express.static(distFolder, {
+      maxAge: '1y',
+    })
+  );
+
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
     res.render(indexHtml, {
@@ -162,6 +162,12 @@ export function app(): express.Express {
       providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }],
     });
   });
+  server.get(
+    '*.*',
+    express.static(distFolder, {
+      maxAge: '1y',
+    })
+  );
 
   return server;
 }
