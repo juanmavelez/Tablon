@@ -21,9 +21,7 @@ export class LoginComponent implements OnInit {
   login(event: Event): any {
     event.preventDefault();
     const value = this.form.value;
-    this.authService
-      .login(value.email, value.password)
-      .subscribe((response) => console.log(response));
+    this.authService.login(value.email, value.password).subscribe();
   }
 
   private buildForm(): void {

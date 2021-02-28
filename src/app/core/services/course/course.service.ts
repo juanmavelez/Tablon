@@ -12,7 +12,7 @@ export class CourseService {
   constructor(private http: HttpClient) {}
 
   getAllCourses(): Observable<IResponseCourse> {
-    return this.http.get<IResponseCourse>(`${environment.API_URL}/courses`);
+    return this.http.get<IResponseCourse>(`/courses`);
   }
 
   getCourse(id: string): Observable<IResponseCourse> {

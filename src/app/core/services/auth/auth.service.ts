@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ISignInRequest } from '@core/models/signInRequest.model';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  login(email: string, password: string): Observable<any> {
+  login(email: string, password: string): Observable<ISignInRequest> {
     const authorizationData = 'Basic ' + btoa(`${email}:${password}`);
     const headerOptions = {
       headers: new HttpHeaders({
@@ -16,7 +17,6 @@ export class AuthService {
         Authorization: authorizationData,
       }),
     };
-
     return this.http.post<ISignInRequest>('/auth/sign-in', '', headerOptions);
   }
 }

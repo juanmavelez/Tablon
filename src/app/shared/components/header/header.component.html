@@ -3,8 +3,10 @@
     <a mat-button routerLink="/home" routerLinkActive="active">Tablon</a>
     <nav class="mat-toolbar-nav">
       <li><a routerLink="/courses" routerLinkActive="active">My Courses</a></li>
-      <li *ngIf="user">
-        <a mat-button routerLink="/profile" routerLinkActive="active">{{user.name}}</a>
+      <li> <a mat-button routerLink="/login" routerLinkActive="active">Login</a></li>
+      <li>
+        <a *ngIf="!user" mat-button routerLink="/login" routerLinkActive="active">Login</a>
+        <a *ngIf="user" mat-button routerLink="/profile" routerLinkActive="active">{{user.name}}</a>
       </li>
     </nav>
 
@@ -14,9 +16,11 @@
       </span>
     </button>
     <mat-menu #menu="matMenu">
-      <a mat-menu-item mat-button routerLink="/courses" routerLinkActive="active">My Courses</a>
-      <li *ngIf="user">
-        <a mat-button routerLink="/profile" routerLinkActive="active">{{user.name}}</a>
+      <li><a routerLink="/courses" routerLinkActive="active">My Courses</a></li>
+      <li> <a mat-button routerLink="/login" routerLinkActive="active">Login</a></li>
+      <li>
+        <a *ngIf="!user" mat-button routerLink="/login" routerLinkActive="active">Login</a>
+        <a *ngIf="user" mat-button routerLink="/profile" routerLinkActive="active">{{user.name}}</a>
       </li>
     </mat-menu>
   </mat-toolbar-row>

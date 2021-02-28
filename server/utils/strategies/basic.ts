@@ -19,7 +19,7 @@ passport.use(
         },
       });
       if (!data || status !== 200) {
-        return callback(unauthorized(), false);
+        return callback(unauthorized('Fail to log in'), false);
       }
       return callback(null, data);
     } catch (err) {

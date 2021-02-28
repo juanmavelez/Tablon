@@ -9,14 +9,10 @@ import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
 import { environment } from './src/environments/environment';
 
-import * as passport from 'passport';
-
-import { unauthorized, badImplementation } from '@hapi/boom';
+import { badImplementation } from '@hapi/boom';
+import authApi from './server/routes/auth.routes';
 import * as cookieParser from 'cookie-parser';
 import axios from 'axios';
-import { IAuthRequest } from './server/models/AuthRequest.model';
-const THIRTY_DAYS_IN_SEC = 2592000;
-const TWO_HOURS_IN_SEC = 7200;
 
 import './server/utils/strategies/basic';
 // The Express app is exported so that it can be used by serverless Functions.
@@ -44,60 +40,7 @@ export function app(): express.Express {
 
   server.use(express.json());
   server.use(cookieParser());
-
-  server.post(
-    '/auth/sign-in',
-    async (
-      req: express.Request,
-      res: express.Response,
-      next: express.NextFunction
-    ) => {
-      const { remenberMe } = req.body;
-      passport.authenticate('basic', (err: Error, data: IAuthRequest) => {
-        try {
-          if (err || !data) {
-            next(unauthorized('Invalid input, please try again'));
-          } else {
-            req.login(data, { session: false }, async () => {
-              if (err) {
-                next(err);
-              }
-              const { token, ...user } = data;
-              res.cookie('token', token, {
-                httpOnly: environment.production,
-                secure: environment.production,
-                maxAge: remenberMe ? THIRTY_DAYS_IN_SEC : TWO_HOURS_IN_SEC,
-              });
-              res.status(200).json(user);
-            });
-          }
-        } catch (err) {
-          next(err);
-        }
-      })(req, res, next);
-    }
-  );
-  server.post(
-    '/auth/sign-up',
-    async (
-      req: express.Request,
-      res: express.Response,
-      next: express.NextFunction
-    ) => {
-      const { body: user } = req;
-      try {
-        await axios({
-          url: `${environment.API_URL}/auth/sign-up`,
-          method: 'post',
-          data: user,
-        });
-        res.status(201).json({ message: 'user created' });
-      } catch (err) {
-        next(err);
-      }
-    }
-  );
-
+  authApi(server);
   server.post(
     '/user-courses',
     async (
@@ -138,6 +81,29 @@ export function app(): express.Express {
           headers: { Authorization: `Bearer ${token}` },
           method: 'delete',
           data: userCoursesId,
+        });
+        if (status !== 200) {
+          return next(badImplementation());
+        }
+        res.status(200).json(data);
+      } catch (err) {
+        next(err);
+      }
+    }
+  );
+  server.get(
+    '/courses',
+    async (
+      req: express.Request,
+      res: express.Response,
+      next: express.NextFunction
+    ) => {
+      try {
+        const { token } = req.cookies;
+        const { data, status } = await axios({
+          url: `${environment.API_URL}/courses`,
+          headers: { Authorization: `Bearer ${token}` },
+          method: 'get',
         });
         if (status !== 200) {
           return next(badImplementation());
