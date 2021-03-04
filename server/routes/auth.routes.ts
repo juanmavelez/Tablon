@@ -14,6 +14,7 @@ function authApi(server: express.Express): void {
   const router = express.Router();
   server.use('/auth', router);
 
+  // SIGN-IN
   router.post(
     '/sign-in',
     async (
@@ -22,6 +23,7 @@ function authApi(server: express.Express): void {
       next: express.NextFunction
     ) => {
       const { remenberMe } = req.body;
+      console.log(req.body);
       passport.authenticate('basic', (err: Error, data: IAuthRequest) => {
         try {
           if (err || !data) {
@@ -35,7 +37,7 @@ function authApi(server: express.Express): void {
               res.cookie('token', token, {
                 httpOnly: environment.production,
                 secure: environment.production,
-                maxAge: remenberMe ? THIRTY_DAYS_IN_SEC : TWO_HOURS_IN_SEC,
+                maxAge: 2592000,
               });
               res.status(200).json(user);
             });
@@ -46,8 +48,10 @@ function authApi(server: express.Express): void {
       })(req, res, next);
     }
   );
-  server.post(
-    '/sign-up',
+
+  // REGISTER
+  router.post(
+    '/register',
     async (
       req: express.Request,
       res: express.Response,

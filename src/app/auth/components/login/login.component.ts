@@ -21,7 +21,11 @@ export class LoginComponent implements OnInit {
   login(event: Event): any {
     event.preventDefault();
     const value = this.form.value;
-    this.authService.login(value.email, value.password).subscribe();
+    if (value) {
+      this.authService.login(value.email, value.password).subscribe();
+    } else {
+      console.log('invalid input plis try again ');
+    }
   }
 
   private buildForm(): void {

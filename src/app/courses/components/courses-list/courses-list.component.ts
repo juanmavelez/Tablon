@@ -15,6 +15,7 @@ export class CoursesListComponent implements OnInit {
   ngOnInit(): void {
     this.fetchCourses();
   }
+
   fetchCourses(): void {
     this.courseService
       .getAllCourses()

@@ -9,12 +9,12 @@ import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
 import { environment } from './src/environments/environment';
 
-import { badImplementation } from '@hapi/boom';
-import authApi from './server/routes/auth.routes';
 import * as cookieParser from 'cookie-parser';
-import axios from 'axios';
-
+import authApi from './server/routes/auth.routes';
+import userCoursesApi from './server/routes/userCourses.routes';
+import coursesApi from './server/routes/courses.routes';
 import './server/utils/strategies/basic';
+
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
@@ -40,80 +40,12 @@ export function app(): express.Express {
 
   server.use(express.json());
   server.use(cookieParser());
+
+  // Routes
   authApi(server);
-  server.post(
-    '/user-courses',
-    async (
-      req: express.Request,
-      res: express.Response,
-      next: express.NextFunction
-    ) => {
-      try {
-        const { body: userCourses } = req;
-        const { token } = req.cookies;
-        const { data, status } = await axios({
-          url: `${environment.API_URL}/user-courses`,
-          headers: { Authorization: `Bearer ${token}` },
-          method: 'post',
-          data: userCourses,
-        });
-        if (status !== 201) {
-          return next(badImplementation());
-        }
-        res.status(201).json(data);
-      } catch (err) {
-        next(err);
-      }
-    }
-  );
-  server.delete(
-    '/user-courses/:userCoursesId',
-    async (
-      req: express.Request,
-      res: express.Response,
-      next: express.NextFunction
-    ) => {
-      try {
-        const { userCoursesId } = req.params;
-        const { token } = req.cookies;
-        const { data, status } = await axios({
-          url: `${environment.API_URL}/user-courses/${userCoursesId}`,
-          headers: { Authorization: `Bearer ${token}` },
-          method: 'delete',
-          data: userCoursesId,
-        });
-        if (status !== 200) {
-          return next(badImplementation());
-        }
-        res.status(200).json(data);
-      } catch (err) {
-        next(err);
-      }
-    }
-  );
-  server.get(
-    '/courses',
-    async (
-      req: express.Request,
-      res: express.Response,
-      next: express.NextFunction
-    ) => {
-      try {
-        const { token } = req.cookies;
-        const { data, status } = await axios({
-          url: `${environment.API_URL}/courses`,
-          headers: { Authorization: `Bearer ${token}` },
-          method: 'get',
-        });
-        if (status !== 200) {
-          return next(badImplementation());
-        }
-        res.status(200).json(data);
-      } catch (err) {
-        next(err);
-      }
-    }
-  );
+  userCoursesApi(server);
+  coursesApi(server);
+
   server.get(
     '*.*',
     express.static(distFolder, {

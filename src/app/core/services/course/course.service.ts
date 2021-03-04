@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
@@ -17,7 +16,7 @@ export class CourseService {
 
   getCourse(id: string): Observable<IResponseCourse> {
     return this.http.get<IResponseCourse>(
-      `${environment.API_URL}/courses/${id}`
+      `${environment.API_URL}/course-detail/${id}`
     );
   }
 
