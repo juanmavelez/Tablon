@@ -11,7 +11,7 @@ import { IResponseCourse } from '@core/models/course.model';
   styleUrls: ['./user-courses.component.scss'],
 })
 export class UserCoursesComponent implements OnInit {
-  userCourses: IResponseCourse;
+  userCourses$: Observable<IResponseCourse>;
 
   constructor(
     private userCoursesService: UserCoursesService,
@@ -19,17 +19,12 @@ export class UserCoursesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    /*     this.userCourses$ = this.activatedRoute.params.pipe(
+    this.userCourses$ = this.activatedRoute.params.pipe(
       switchMap((params: Params) => {
-        console.log('params id is', params.id);
+        console.log(params.id);
         return this.userCoursesService.getUserCourses(params.id);
       })
-    ); */
-    console.log(localStorage.getItem('id'));
-    this.userCoursesService
-      .getUserCourses(localStorage.getItem('id'))
-      .subscribe((data) => (this.userCourses = data));
-    console.log(this.userCourses);
+    );
   }
 
   fetchUserCourses(): void {}

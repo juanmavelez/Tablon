@@ -8,7 +8,7 @@ function userCoursesApi(server: express.Express): void {
   server.use('/user-courses', router);
 
   router.get(
-    '/:userId',
+    '/:user_id',
     async (
       req: express.Request,
       res: express.Response,
@@ -16,13 +16,14 @@ function userCoursesApi(server: express.Express): void {
     ) => {
       try {
         const { token } = req.cookies;
-        const userId = req.query;
+        const id = req.params;
         const { data, status } = await axios({
           url: `${environment.API_URL}/user-courses`,
           headers: { Authorization: `Bearer ${token}` },
-          params: userId,
           method: 'get',
+          params: id,
         });
+
         if (status !== 200) {
           return next(badImplementation());
         }

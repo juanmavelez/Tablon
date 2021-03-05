@@ -43,8 +43,8 @@ export function app(): express.Express {
 
   // Routes
   authApi(server);
-  userCoursesApi(server);
   coursesApi(server);
+  userCoursesApi(server);
 
   server.get(
     '*.*',
