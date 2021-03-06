@@ -1,1 +1,4 @@
-<div>{{userCourses$ | async}}</div>
+<div *ngIf="(userCourses$ | async) as userCourses" class="courses-container">
+  <app-courses *ngFor="let course of userCourses.data" [course]="course">
+  </app-courses>
+</div>
