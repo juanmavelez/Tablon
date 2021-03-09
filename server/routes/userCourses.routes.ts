@@ -8,7 +8,7 @@ function userCoursesApi(server: express.Express): void {
   server.use('/user-courses', router);
 
   router.get(
-    '/:user_id',
+    '/user/:user_id',
     async (
       req: express.Request,
       res: express.Response,
@@ -23,7 +23,31 @@ function userCoursesApi(server: express.Express): void {
           method: 'get',
           params: id,
         });
+        if (status !== 200) {
+          return next(badImplementation());
+        }
+        res.status(200).json(data);
+      } catch (err) {
+        next(err);
+      }
+    }
+  );
 
+  router.get(
+    '/:user_id',
+    async (
+      req: express.Request,
+      res: express.Response,
+      next: express.NextFunction
+    ) => {
+      try {
+        const { token } = req.cookies;
+        const id = req.params;
+        const { data, status } = await axios({
+          url: `${environment.API_URL}/user-courses/${id.userCoursesId}`,
+          headers: { Authorization: `Bearer ${token}` },
+          method: 'get',
+        });
         if (status !== 200) {
           return next(badImplementation());
         }

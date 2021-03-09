@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ICourse } from '@core/models/course.model';
+import { IResponseCourses } from '@core/models/course.model';
 import { CourseService } from '@core/services/course/course.service';
-
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-courses-list',
   templateUrl: './courses-list.component.html',
   styleUrls: ['./courses-list.component.scss'],
 })
 export class CoursesListComponent implements OnInit {
-  courses: ICourse[];
+  courses$: Observable<IResponseCourses>;
+  coursesId: boolean;
 
   constructor(private courseService: CourseService) {}
 
@@ -17,8 +18,6 @@ export class CoursesListComponent implements OnInit {
   }
 
   fetchCourses(): void {
-    this.courseService
-      .getAllCourses()
-      .subscribe((courses) => (this.courses = courses.data));
+    this.courses$ = this.courseService.getAllCourses();
   }
 }

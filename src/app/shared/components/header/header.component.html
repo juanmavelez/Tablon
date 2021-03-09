@@ -20,10 +20,14 @@
     </button>
     <mat-menu #menu="matMenu">
       <li><a routerLink="/courses" routerLinkActive="active">My Courses</a></li>
+      <li><a routerLink="/auth/register" routerLinkActive="active">Register</a></li>
+      <li><a routerLink="/auth/logout" routerLinkActive="active">Logout</a></li>
+      <li *ngIf="userId"><a routerLink="/courses/user/{{userId}}" routerLinkActive="active">UserCourses</a></li>
       <li>
-        <a *ngIf="!user" mat-button routerLink="/auth/xºlogin" routerLinkActive="active">Login</a>
+        <a *ngIf="!user" mat-button routerLink="/auth/login" routerLinkActive="active">Login</a>
         <a *ngIf="user" mat-button routerLink="/profile" routerLinkActive="active">{{user.name}}</a>
       </li>
+      <li><a *ngIf="user" mat-button routerLink="/auth/register" routerLinkActive=" active">Login</a></li>
     </mat-menu>
   </mat-toolbar-row>
 

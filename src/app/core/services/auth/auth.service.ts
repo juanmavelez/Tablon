@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ISignInRequest, ISignUpRequest } from '@core/models/auth.model';
 import { tap } from 'rxjs/operators';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -23,11 +24,8 @@ export class AuthService {
       .pipe(
         tap((data) => {
           localStorage.setItem('name', data.user.name);
-          console.log(data.user.name);
           localStorage.setItem('email', data.user.email);
-          console.log(data.user.email);
           localStorage.setItem('id', data.user.id);
-          console.log(data.user.id);
           console.log('localstorageSeted');
         })
       );

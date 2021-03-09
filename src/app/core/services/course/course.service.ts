@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
-import { ICourse, IResponseCourse } from '@core/models/course.model';
+import {
+  ICourse,
+  IResponseCourse,
+  IResponseCourses,
+} from '@core/models/course.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,14 +14,12 @@ import { ICourse, IResponseCourse } from '@core/models/course.model';
 export class CourseService {
   constructor(private http: HttpClient) {}
 
-  getAllCourses(): Observable<IResponseCourse> {
-    return this.http.get<IResponseCourse>(`/courses`);
+  getAllCourses(): Observable<IResponseCourses> {
+    return this.http.get<IResponseCourses>(`/courses`);
   }
 
   getCourse(id: string): Observable<IResponseCourse> {
-    return this.http.get<IResponseCourse>(
-      `${environment.API_URL}/course-detail/${id}`
-    );
+    return this.http.get<IResponseCourse>(`/courses/${id}`);
   }
 
   createCourse(product: ICourse): Observable<object> {
