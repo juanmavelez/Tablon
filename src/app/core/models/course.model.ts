@@ -30,3 +30,13 @@ export interface IResponseCourseId {
   data: IUserCourse[];
   message: string;
 }
+
+export interface IResponseCreateUserCourse {
+  data: string;
+  message: string;
+}
+
+export interface IResnseDeleteUserCourse {
+  data: string;
+  message: string;
+}

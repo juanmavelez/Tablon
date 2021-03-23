@@ -59,20 +59,20 @@ function userCoursesApi(server: express.Express): void {
   );
 
   router.post(
-    '/',
+    '/:userId',
     async (
       req: express.Request,
       res: express.Response,
       next: express.NextFunction
     ) => {
       try {
-        const { body: userCourses } = req;
+        const { body: userCourse } = req;
         const { token } = req.cookies;
         const { data, status } = await axios({
           url: `${environment.API_URL}/user-courses`,
           headers: { Authorization: `Bearer ${token}` },
           method: 'post',
-          data: userCourses,
+          data: userCourse,
         });
         if (status !== 201) {
           return next(badImplementation());

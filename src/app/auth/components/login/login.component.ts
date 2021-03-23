@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '@core/services/auth/auth.service';
 @Component({
   selector: 'app-login',
@@ -31,7 +31,15 @@ export class LoginComponent implements OnInit {
   private buildForm(): void {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-    });
+      password: ['', [ Validators.compose([
+         Validators.required,
+         CustomValidators.patternValidator(/\d/, { hasNumber: true }),
+         CustomValidators.patternValidator(/[A-Z]/, { hasCapitalCase: true }),
+         CustomValidators.patternValidator(/[a-z]/, { hasSmallCase: true }),
+         CustomValidators.patternValidator(/[ [!@#$%^&*()_+-=[]{};':"|,.<>/?]/](<mailto:!@#$%^&*()_+-=[]{};':"|,.<>/?]/>), { hasSpecialCharacters: true }),
+         Validators.minLength(8))
+    )];
   }
+
+
 }

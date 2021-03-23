@@ -34,6 +34,9 @@
       ],
       "@courses/*": [
         "src/app/courses/*"
+      ],
+      "@utils/*": [
+        "src/app/utils/*"
       ]
     }
   }

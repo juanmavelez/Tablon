@@ -13,8 +13,12 @@
   </mat-card-content>
   <ng-component *ngIf="hasCourse">
     <mat-card-actions>
-      <button mat-button color="primary">Add Course to my courses</button>
+      <button mat-button color="primary" (click)="deleteUserCourse()">Leave the course</button>
     </mat-card-actions>
   </ng-component>
-
+  <ng-component *ngIf="!hasCourse">
+    <mat-card-actions>
+      <button mat-button color="primary" (click)="createUserCourse()">Join the Course</button>
+    </mat-card-actions>
+  </ng-component>
 </mat-card>

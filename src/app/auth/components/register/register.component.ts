@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ISignUpRequest } from '@core/models/auth.model';
 import { AuthService } from '@core/services/auth/auth.service';
+import { patternValidator } from '@utils/customValidator';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -33,9 +34,26 @@ export class RegisterComponent implements OnInit {
 
   private buildForm(): void {
     this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(25),
+          Validators.pattern(/^[a-zA-Z ]+$/),
+        ],
+      ],
+      email: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(7),
+          Validators.maxLength(10),
+          Validators.pattern(
+            /^[a-zA-Z1-9!@#$%^&*()_\+\-=[\]{};':"|,.<>/?¿[\]]+/
+          ),
+        ],
+      ],
     });
   }
 }

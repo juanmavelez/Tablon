@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Observable, forkJoin, observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { CourseService } from '@core/services/course/course.service';
@@ -15,8 +15,9 @@ import { IResponseCourse, IUserCourse } from '@core/models/course.model';
 export class CourseDetailsComponent implements OnInit {
   course$: Observable<IResponseCourse>;
   userCoursesId: IUserCourse[];
+  userCourse: IUserCourse;
+  hasCourse: boolean;
   courseId: string;
-  hasCourse: Observable<boolean>;
 
   constructor(
     private courseService: CourseService,
@@ -40,7 +41,6 @@ export class CourseDetailsComponent implements OnInit {
 
   private fetchUserCourses(): void {
     const userId = localStorage.getItem('id');
-    console.log(this.userCoursesId);
     this.userCoursesService.getUserCoursesId(userId).subscribe((data) => {
       this.userCoursesId = data.data;
     });
@@ -49,9 +49,23 @@ export class CourseDetailsComponent implements OnInit {
   private userHasCourse = (): boolean => {
     for (const course of this.userCoursesId) {
       if (course.courses_id === this.courseId) {
+        this.userCourse = course;
         return true;
       }
     }
     return false;
   };
+
+  createUserCourse(): void {
+    const userId = localStorage.getItem('id');
+    this.userCoursesService.createUserCourse(userId, this.courseId);
+  }
+
+  deleteUserCourse(): void {
+    if (this.userHasCourse) {
+      this.userCoursesService.deleteUserCourse(this.userCourse._id);
+    }
+  }
+
+  deleteLesson(): void {}
 }
