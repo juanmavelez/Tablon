@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { ISignUpRequest } from '@core/models/auth.model';
 import { AuthService } from '@core/services/auth/auth.service';
-import { patternValidator } from '@utils/customValidator';
+import { patternValidator } from '@utils/customValidators';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -38,6 +43,7 @@ export class RegisterComponent implements OnInit {
         '',
         [
           Validators.required,
+          Validators.minLength(4),
           Validators.maxLength(25),
           Validators.pattern(/^[a-zA-Z ]+$/),
         ],
@@ -47,10 +53,15 @@ export class RegisterComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(7),
+          Validators.minLength(8),
           Validators.maxLength(10),
-          Validators.pattern(
-            /^[a-zA-Z1-9!@#$%^&*()_\+\-=[\]{};':"|,.<>/?¿[\]]+/
+          new FormControl(patternValidator(/\d/, { hasNumber: true })),
+          new FormControl(patternValidator(/[A-Z]/, { hasCapitalCase: true })),
+          new FormControl(patternValidator(/[a-z]/, { hasSmallCase: true })),
+          new FormControl(
+            patternValidator(/!@#$%^&*()_\+\-=[\]{};':"|,.<>/?¿[\]]+/, {
+              hasSpecialCharacters: true,
+            })
           ),
         ],
       ],
