@@ -5,7 +5,10 @@ import { switchMap } from 'rxjs/operators';
 
 import { CourseService } from '@core/services/course/course.service';
 import { UserCoursesService } from '@core/services/user-courses/user-courses.service';
+import { UserService } from '@core/services/user/user.service';
+
 import { IResponseCourse, IUserCourse } from '@core/models/course.model';
+import { IResponseUser } from '@core/models/user.model';
 
 @Component({
   selector: 'app-course-details',
@@ -14,6 +17,7 @@ import { IResponseCourse, IUserCourse } from '@core/models/course.model';
 })
 export class CourseDetailsComponent implements OnInit {
   course$: Observable<IResponseCourse>;
+  teacher$: Observable<IResponseUser>;
   userCoursesId: IUserCourse[];
   userCourse: IUserCourse;
   hasCourse: boolean;
@@ -22,12 +26,14 @@ export class CourseDetailsComponent implements OnInit {
   constructor(
     private courseService: CourseService,
     private userCoursesService: UserCoursesService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
     this.fetchCourse();
     this.fetchUserCourses();
+    this.fetchTeacher();
   }
 
   private fetchCourse(): void {
@@ -39,6 +45,11 @@ export class CourseDetailsComponent implements OnInit {
     );
   }
 
+  private fetchTeacher(): void {
+    this.teacher$ = this.course$.subscribe((result) => {
+      this.userService.getUser(result.data.teacher);
+    });
+  }
   private fetchUserCourses(): void {
     const userId = localStorage.getItem('id');
     this.userCoursesService.getUserCoursesId(userId).subscribe((data) => {

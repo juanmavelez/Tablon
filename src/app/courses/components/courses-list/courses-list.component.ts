@@ -14,10 +14,6 @@ export class CoursesListComponent implements OnInit {
   constructor(private courseService: CourseService) {}
 
   ngOnInit(): void {
-    this.fetchCourses();
-  }
-
-  fetchCourses(): void {
     this.courses$ = this.courseService.getAllCourses();
   }
 }
