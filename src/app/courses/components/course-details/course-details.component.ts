@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { tap, switchMap } from 'rxjs/operators';
 
 import { CourseService } from '@core/services/course/course.service';
 import { UserCoursesService } from '@core/services/user-courses/user-courses.service';
 import { UserService } from '@core/services/user/user.service';
 
-import { IResponseCourse, IUserCourse } from '@core/models/course.model';
+import {
+  IResponseCourse,
+  IResponseCourseId,
+  IUserCourse,
+} from '@core/models/course.model';
 import { IResponseUser } from '@core/models/user.model';
+import { response } from 'express';
 
 @Component({
   selector: 'app-course-details',
@@ -18,7 +23,7 @@ import { IResponseUser } from '@core/models/user.model';
 export class CourseDetailsComponent implements OnInit {
   course$: Observable<IResponseCourse>;
   teacher$: Observable<IResponseUser>;
-  userCoursesId: IUserCourse[];
+  userCourses$: Observable<IResponseCourseId>;
   userCourse: IUserCourse;
   hasCourse: boolean;
   courseId: string;
@@ -33,49 +38,59 @@ export class CourseDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.fetchCourse();
     this.fetchUserCourses();
-    this.fetchTeacher();
   }
 
   private fetchCourse(): void {
-    this.course$ = this.activatedRoute.params.pipe(
-      switchMap((params: Params) => {
-        this.courseId = params.id;
-        return this.courseService.getCourse(params.id);
-      })
-    );
+    this.course$ = this.activatedRoute.params
+      .pipe(
+        switchMap((params: Params) => {
+          this.courseId = params.id;
+          return this.courseService.getCourse(params.id);
+        })
+      )
+      .pipe(
+        tap((response) => {
+          this.teacher$ = this.userService.getUser(response.data.teacher);
+        })
+      );
   }
 
-  private fetchTeacher(): void {
-    this.teacher$ = this.course$.subscribe((result) => {
-      this.userService.getUser(result.data.teacher);
-    });
-  }
   private fetchUserCourses(): void {
     const userId = localStorage.getItem('id');
-    this.userCoursesService.getUserCoursesId(userId).subscribe((data) => {
-      this.userCoursesId = data.data;
-    });
+    this.userCourses$ = this.userCoursesService
+      .getUserCoursesId(userId)
+      .pipe(
+        tap((response) => (this.hasCourse = this.userHasCourse(response.data)))
+      );
   }
 
-  private userHasCourse = (): boolean => {
-    for (const course of this.userCoursesId) {
+  private userHasCourse(courses: IUserCourse[]): boolean {
+    for (const course of courses) {
       if (course.courses_id === this.courseId) {
         this.userCourse = course;
+        console.log('I HAVE THE COURSE');
         return true;
       }
     }
+    console.log('I dont have the course =(');
     return false;
-  };
+  }
 
   createUserCourse(): void {
     const userId = localStorage.getItem('id');
-    this.userCoursesService.createUserCourse(userId, this.courseId);
+    this.userCoursesService
+      .createUserCourse(userId, this.courseId)
+      .subscribe((response) => console.log(response));
   }
 
   deleteUserCourse(): void {
-    if (this.userHasCourse) {
-      this.userCoursesService.deleteUserCourse(this.userCourse._id);
-    }
+    console.log('removing course');
+    this.userCoursesService.deleteUserCourse(this.userCourse._id).pipe(
+      tap((response) => {
+        console.log(response.data);
+        this.hasCourse = !this.hasCourse;
+      })
+    );
   }
 
   deleteLesson(): void {}

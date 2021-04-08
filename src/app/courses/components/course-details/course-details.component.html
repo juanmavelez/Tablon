@@ -1,7 +1,9 @@
 <mat-card *ngIf="course$ | async as course">
   <mat-card-header>
     <mat-card-title>{{course.data.name}}</mat-card-title>
-    <mat-card-subtitle *ngIf="(teacher$ | async) as teacher">{{teacher.name}}</mat-card-subtitle>
+    <ng-container *ngIf="(teacher$ | async) as teacher">
+      try 2{{teacher.data.name}}
+    </ng-container>
   </mat-card-header>
   <mat-card-content>
     <nav *ngIf="course.data.lessons">
@@ -11,14 +13,14 @@
       </li>
     </nav>
   </mat-card-content>
-  <ng-component *ngIf="hasCourse">
-    <mat-card-actions>
+  <div *ngIf="userCourses$ | async as userCourses">
+    <mat-card-actions *ngIf=" hasCourse">
+      <div>{{hasCourse}}</div>
       <button mat-button color="primary" (click)="deleteUserCourse()">Leave the course</button>
     </mat-card-actions>
-  </ng-component>
-  <ng-component *ngIf="!hasCourse">
-    <mat-card-actions>
+    <mat-card-actions *ngIf="!hasCourse">
+      <div>{{hasCourse}}</div>
       <button mat-button color="primary" (click)="createUserCourse()">Join the Course</button>
     </mat-card-actions>
-  </ng-component>
+  </div>
 </mat-card>

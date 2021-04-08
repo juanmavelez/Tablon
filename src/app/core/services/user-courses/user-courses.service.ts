@@ -26,15 +26,21 @@ export class UserCoursesService {
     userId: string,
     courseId: string
   ): Observable<IResponseCreateUserCourse> {
-    return this.http.post<IResponseCreateUserCourse>(`/user-courses/`, {
-      user_id: userId,
-      courses_id: courseId,
-    });
+    console.log('userid', userId);
+    console.log('userid', courseId);
+    return this.http.post<IResponseCreateUserCourse>(
+      `/user-courses/${userId}`,
+      {
+        user_id: userId,
+        courses_id: courseId,
+      }
+    );
   }
 
   deleteUserCourse(userCourseId: string): Observable<IResnseDeleteUserCourse> {
+    console.log('im into delete user service');
     return this.http.delete<IResnseDeleteUserCourse>(
-      `/user-course/${userCourseId}`
+      `/user-courses/${userCourseId}`
     );
   }
 }

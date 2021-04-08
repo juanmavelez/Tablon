@@ -66,6 +66,7 @@ function userCoursesApi(server: express.Express): void {
       next: express.NextFunction
     ) => {
       try {
+        console.log('creating');
         const { body: userCourse } = req;
         const { token } = req.cookies;
         const { data, status } = await axios({
@@ -91,6 +92,7 @@ function userCoursesApi(server: express.Express): void {
       res: express.Response,
       next: express.NextFunction
     ) => {
+      console.log('iam called =P');
       try {
         const { userCoursesId } = req.params;
         const { token } = req.cookies;
