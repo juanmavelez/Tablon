@@ -1,10 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Slab&display=swap');
 :root{
-  --color1: #C5C8D9;
-  --color2: #F2C166;
-  --color3: #BF8D7A;
-  --color4: #59352D;
-  --color5: #BF3030;
+  --color1: #35363A;
+  --color2: #006699;
+  --color3: #0099CC;
+  --color4: #CB2140;
+  --color5: #D0D0D0;
+  --color6: #F6F6F6;
+  --color7: linear-gradient(180deg, #FFFFFF 0%, #D0D0D0 100%)
 }
-html, body { height: 100%; width: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; list-style: none;}
+
+html{font-size: 62.5%}
+html,body{height: 100%; width: 100%; margin: 0; padding: 0;}
+a{padding: 10px; text-decoration: none; color:white;}
+li{display:inline-flex;}
+
+h1,h2,h3{ font-family: Roboto Slab, "Helvetica Neue", sans-serif; list-style: none; font-style: normal;}
+h1{font-size: 4rem; line-height: 5.3rem;}
+h2{font-size: 3.6rem; line-height: 4.7rem;}
+h3{font-size: 2.4rem; line-height: 3.2rem;}
+
+.display-large, .display-medium, .display-small, .display-xsmall{font-family: Roboto Slab, "Helvetica Neue", sans-serif; list-style: none; font-style: normal; }
+.display-large{ font-size: 9.6rem; line-height: 12.7rem;}
+.display-medium{font-size: 5.2rem; line-height: 3.2rem;}
+.display-small{font-size: 4.4rem; line-height: 5.8rem;}

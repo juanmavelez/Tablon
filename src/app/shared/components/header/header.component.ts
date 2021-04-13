@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterEvent } from '@angular/router';
 import { IUser } from '@core/models/user.model';
-import { UserService } from '@core/services/user/user.service';
+import { Observable } from 'rxjs';
+import { filter, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -10,14 +12,39 @@ import { UserService } from '@core/services/user/user.service';
 export class HeaderComponent implements OnInit {
   user: IUser;
   userId: string = localStorage.getItem('id');
-  constructor(private userService: UserService) {}
+  router$: Observable<any>;
+  title: string;
+
+  constructor(public router: Router) {
+    this.router$ = router.events.pipe(filter((e) => e instanceof RouterEvent));
+  }
 
   ngOnInit(): void {
-    this.fetchUser();
+    this.router$.pipe(
+      tap((e) => {
+        console.log(e);
+        this.titleSwtich(e.url);
+      })
+    );
   }
-  fetchUser(): void {
-    /*     this.userService
-      .getUser('6021681d5f0b23994c0c3477')
-      .subscribe((response) => (this.user = response.data)); */
+
+  private titleSwtich(url: string): void {
+    switch (url) {
+      case '7home':
+        this.title = 'home';
+        break;
+      case '/courses':
+        this.title = 'courses';
+        break;
+      case `/courses/${this.userId}`:
+        this.title = 'My Courses';
+        break;
+      case '/profile':
+        this.title = 'Profile';
+        break;
+      case 'new-course':
+        this.title = 'Create Course';
+        break;
+    }
   }
 }

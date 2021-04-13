@@ -1,21 +1,12 @@
-a{
-  padding: 10px;
-  text-decoration: none;
-  color:white
+:host{
+  background-color: white;
 }
-
-li{
-  display:inline-flex;
-}
-
 .toolbar{
   align-items: center;
 }
-
 .matMenu{
   display: none;
 }
-
 @media only screen and (max-width: 520px) {
   .toolbar-row{
     display: grid;
