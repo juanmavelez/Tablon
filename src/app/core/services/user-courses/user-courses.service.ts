@@ -26,8 +26,6 @@ export class UserCoursesService {
     userId: string,
     courseId: string
   ): Observable<IResponseCreateUserCourse> {
-    console.log('userid', userId);
-    console.log('userid', courseId);
     return this.http.post<IResponseCreateUserCourse>(
       `/user-courses/${userId}`,
       {
@@ -38,7 +36,6 @@ export class UserCoursesService {
   }
 
   deleteUserCourse(userCourseId: string): Observable<IResnseDeleteUserCourse> {
-    console.log('im into delete user service');
     return this.http.delete<IResnseDeleteUserCourse>(
       `/user-courses/${userCourseId}`
     );

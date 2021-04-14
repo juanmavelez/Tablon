@@ -11,7 +11,6 @@ import { UserService } from '@core/services/user/user.service';
 })
 export class CoursesComponent implements OnInit {
   @Input() course: ICourse;
-  teacher: IUser;
   url: string;
 
   constructor(
@@ -19,9 +18,6 @@ export class CoursesComponent implements OnInit {
     private gravatarService: GravatarService
   ) {}
   ngOnInit(): void {
-    this.userService.getUser(this.course.teacher).subscribe((response) => {
-      this.teacher = response.data;
-    });
     this.url = this.createURL(this.course.teacher);
   }
 

@@ -23,7 +23,6 @@ function authApi(server: express.Express): void {
       next: express.NextFunction
     ) => {
       const { remenberMe } = req.body;
-      console.log(req.body);
       passport.authenticate('basic', (err: Error, data: IAuthRequest) => {
         try {
           if (err || !data) {

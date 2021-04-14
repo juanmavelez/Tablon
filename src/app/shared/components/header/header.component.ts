@@ -20,17 +20,20 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('I am on init');
     this.router$.pipe(
       tap((e) => {
         console.log(e);
+        console.log(e.url);
         this.titleSwtich(e.url);
       })
     );
   }
 
   private titleSwtich(url: string): void {
+    console.log('url is');
     switch (url) {
-      case '7home':
+      case '/home':
         this.title = 'home';
         break;
       case '/courses':

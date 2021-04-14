@@ -26,7 +26,6 @@ export class AuthService {
           localStorage.setItem('name', data.user.name);
           localStorage.setItem('email', data.user.email);
           localStorage.setItem('id', data.user.id);
-          console.log('localstorageSeted');
         })
       );
   }

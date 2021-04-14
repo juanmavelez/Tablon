@@ -1,21 +1,12 @@
 <mat-toolbar color="white" class="toolbar">
   <mat-toolbar-row class="toolbar-row">
-    <img class="logo" src="../../../../assets/icons/tablon-logo.svg" alt="tablon icon">
-    <div *ngIf="router$ | async as router">
-      <h2 color="red">MOSTANDO PUTA MIERDA JODER</h2>
-      <h2>{{router.url}}</h2>
-      <h2>{{title}}</h2>
-    </div>
-    <a mat-button routerLink="/home" routerLinkActive="active">Tablon</a>
     <nav class="mat-toolbar-nav">
-      <li><a routerLink="/courses" routerLinkActive="active">Home</a></li>
-      <li><a routerLink="/auth/register" routerLinkActive="active">Register</a></li>
+      <li>
+        <img class="logo" src="../../../../assets/icons/tablon-logo.svg" alt="Back to the menu">
+        <a mat-button routerLink="/courses" routerLinkActive="active">Tablon</a>
+      </li>
+      <li *ngIf="userId"><a routerLink="/auth/register" routerLinkActive="active">My Courses</a></li>
       <li><a routerLink="/auth/logout" routerLinkActive="active">Logout</a></li>
-      <li><a routerLink="/auth/login" routerLinkActive="active">Login</a></li>
-
-      <li *ngIf="userId"><a routerLink="/courses/user/{{userId}}" routerLinkActive="active">My Courses</a></li>
-      <a *ngIf="user" mat-button routerLink="/profile" routerLinkActive="active">{{user.name}}</a>
-      <li><a *ngIf="user" mat-button routerLink="/auth/register" routerLinkActive=" active">Login</a></li>
     </nav>
 
     <button mat-icon-button [matMenuTriggerFor]="menu" class="matMenu" aria-label="Icon to open Menu">

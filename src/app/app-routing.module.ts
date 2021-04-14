@@ -4,19 +4,24 @@ import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
   {
+    path: 'auth',
+    loadChildren: () =>
+      import('./auth/auth.module').then((module) => module.AuthModule),
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./home/home.module').then((module) => module.HomeModule),
+  },
+  {
     path: '',
     component: LayoutComponent,
     children: [
-      {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full',
-      },
-      {
-        path: 'home',
-        loadChildren: () =>
-          import('./home/home.module').then((module) => module.HomeModule),
-      },
       {
         path: 'courses',
         loadChildren: () =>
@@ -28,11 +33,6 @@ const routes: Routes = [
         path: 'profile',
         loadChildren: () =>
           import('./user/user.module').then((module) => module.UserModule),
-      },
-      {
-        path: 'auth',
-        loadChildren: () =>
-          import('./auth/auth.module').then((module) => module.AuthModule),
       },
     ],
   },
