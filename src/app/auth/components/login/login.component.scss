@@ -1,0 +1,68 @@
+.logo-container{
+  margin: 0 auto;
+  margin-top: 64px;
+  width: 150px;
+  height: 117px;
+}
+form{display:grid;}
+.mat-card{
+  margin: 0 auto;
+  background-color: rgb(0,0,0,0%);
+  box-shadow: none;
+}
+.mat-card-header{
+  margin: 0 auto;
+  width: max-content;
+}
+.mat-card-content{
+  display:grid;
+  gap:10px;
+}
+.user-login-small{
+  width: 283px;
+  height: 45px;
+  box-sizing: border-box;
+  border: 1px solid var(--color1);
+  background-color: var(--color6);
+  border-radius: 5px;
+}
+.user-login-small figure{
+  position: relative;
+  top: -1px;
+  left: -1px;
+  display: grid;
+  margin: 0 5px 0 0;
+  width: 45px;
+  height: 45px;
+  align-items: center;
+  background-color: var(--color1);
+  border-radius: 5px;
+}
+.user-login-small figure img{
+  width: 22px;
+  height: 20px;
+  margin: 0 auto;
+  background-color: var(--color1);
+}
+.mat-form-field-infix,.mat-input-element{
+  margin-left: 10px;
+}
+.mat-card-actions{
+  display:grid;
+  margin:0 auto;
+  justify-content: center;
+}
+.forgot-password{
+  padding:5px;
+  text-align: center;
+  font-size: 1.4rem;
+  opacity: 0.7;
+  color:var(--color1);
+}
+.alternative-action{
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.4rem;
+  opacity: 0.9;
+  color:var(--color1);
+}
