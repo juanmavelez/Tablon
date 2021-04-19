@@ -1,0 +1,38 @@
+.logo-container{
+  margin: 0 auto;
+  margin-top: 64px;
+  width: 150px;
+  height: 117px;
+}
+form{display:grid;}
+.mat-card-header{
+  margin: 0 auto;
+  width: max-content;
+}
+.mat-card{
+  margin: 0 auto;
+  background-color: rgb(0,0,0,0%);
+  box-shadow: none;
+}
+.mat-card-content{
+  display:grid;
+  gap:10px;
+}
+.input-small{
+  margin: 0 auto;
+}
+.mat-form-field-infix,.mat-input-element{
+  margin-left: 10px;
+}
+.mat-card-actions{
+  display:grid;
+  margin:0 auto;
+  justify-content: center;
+}
+.alternative-action{
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.4rem;
+  opacity: 0.9;
+  color:var(--color1);
+}
