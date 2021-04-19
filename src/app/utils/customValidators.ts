@@ -10,6 +10,7 @@ export function patternValidator(
       return null;
     }
     const valid = regex.test(control.value);
+    valid ? console.log(error) : console.log({ error: false });
     return valid ? null : error;
   };
 }

@@ -54,15 +54,12 @@ export class RegisterComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(8),
-          Validators.maxLength(10),
-          new FormControl(patternValidator(/\d/, { hasNumber: true })),
-          new FormControl(patternValidator(/[A-Z]/, { hasCapitalCase: true })),
-          new FormControl(patternValidator(/[a-z]/, { hasSmallCase: true })),
-          new FormControl(
-            patternValidator(/!@#$%^&*()_\+\-=[\]{};':"|,.<>/?¿[\]]+/, {
-              hasSpecialCharacters: true,
-            })
-          ),
+          patternValidator(/\d/, { hasNumber: false }),
+          patternValidator(/[A-Z]/, { hasCapitalCase: false }),
+          patternValidator(/[a-z]/, { hasSmallCase: false }),
+          patternValidator(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, {
+            hasSpecialCharacters: false,
+          }),
         ],
       ],
     });
