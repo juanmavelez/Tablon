@@ -7,7 +7,10 @@ export interface ISignInRequest {
 }
 
 export interface ISignUpRequest {
-  name: string;
-  email: string;
-  password: string;
+  data: {
+    name: string;
+    email: string;
+    password: string;
+  };
+  message: string;
 }

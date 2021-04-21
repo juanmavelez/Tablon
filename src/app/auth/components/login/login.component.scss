@@ -26,10 +26,15 @@ form{display:grid;}
   background-color: var(--color6);
   border-radius: 5px;
 }
+
+.user-login-small.ng-touched.ng-invalid{
+  border: 1px solid var(--color4);
+}
+
 .user-login-small figure{
   position: relative;
   top: -1px;
-  left: -1px;
+  left: -11px;
   display: grid;
   margin: 0 5px 0 0;
   width: 45px;
@@ -38,14 +43,15 @@ form{display:grid;}
   background-color: var(--color1);
   border-radius: 5px;
 }
+
 .user-login-small figure img{
   width: 22px;
   height: 20px;
   margin: 0 auto;
   background-color: var(--color1);
 }
-.mat-form-field-infix,.mat-input-element{
-  margin-left: 10px;
+.mat-form-field{
+  padding-left:10px
 }
 .mat-card-actions{
   display:grid;
@@ -65,4 +71,7 @@ form{display:grid;}
   font-size: 1.4rem;
   opacity: 0.9;
   color:var(--color1);
+}
+.alert-error{
+  color:var(--color4)
 }

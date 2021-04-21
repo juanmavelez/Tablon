@@ -1,31 +1,14 @@
-<mat-toolbar color="white" class="toolbar">
+<mat-toolbar color="white" class="toolbar" role="heading">
   <mat-toolbar-row class="toolbar-row">
+    <figure>
+      <img class="logo" src="../../../../assets/icons/tablon-logo.svg" alt="Back to the menu">
+      <a mat-button routerLink="/courses" routerLinkActive="active">Tablon</a>
+    </figure>
     <nav class="mat-toolbar-nav">
-      <li>
-        <img class="logo" src="../../../../assets/icons/tablon-logo.svg" alt="Back to the menu">
-        <a mat-button routerLink="/courses" routerLinkActive="active">Tablon</a>
-      </li>
-      <li *ngIf="userId"><a routerLink="/auth/register" routerLinkActive="active">My Courses</a></li>
-      <li><a routerLink="/auth/logout" routerLinkActive="active">Logout</a></li>
+      <li><a routerLink="['/app/courses',userId]" routerLinkActive="active">My Courses</a></li>
+      <li><a routerLink="/profile">Profile</a></li>
+      <li><a routerLink="/home">logout</a></li>
     </nav>
-
-    <button mat-icon-button [matMenuTriggerFor]="menu" class="matMenu" aria-label="Icon to open Menu">
-      <span class="material-icons">
-        more_vert
-      </span>
-    </button>
-    <mat-menu #menu="matMenu">
-      <li><a routerLink="/courses" routerLinkActive="active">My Courses</a></li>
-      <li><a routerLink="/auth/register" routerLinkActive="active">Register</a></li>
-      <li><a routerLink="/auth/logout" routerLinkActive="active">Logout</a></li>
-      <li *ngIf="userId"><a routerLink="/courses/user/{{userId}}" routerLinkActive="active">UserCourses</a></li>
-      <li>
-        <a *ngIf="!user" mat-button routerLink="/auth/login" routerLinkActive="active">Login</a>
-        <a *ngIf="user" mat-button routerLink="/profile" routerLinkActive="active">{{user.name}}</a>
-      </li>
-      <li><a *ngIf="user" mat-button routerLink="/auth/register" routerLinkActive=" active">Login</a></li>
-    </mat-menu>
   </mat-toolbar-row>
-
 
 </mat-toolbar>

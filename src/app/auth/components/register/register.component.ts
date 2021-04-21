@@ -5,9 +5,11 @@ import {
   Validators,
   FormControl,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ISignUpRequest } from '@core/models/auth.model';
 import { AuthService } from '@core/services/auth/auth.service';
 import { patternValidator } from '@utils/customValidators';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -18,7 +20,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.buildForm();
   }
@@ -31,7 +34,11 @@ export class RegisterComponent implements OnInit {
     const user: ISignUpRequest = value;
     console.log('user', user);
     if (value) {
-      this.authService.register(user).subscribe();
+      this.authService.register(user).subscribe((response) => {
+        if (response.message) {
+          this.router.navigateByUrl('/auth/login');
+        }
+      });
     } else {
       console.log('invalid input plis try again ');
     }

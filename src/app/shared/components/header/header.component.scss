@@ -1,26 +1,18 @@
-:host{
-  background-color: white;
-  color: var(--color1)
+.mat-toolbar-row{
+  padding: 0 5%;
+  justify-content:space-between;
 }
-.toolbar{
+figure{
+  display: flex;
+  margin: 0;
   align-items: center;
 }
-.matMenu{
-  display: none;
-}
+
 @media only screen and (max-width: 520px) {
   .toolbar-row{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
-  }
-  .matMenu{
-    display: block;
-    justify-self: flex-end;
-    width: 50px;
-    color:white;
-    background-color: rgb(0%, 0%, 0%, 0%);
-    border:none;
   }
   .mat-toolbar-nav{
     display:none

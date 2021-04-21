@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@core/services/auth/auth.service';
+import { catchError } from 'rxjs/operators';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,21 +11,33 @@ import { AuthService } from '@core/services/auth/auth.service';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-
+  error: boolean;
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
+    this.error = false;
     this.buildForm();
   }
 
   ngOnInit(): void {}
 
-  login(event: Event): any {
+  login(event: Event): void {
     event.preventDefault();
     const value = this.form.value;
     if (value) {
-      this.authService.login(value.email, value.password).subscribe();
+      const login$ = this.authService.login(value.email, value.password);
+      login$.subscribe(
+        (res) => {
+          console.log(res);
+          this.router.navigateByUrl('/app');
+        },
+        (err) => {
+          console.log(err);
+          this.error = true;
+        }
+      );
     } else {
       console.log('invalid input plis try again ');
     }
@@ -40,5 +55,8 @@ export class LoginComponent implements OnInit {
         ],
       ],
     });
+  }
+  getError(): boolean {
+    return this.error;
   }
 }

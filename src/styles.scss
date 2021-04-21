@@ -13,13 +13,14 @@
 
 html{height: 100vh; width: 100vw;font-size: 62.5%;}
 body{margin: 0; padding: 0; background: var(--color7);color:var(--color1) }
-a{padding: 5px; text-decoration: none; color:white;}
+a{padding: 5px; text-decoration: none; color:var(--color1);}
 li{display:inline-flex;}
 
 h1,h2,h3{ font-family: Roboto Slab, "Helvetica Neue", sans-serif; list-style: none; font-style: normal; margin: 0;}
 h1{font-size: 2.8rem; line-height: 3.6rem;}
 h2{font-size: 2.4rem; line-height: 3.2rem;}
 h3{font-size: 2rem; line-height: 2.8rem;}
+p{font-size: 1.4rem;line-height: 2.4rem;}
 .display-large, .display-medium, .display-small, .display-xsmall{font-family: Roboto Slab, "Helvetica Neue", sans-serif; list-style: none; font-style: normal; }
 .display-large{ font-size: 6rem; line-height: 6.8rem;}
 .display-medium{font-size: 5.2rem; line-height: 6.4rem;}
@@ -29,20 +30,34 @@ h3{font-size: 2rem; line-height: 2.8rem;}
 width: 270px;
 height: 50px;
 margin:0 auto;
-background: var(--color2);
+background-color: var(--color2);
 border: 1px solid var(--color1);
 box-sizing: border-box;
 box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
 border-radius: 5px;
 color: var(--color6);
-font-size: 2rem;
+font-size: 1.6rem;
+}
+.button-small:focus-within,.button-small:hover{
+  box-shadow:0px 0px 5px 1px rgba(0, 0, 0, 0.6ñ);
 }
 
 .input-small{
   height: 45px;
   width: 280px;
   background-color: var(--color6);
-  border: 1px solid #35363A;
+  border: 1px solid var(--color1);
   box-sizing: border-box;
   border-radius: 5px;
+}
+.input-small.ng-touched.ng-invalid{
+  border: 1px solid var(--color4);
+}
+
+.alternative-action{
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.4rem;
+  opacity: 0.9;
+  color:var(--color1);
 }

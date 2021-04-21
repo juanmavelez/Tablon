@@ -10,10 +10,17 @@ import { existsSync } from 'fs';
 import { environment } from './src/environments/environment';
 
 import * as cookieParser from 'cookie-parser';
+
 import authApi from './server/routes/auth.routes';
 import userCoursesApi from './server/routes/userCourses.routes';
 import coursesApi from './server/routes/courses.routes';
 import './server/utils/strategies/basic';
+
+import {
+  logErrors,
+  errorHandler,
+  wrapError,
+} from './server/utils/Middleware/errorHandler';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -66,6 +73,11 @@ export function app(): express.Express {
       maxAge: '1y',
     })
   );
+
+  // Errors Middleware
+  server.use(logErrors);
+  server.use(wrapError);
+  server.use(errorHandler);
 
   return server;
 }

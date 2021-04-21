@@ -4,6 +4,6 @@ import { Observable, throwError } from 'rxjs';
 export function handleHttpErrorResponse(
   error: HttpErrorResponse
 ): Observable<never> {
-  console.log(error);
-  return throwError('An error has ocurred');
+  const styledError = { statusCode: error.status, message: error.statusText };
+  return throwError(styledError);
 }

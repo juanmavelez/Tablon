@@ -42,6 +42,7 @@ function authApi(server: express.Express): void {
             });
           }
         } catch (err) {
+          console.log(err);
           next(err);
         }
       })(req, res, next);

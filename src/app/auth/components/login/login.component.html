@@ -9,7 +9,7 @@
     <mat-card-content>
       <mat-form-field appearance="none" class="user-login-small">
         <mat-label>email@example.com</mat-label>
-        <figure matPrefix>
+        <figure matPrefix [ngClass]="">
           <img class="login" src="../../../../assets/icons/login-profile-black-icon.svg" alt="profile-icon">
         </figure>
         <input placeholder="email" formControlName="email" matInput type="email">
@@ -21,13 +21,15 @@
         <mat-label>********</mat-label>
         <input placeholder="password" formControlName="password" matInput type="password">
       </mat-form-field>
+      <p class="alert-error" [ngClass]="{'display':getError()}">
+        User or Password invalid, please try again
+      </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button class="button-small" type="submit">Submit</button>
+      <button class="button-small" type="submit">Submit</button>
       <p class="forgot-password">forgot your password?</p>
       <p class="alternative-action">Do you need an account?</p>
-      <button mat-raised-button class="button-small" type="button">Join Us!</button>
+      <button class="button-small" routerLink="/auth/register" routerLinkActive="active" type="button">Join Us!</button>
     </mat-card-actions>
-
   </mat-card>
 </form>

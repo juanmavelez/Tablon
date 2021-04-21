@@ -21,13 +21,17 @@ form{display:grid;}
 .input-small{
   margin: 0 auto;
 }
-.mat-form-field-infix,.mat-input-element{
-  margin-left: 10px;
+.mat-form-field{
+  padding-left:10px
 }
+
 .mat-card-actions{
   display:grid;
   margin:0 auto;
   justify-content: center;
+}
+.submit-button.ng-invalid{
+  background-color: var(--color5);
 }
 .alternative-action{
   margin-top: 20px;

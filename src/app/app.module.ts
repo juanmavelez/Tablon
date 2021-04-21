@@ -5,8 +5,10 @@ import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TransferHttpCacheModule } from '@nguniversal/common';
+import { HttpErrorInterceptor } from '@core/interceptors/httpError.interceptor';
+
 @NgModule({
   declarations: [AppComponent, LayoutComponent],
   imports: [
@@ -16,6 +18,9 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
     SharedModule,
     HttpClientModule,
     TransferHttpCacheModule,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

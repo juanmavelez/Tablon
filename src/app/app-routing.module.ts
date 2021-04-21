@@ -19,7 +19,7 @@ const routes: Routes = [
       import('./home/home.module').then((module) => module.HomeModule),
   },
   {
-    path: '',
+    path: 'app',
     component: LayoutComponent,
     children: [
       {

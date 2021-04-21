@@ -7,6 +7,8 @@ import {
   IResponseCourse,
   IResponseCourses,
 } from '@core/models/course.model';
+import { catchError, retry } from 'rxjs/operators';
+import { handleHttpErrorResponse } from '@utils/handlerHttpResponseError';
 
 @Injectable({
   providedIn: 'root',
@@ -15,22 +17,32 @@ export class CourseService {
   constructor(private http: HttpClient) {}
 
   getAllCourses(): Observable<IResponseCourses> {
-    return this.http.get<IResponseCourses>(`/courses`);
+    return this.http
+      .get<IResponseCourses>(`/courses`)
+      .pipe(retry(3), catchError(handleHttpErrorResponse));
   }
 
   getCourse(id: string): Observable<IResponseCourse> {
-    return this.http.get<IResponseCourse>(`/courses/${id}`);
+    return this.http
+      .get<IResponseCourse>(`/courses/${id}`)
+      .pipe(retry(3), catchError(handleHttpErrorResponse));
   }
 
   createCourse(product: ICourse): Observable<object> {
-    return this.http.post(`${environment.API_URL}/courses`, product);
+    return this.http
+      .post(`${environment.API_URL}/courses`, product)
+      .pipe(retry(3), catchError(handleHttpErrorResponse));
   }
 
   updateCourse(id: string, changes: Partial<ICourse>): Observable<any> {
-    return this.http.put(`${environment.API_URL}/courses/${id}`, changes);
+    return this.http
+      .put(`${environment.API_URL}/courses/${id}`, changes)
+      .pipe(retry(3), catchError(handleHttpErrorResponse));
   }
 
   deleteCourse(id: string): Observable<any> {
-    return this.http.delete(`${environment.API_URL}/courses/${id}`);
+    return this.http
+      .delete(`${environment.API_URL}/courses/${id}`)
+      .pipe(retry(3), catchError(handleHttpErrorResponse));
   }
 }
