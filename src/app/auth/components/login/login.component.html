@@ -9,27 +9,29 @@
     <mat-card-content>
       <mat-form-field appearance="none" class="user-login-small">
         <mat-label>email@example.com</mat-label>
-        <figure matPrefix [ngClass]="">
-          <img class="login" src="../../../../assets/icons/login-profile-black-icon.svg" alt="profile-icon">
+        <figure matPrefix
+          [ngClass]=" form.controls['email'].invalid && form.controls['email'].touched  ? 'userFigureError' : ''">
+          <img class=" login" src="../../../../assets/icons/login-profile-black-icon.svg" alt="profile-icon">
         </figure>
-        <input placeholder="email" formControlName="email" matInput type="email">
+        <input id="email" placeholder="email" formControlName="email" matInput type="email">
       </mat-form-field>
       <mat-form-field appearance="none" class="user-login-small">
-        <figure matPrefix>
+        <figure matPrefix
+          [ngClass]="form.controls['password'].invalid && form.controls['password'].touched ? 'passwordFigureError' : ''">
           <img class="password" src="../../../../assets/icons/password-login-icon.svg" alt="password-icon">
         </figure>
         <mat-label>********</mat-label>
         <input placeholder="password" formControlName="password" matInput type="password">
       </mat-form-field>
-      <p class="alert-error" [ngClass]="{'display':getError()}">
-        User or Password invalid, please try again
-      </p>
+      <ng-container *ngIf="hasError">
+        <p class="alert-error">User or Password invalid, please try again</p>
+      </ng-container>
     </mat-card-content>
     <mat-card-actions>
-      <button class="button-small" type="submit">Submit</button>
-      <p class="forgot-password">forgot your password?</p>
+      <button class=" button-small" type="submit">Submit</button>
+      <p class="forgot-password">Forgot your password?</p>
       <p class="alternative-action">Do you need an account?</p>
-      <button class="button-small" routerLink="/auth/register" routerLinkActive="active" type="button">Join Us!</button>
+      <button class="button-small" routerLink="/auth/register" type="button">Join Us!</button>
     </mat-card-actions>
   </mat-card>
 </form>

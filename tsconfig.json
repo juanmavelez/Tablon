@@ -26,9 +26,6 @@
       "@shared/*": [
         "src/app/shared/*"
       ],
-      "@utils/*": [
-        "src/app/utils/*"
-      ],
       "@environments/*": [
         "src/environments/*"
       ],
@@ -37,7 +34,10 @@
       ],
       "@utils/*": [
         "src/app/utils/*"
-      ]
+      ],
+      "@assets/*": [
+        "src/app/assets/*"
+      ],
     }
   }
 }

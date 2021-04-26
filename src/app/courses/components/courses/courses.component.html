@@ -1,16 +1,15 @@
-<mat-card class="courses-card">
+<mat-card (mouseover)="showDescription=true" (mouseout)="showDescription=false" (click)="goToDetails()">
   <mat-card-header>
     <mat-card-title>
       {{course.name}}
     </mat-card-title>
-    <mat-card-subtitle>
-      <img src="{{url}}" alt="profile picture">
-    </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    {{course.description}}
+    <figure *ngIf="!showDescription">
+      <img src="{{url}}" alt="profile picture">
+    </figure>
+    <p *ngIf="showDescription">{{course.description}}</p>
   </mat-card-content>
-  <mat-card-actions>
-    <a mat-raised-button [routerLink]="['/courses', course._id]">Details</a>
-  </mat-card-actions>
+  <mat-card-footer *ngIf="!showDescription">
+  </mat-card-footer>
 </mat-card>

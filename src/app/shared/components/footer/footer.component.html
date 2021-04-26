@@ -1,1 +1,24 @@
-<p>footer works!</p>
+<footer>
+  <nav>
+    <li class="home">
+      <a routerLink="/app/courses">
+        <img src="../../../../assets/icons/home-icon.svg" alt="home-icon">
+      </a>
+    </li>
+    <li class="myLibrary">
+      <a [routerLink]="['/app/courses/user',userId]">
+        <img src="../../../../assets/icons/library-icon.svg" alt="library-icon">
+      </a>
+    </li>
+    <li class="profile">
+      <a [routerLink]="['/app/profile',userId]">
+        <img src="../../../../assets/icons/profile-icon.svg" alt="profile-icon">
+      </a>
+    </li>
+    <li class="newCourse">
+      <a routerLink="/app/courses/create-course">
+        <img src="../../../../assets/icons/add-course-icon.svg" alt="add-course-icon">
+      </a>
+    </li>
+  </nav>
+</footer>

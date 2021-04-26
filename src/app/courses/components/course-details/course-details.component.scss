@@ -1,0 +1,49 @@
+mat-card{
+  padding: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: transparent;
+}
+
+.mat-card-header{
+  width: 90%;
+  height: 80px;
+  margin: 20px auto 10px auto;
+  align-items: center;
+  background-color: var(--color2);
+  border-radius: 5px;
+  border: 1px solid var(--color1);
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  color: var(--color6);
+}
+.mat-card-content{
+  width: 90%;
+  max-width: 400px;
+  margin: 20px auto 0 auto;
+}
+.courseTitle{
+  color:var(--color6);
+}
+nav{
+  border-radius: 5px;
+  padding: 10px 0;
+  background-color: var(--color2);
+}
+li{
+  display: grid;
+  width: 285px;
+  margin: 16px;
+  padding: 10px;
+  background-color: var(--color6);
+  border: 1px solid var(--color1);
+  border-radius: 5px;
+}
+.classTitle{
+  margin-bottom: 10px;
+  margin-left: 5%;
+}
+.mat-card-actions{
+  display: flex;
+
+}

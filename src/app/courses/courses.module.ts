@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MaterialModule } from '@material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CoursesRoutingModule } from './courses-routing.module';
 import { CoursesComponent } from './components/courses/courses.component';
-import { MaterialModule } from '@material/material.module';
 import { CourseDetailsComponent } from './components/course-details/course-details.component';
 import { CoursesListComponent } from './components/courses-list/courses-list.component';
 import { UserCoursesComponent } from './components/user-courses/user-courses.component';
+import { CreateCoursesComponent } from './components/create-courses/create-courses.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,13 @@ import { UserCoursesComponent } from './components/user-courses/user-courses.com
     CourseDetailsComponent,
     CoursesListComponent,
     UserCoursesComponent,
+    CreateCoursesComponent,
   ],
-  imports: [CommonModule, CoursesRoutingModule, MaterialModule],
+  imports: [
+    CommonModule,
+    CoursesRoutingModule,
+    MaterialModule,
+    ReactiveFormsModule,
+  ],
 })
 export class CoursesModule {}

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ICourse } from '@core/models/course.model';
 import { GravatarService } from '@core/services/gravatar/gravatar.service';
-import { UserService } from '@core/services/user/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -11,10 +11,10 @@ import { UserService } from '@core/services/user/user.service';
 export class CoursesComponent implements OnInit {
   @Input() course: ICourse;
   url: string;
-
+  showDescription = false;
   constructor(
-    private userService: UserService,
-    private gravatarService: GravatarService
+    private gravatarService: GravatarService,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.url = this.createURL(this.course.teacher);
@@ -23,5 +23,9 @@ export class CoursesComponent implements OnInit {
   createURL(teacherEmail: string): string {
     const url = this.gravatarService.createGravatarUrl(teacherEmail);
     return url;
+  }
+
+  goToDetails(): void {
+    this.router.navigateByUrl(`/app/courses/${this.course._id}`);
   }
 }

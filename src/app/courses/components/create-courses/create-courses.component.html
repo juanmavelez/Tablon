@@ -1,0 +1,34 @@
+<form [formGroup]="form" (ngSubmit)="createCourse($event)">
+  <mat-card tabindex="0">
+    <mat-card-header>
+      <mat-card-title>Create your New Course</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="none" class="input-small">
+        <mat-label>Course name</mat-label>
+        <input placeholder="name" formControlName="name" matInput type="name">
+      </mat-form-field>
+      <mat-form-field appearance="none" class="input-small description">
+        <mat-label>Course description</mat-label>
+        <textarea matInput placeholder="description" formControlName="description" matInput type="description">
+        </textarea>
+      </mat-form-field>
+      <div *ngFor="let count of lessons, index as i " class="lesson-container">
+        <h3>Lesson {{i}}</h3>
+        <mat-form-field appearance="none" class="in put-small">
+          <mat-label>Lesson name</mat-label>
+          <input matInput placeholder="description" formControlName="description" matInput type="description">
+        </mat-form-field>
+        <mat-form-field appearance="none" class="input-small description">
+          <mat-label>Lesson description</mat-label>
+          <textarea matInput placeholder="description" formControlName="description" matInput
+            type="description"></textarea>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="button-small green" type="button" (click)="addCounter()">Add leasson</button>
+      <button class="button-small" type="submit">Create!</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

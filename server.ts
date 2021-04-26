@@ -14,6 +14,8 @@ import * as cookieParser from 'cookie-parser';
 import authApi from './server/routes/auth.routes';
 import userCoursesApi from './server/routes/userCourses.routes';
 import coursesApi from './server/routes/courses.routes';
+import usersApi from './server/routes/user.routes';
+
 import './server/utils/strategies/basic';
 
 import {
@@ -21,6 +23,7 @@ import {
   errorHandler,
   wrapError,
 } from './server/utils/Middleware/errorHandler';
+import { from } from 'rxjs';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -50,6 +53,7 @@ export function app(): express.Express {
 
   // Routes
   authApi(server);
+  usersApi(server);
   coursesApi(server);
   userCoursesApi(server);
 

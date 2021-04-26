@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormControl,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ISignUpRequest } from '@core/models/auth.model';
 import { AuthService } from '@core/services/auth/auth.service';
@@ -32,7 +27,6 @@ export class RegisterComponent implements OnInit {
     event.preventDefault();
     const value = this.form.value;
     const user: ISignUpRequest = value;
-    console.log('user', user);
     if (value) {
       this.authService.register(user).subscribe((response) => {
         if (response.message) {

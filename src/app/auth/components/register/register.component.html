@@ -8,7 +8,7 @@
     </mat-card-header>
     <mat-card-content>
       <mat-form-field appearance="none" class="input-small">
-        <mat-label>User Name</mat-label>
+        <mat-label>Username</mat-label>
         <input placeholder="name" formControlName="name" matInput type="name">
       </mat-form-field>
       <mat-form-field appearance="none" class="input-small">
@@ -18,14 +18,15 @@
       <mat-form-field appearance="none" class="input-small">
         <mat-label>********</mat-label>
         <input placeholder="password" formControlName="password" matInput type="password">
-        <mat-hint>The password must have 1 capittal Letter</mat-hint>
+        <mat-hint>The password must have 1 capital letter</mat-hint>
+        <mat-hint>The password must have 1 symbol</mat-hint>
+        <mat-hint>The password must have 1 capital Letter</mat-hint>
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
       <button class="button-small submit-button" type="submit">Create my Account!</button>
-      <p class="alternative-action">alrady with an account?</p>
-      <button class="button-small" type="button" routerLink="/auth/login">Login into you account</button>
+      <p class="alternative-action">Already have an account?</p>
+      <button class="button-small" type="button" routerLink="/auth/login">Login to your account</button>
     </mat-card-actions>
   </mat-card>
-
 </form>

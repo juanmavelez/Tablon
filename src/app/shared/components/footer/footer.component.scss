@@ -1,0 +1,28 @@
+footer{
+  position:sticky;
+  bottom: 0;
+  background-color: var(--color6);
+  border-top: 1px solid rgba(53, 54, 58, 0.6);
+  border-radius: 5px 5px 0 0;
+}
+li{
+  justify-content: center;
+}
+nav{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 80px;
+  width: 100vw;
+
+}
+a{
+  display:flex;
+  height: 80px;
+  width: 80px;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border:none;
+}

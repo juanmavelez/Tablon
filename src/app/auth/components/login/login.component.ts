@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@core/services/auth/auth.service';
-import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -11,13 +10,14 @@ import { catchError } from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  error: boolean;
+  hasError = false;
+  loginError = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router
   ) {
-    this.error = false;
     this.buildForm();
   }
 
@@ -27,22 +27,16 @@ export class LoginComponent implements OnInit {
     event.preventDefault();
     const value = this.form.value;
     if (value) {
-      const login$ = this.authService.login(value.email, value.password);
-      login$.subscribe(
-        (res) => {
-          console.log(res);
-          this.router.navigateByUrl('/app');
-        },
-        (err) => {
-          console.log(err);
-          this.error = true;
+      this.authService.login(value.email, value.password).subscribe(
+        () => this.router.navigateByUrl('/app'),
+        () => {
+          this.hasError = true;
         }
       );
     } else {
-      console.log('invalid input plis try again ');
+      this.loginError = true;
     }
   }
-
   private buildForm(): void {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required]],
@@ -56,7 +50,12 @@ export class LoginComponent implements OnInit {
       ],
     });
   }
-  getError(): boolean {
-    return this.error;
+  getError(): string {
+    if (this.hasError) {
+      this.hasError = false;
+      return 'none';
+    } else {
+      return 'block';
+    }
   }
 }

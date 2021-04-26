@@ -4,15 +4,18 @@
   width: 150px;
   height: 117px;
 }
-form{display:grid;}
+form{
+  display:grid;
+}
 .mat-card{
   margin: 0 auto;
-  background-color: rgb(0,0,0,0%);
   box-shadow: none;
+  background-color: transparent;
 }
 .mat-card-header{
   margin: 0 auto;
   width: max-content;
+  justify-content: center;
 }
 .mat-card-content{
   display:grid;
@@ -26,11 +29,9 @@ form{display:grid;}
   background-color: var(--color6);
   border-radius: 5px;
 }
-
 .user-login-small.ng-touched.ng-invalid{
   border: 1px solid var(--color4);
 }
-
 .user-login-small figure{
   position: relative;
   top: -1px;
@@ -42,6 +43,12 @@ form{display:grid;}
   align-items: center;
   background-color: var(--color1);
   border-radius: 5px;
+}
+.user-login-small .userFigureError,
+.user-login-small .userFigureError img,
+.user-login-small .passwordFigureError,
+.user-login-small .passwordFigureError img {
+   background-color: var(--color4);
 }
 
 .user-login-small figure img{

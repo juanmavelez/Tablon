@@ -25,7 +25,6 @@ export class AuthService {
       .pipe(
         retry(3),
         tap((response) => {
-          console.log(response);
           localStorage.setItem('name', response.user.name);
           localStorage.setItem('email', response.user.email);
           localStorage.setItem('id', response.user.id);
