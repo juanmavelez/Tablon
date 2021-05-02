@@ -15,6 +15,7 @@ import authApi from './server/routes/auth.routes';
 import userCoursesApi from './server/routes/userCourses.routes';
 import coursesApi from './server/routes/courses.routes';
 import usersApi from './server/routes/user.routes';
+import tagsApi from './server/routes/tags.routes';
 
 import './server/utils/strategies/basic';
 
@@ -52,6 +53,7 @@ export function app(): express.Express {
   server.use(cookieParser());
 
   // Routes
+  tagsApi(server);
   authApi(server);
   usersApi(server);
   coursesApi(server);
