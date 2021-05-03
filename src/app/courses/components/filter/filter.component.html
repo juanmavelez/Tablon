@@ -1,0 +1,29 @@
+<button (click)="showtag = !showtag">{{tag.type}}</button>
+
+<button *ngIf="showtag && tag.lenguages" (click)="showLenguages = !showLenguages ">Lenguages</button>
+<div *ngIf="showtag && showLenguages">
+  <li *ngFor="let lenguage of tag.lenguages">
+    <button (click)="addElement()">{{lenguage}}</button>
+  </li>
+</div>
+
+<button *ngIf="showtag && tag.frameworks" (click)="showFrameworks = !showFrameworks">Frameworks</button>
+<div *ngIf="showtag && showFrameworks">
+  <li *ngFor="let framework of tag.frameworks">
+    <button (click)="addElement(framework)">{{framework}}</button>
+  </li>
+</div>
+
+<button *ngIf="showtag && tag.preprocessors" (click)="showPreprocessors = !showPreprocessors">Preprocessors</button>
+<div *ngIf="showtag && showPreprocessors">
+  <li *ngFor="let preprocessor of tag.preprocessors">
+    <button (click)="addElement(preprocessor)">{{preprocessors}}</button>
+  </li>
+</div>
+
+<button *ngIf="showtag && tag.names" (click)="showArquitecture= showArquitecture!">Arquitecture</button>
+<div *ngIf="showtag && showArquitecture">
+  <li *ngFor="let name of tag.names">
+    <button (click)="addElement(name)">{{name}}</button>
+  </li>
+</div>

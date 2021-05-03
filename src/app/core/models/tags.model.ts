@@ -7,7 +7,7 @@ export interface ITag {
   preprocessors?: string[];
 }
 
-export interface ITagRequest {
+export interface ITagResponse {
   data: ITag[];
   message: string;
 }

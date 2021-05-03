@@ -8,6 +8,7 @@ import { CourseDetailsComponent } from './components/course-details/course-detai
 import { CoursesListComponent } from './components/courses-list/courses-list.component';
 import { UserCoursesComponent } from './components/user-courses/user-courses.component';
 import { CreateCoursesComponent } from './components/create-courses/create-courses.component';
+import { FilterComponent } from './components/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CreateCoursesComponent } from './components/create-courses/create-cours
     CoursesListComponent,
     UserCoursesComponent,
     CreateCoursesComponent,
+    FilterComponent,
   ],
   imports: [
     CommonModule,

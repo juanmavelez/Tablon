@@ -53,11 +53,11 @@ export function app(): express.Express {
   server.use(cookieParser());
 
   // Routes
-  tagsApi(server);
   authApi(server);
   usersApi(server);
   coursesApi(server);
   userCoursesApi(server);
+  tagsApi(server);
 
   server.get(
     '*.*',

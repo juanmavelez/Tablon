@@ -5,7 +5,7 @@ import { badImplementation } from '@hapi/boom';
 
 export default function tagsApi(server: express.Express): void {
   const router = express.Router();
-  server.use('/courses', router);
+  server.use('/tags', router);
 
   router.get(
     '/',
