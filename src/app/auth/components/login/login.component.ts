@@ -29,9 +29,7 @@ export class LoginComponent implements OnInit {
     if (value) {
       this.authService.login(value.email, value.password).subscribe(
         () => this.router.navigateByUrl('/app'),
-        () => {
-          this.hasError = true;
-        }
+        () => (this.hasError = true)
       );
     } else {
       this.loginError = true;
@@ -49,13 +47,5 @@ export class LoginComponent implements OnInit {
         ],
       ],
     });
-  }
-  getError(): string {
-    if (this.hasError) {
-      this.hasError = false;
-      return 'none';
-    } else {
-      return 'block';
-    }
   }
 }

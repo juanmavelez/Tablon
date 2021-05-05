@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
+
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -7,9 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
   userId: string;
-  constructor() {}
-
-  ngOnInit(): void {
-    this.userId = localStorage.getItem('id');
+  constructor(private localStorageService: LocalStorageService) {
+    this.userId = this.localStorageService.getItem('id');
   }
+  ngOnInit(): void {}
 }

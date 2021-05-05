@@ -1,3 +1,11 @@
+<h2>Courses you teach</h2>
+<div *ngIf="(userCourses$ | async) as userCourses" class="courses-container">
+  <app-courses *ngFor="let course of userCourses.data" [course]="course">
+  </app-courses>
+</div>
+
+
+<h2>Your courses</h2>
 <div *ngIf="(userCourses$ | async) as userCourses" class="courses-container">
   <app-courses *ngFor="let course of userCourses.data" [course]="course">
   </app-courses>

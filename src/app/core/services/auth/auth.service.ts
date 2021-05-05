@@ -4,13 +4,16 @@ import { Observable } from 'rxjs';
 import { ISignInRequest, ISignUpRequest } from '@core/models/auth.model';
 import { tap } from 'rxjs/operators';
 import { catchError, retry } from 'rxjs/operators';
-/* import { handleHttpErrorResponse } from '@utils/handlerHttpResponseError'; */
+import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
+  ) {}
 
   login(email: string, password: string): Observable<ISignInRequest> {
     const authorizationData = 'Basic ' + btoa(`${email}:${password}`);
@@ -25,9 +28,9 @@ export class AuthService {
       .pipe(
         retry(3),
         tap((response) => {
-          localStorage.setItem('name', response.user.name);
-          localStorage.setItem('email', response.user.email);
-          localStorage.setItem('id', response.user.id);
+          this.localStorageService.setItem('name', response.user.name);
+          this.localStorageService.setItem('email', response.user.email);
+          this.localStorageService.setItem('id', response.user.id);
         })
       );
   }

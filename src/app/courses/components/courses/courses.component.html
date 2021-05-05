@@ -1,4 +1,4 @@
-<mat-card (mouseover)="showDescription=true" (mouseout)="showDescription=false" (click)="goToDetails()">
+<mat-card *ngIf="course" (click)="goToDetails()">
   <mat-card-header>
     <mat-card-title>
       {{course.name}}

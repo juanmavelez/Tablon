@@ -16,7 +16,6 @@ function coursesApi(server: express.Express): void {
     ) => {
       try {
         const { token } = req.cookies;
-        console.log('trying to fetch courses');
         const { data, status } = await axios({
           url: `${environment.API_URL}/courses`,
           headers: { Authorization: `Bearer ${token}` },

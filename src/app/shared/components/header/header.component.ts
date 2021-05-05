@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
-import { IUser } from '@core/models/user.model';
 import { Observable } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
+
+import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
+import { IUser } from '@core/models/user.model';
 
 @Component({
   selector: 'app-header',
@@ -11,12 +13,16 @@ import { filter, tap } from 'rxjs/operators';
 })
 export class HeaderComponent implements OnInit {
   user: IUser;
-  userId: string = localStorage.getItem('id');
+  userId: string;
   router$: Observable<any>;
   title: string;
 
-  constructor(public router: Router) {
+  constructor(
+    public router: Router,
+    private localStorageService: LocalStorageService
+  ) {
     this.router$ = router.events.pipe(filter((e) => e instanceof RouterEvent));
+    this.userId = this.localStorageService.getItem('id');
   }
 
   ngOnInit(): void {

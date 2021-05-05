@@ -1,14 +1,25 @@
-<button (click)="showFilter = !showFilter">Filter</button>
-{{showFilter}}
+<button (click)="showFilters = !showFilters">Filter</button>
 
-<div *ngIf="showFilter && (tags$ | async) as tags">
-  <div *ngFor="let tag of tags.data">
-    <app-filter [tag]="tag"></app-filter>
+<app-filter *ngIf="showFilters" (pressedTag)="addElementToFilter($event)"></app-filter>
+
+<section>
+  <h2>You may like</h2>
+  <div *ngIf=" (courses$ | async) as courses" class="courses-container">
+    <li *ngFor="let course of courses.data"
+      [ngStyle]="arrayContainsArray(course.tags,filterList) ? {'display':'grid'} : {'display':'none'}">
+      <app-courses [course]="course">
+      </app-courses>
+    </li>
   </div>
-</div>
+</section>
 
-
-<div *ngIf="(courses$ | async) as courses" class="courses-container">
-  <app-courses *ngFor="let course of courses.data" [course]="course">
-  </app-courses>
-</div>
+<section>
+  <h2>Other Courses</h2>
+  <div *ngIf="(courses$ | async) as courses" class="courses-container">
+    <li *ngFor="let course of courses.data"
+      [ngStyle]="arrayContainsArray(course.tags,filterList) ? {'display':'none'}:  {'display':'grid'} ">
+      <app-courses [course]="course">
+      </app-courses>
+    </li>
+  </div>
+</section>

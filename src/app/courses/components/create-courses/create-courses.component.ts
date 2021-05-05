@@ -52,6 +52,7 @@ export class CreateCoursesComponent implements OnInit {
       ],
     });
   }
+
   addCounter(): void {
     this.lessons.push(`lesson ${this.lessons.length}`);
   }
