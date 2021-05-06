@@ -56,6 +56,33 @@ function coursesApi(server: express.Express): void {
       }
     }
   );
+
+  router.post(
+    '/',
+    async (
+      req: express.Request,
+      res: express.Response,
+      next: express.NextFunction
+    ) => {
+      try {
+        const { token } = req.cookies;
+        const { body: course } = req;
+        console.log(req.body);
+        const { data, status } = await axios({
+          url: `${environment.API_URL}/courses/`,
+          headers: { Authorization: `Bearer ${token}` },
+          method: 'post',
+          data: course,
+        });
+        if (status !== 200) {
+          return next(badImplementation());
+        }
+        res.status(200).json(data);
+      } catch (err) {
+        next(err);
+      }
+    }
+  );
 }
 
 export default coursesApi;

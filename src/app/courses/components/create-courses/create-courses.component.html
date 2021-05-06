@@ -4,31 +4,49 @@
       <mat-card-title>Create your New Course</mat-card-title>
     </mat-card-header>
     <mat-card-content>
+
       <mat-form-field appearance="none" class="input-small">
         <mat-label>Course name</mat-label>
         <input placeholder="name" formControlName="name" matInput type="name">
       </mat-form-field>
+
       <mat-form-field appearance="none" class="input-small description">
         <mat-label>Course description</mat-label>
-        <textarea matInput placeholder="description" formControlName="description" matInput type="description">
+        <textarea matInput placeholder="description" formControlName="description" matInput type="text">
         </textarea>
       </mat-form-field>
-      <div *ngFor="let count of lessons, index as i " class="lesson-container">
-        <h3>Lesson {{i}}</h3>
-        <mat-form-field appearance="none" class="in put-small">
-          <mat-label>Lesson name</mat-label>
-          <input matInput placeholder="description" formControlName="description" matInput type="description">
-        </mat-form-field>
-        <mat-form-field appearance="none" class="input-small description">
-          <mat-label>Lesson description</mat-label>
-          <textarea matInput placeholder="description" formControlName="description" matInput
-            type="description"></textarea>
-        </mat-form-field>
+
+      <button class="button-small" type="button" (click)="addLessonsField()">Add leasson</button>
+      <div formArrayName="lessons" *ngFor="let lesson of lessonsField.controls,let i = index">
+        <div [formGroupName]="i">
+          <mat-form-field appearance="none" class="input-small">
+            <mat-label>Lesson name</mat-label>
+            <input placeholder="name" formControlName="name" matInput type="name">
+          </mat-form-field>
+          <mat-form-field appearance="none" class="input-small">
+            <mat-label>Description</mat-label>
+            <input placeholder="description" formControlName="description" matInput type="text">
+          </mat-form-field>
+        </div>
       </div>
+
+      <button class="button-small" type="button" (click)="addTagsField()">Add tags</button>
+      <div formArrayName="tags" *ngFor="let tags of tagField.controls,index as i">
+        <div [formGroupName]="j">
+          <mat-form-field appearance="none" class="input-small">
+            <mat-label>Tags</mat-label>
+            <mat-select formControlName="tags">
+              <mat-option [value]="tag" *ngFor="let tag of tagList">
+                {{tag}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
     </mat-card-content>
     <mat-card-actions>
-      <button class="button-small green" type="button" (click)="addCounter()">Add leasson</button>
-      <button class="button-small" type="submit">Create!</button>
+      <button class="button-small" type="submit" [disabled]="createRequest">Create!</button>
     </mat-card-actions>
   </mat-card>
 </form>

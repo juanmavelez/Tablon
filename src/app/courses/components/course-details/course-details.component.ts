@@ -6,7 +6,7 @@ import { take, switchMap, tap } from 'rxjs/operators';
 import { CourseService } from '@core/services/course/course.service';
 import { UserCoursesService } from '@core/services/user-courses/user-courses.service';
 import { UserService } from '@core/services/user/user.service';
-
+import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
 import {
   IResponseCourse,
   IResponseCourseId,
@@ -26,13 +26,17 @@ export class CourseDetailsComponent implements OnInit {
   userCourse: IUserCourse;
   hasCourse: boolean;
   courseId: string;
+  userId: string;
 
   constructor(
     private courseService: CourseService,
     private userCoursesService: UserCoursesService,
     private activatedRoute: ActivatedRoute,
-    private userService: UserService
-  ) {}
+    private userService: UserService,
+    private localStorageService: LocalStorageService
+  ) {
+    this.userId = this.localStorageService.getItem('id');
+  }
 
   ngOnInit(): void {
     this.fetchCourse();
@@ -44,22 +48,22 @@ export class CourseDetailsComponent implements OnInit {
     this.course$ = this.activatedRoute.params.pipe(
       switchMap((params: Params) => {
         this.courseId = params.id;
-        return this.courseService.getCourse(params.id);
+        return this.courseService.getCourse(params.id).pipe(take(1));
       })
     );
   }
+
   private fetchTeacher(): void {
     this.teacher$ = this.course$.pipe(
       switchMap((response) => {
-        return this.userService.getUser(response.data.teacher);
+        return this.userService.getUser(response.data.teacher).pipe(take(1));
       })
     );
   }
 
   private fetchUserCourses(): void {
-    const userId = localStorage.getItem('id');
     this.userCourses$ = this.userCoursesService
-      .getUserCoursesId(userId)
+      .getUserCoursesId(this.userId)
       .pipe(
         tap((response) => (this.hasCourse = this.userHasCourse(response.data)))
       );
@@ -76,23 +80,18 @@ export class CourseDetailsComponent implements OnInit {
   }
 
   createUserCourse(): void {
-    console.log('adding course');
-    const userId = localStorage.getItem('id');
     this.userCoursesService
-      .createUserCourse(userId, this.courseId)
+      .createUserCourse(this.userId, this.courseId)
       .pipe(take(1))
       .subscribe();
     this.fetchUserCourses();
   }
 
   deleteUserCourse(): void {
-    console.log('deleting course');
     this.userCoursesService
       .deleteUserCourse(this.userCourse._id)
       .pipe(take(1))
       .subscribe();
     this.fetchUserCourses();
   }
-
-  deleteLesson(): void {}
 }

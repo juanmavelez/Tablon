@@ -4,8 +4,7 @@ import { tap } from 'rxjs/operators';
 
 import { UserCoursesService } from '@core/services/user-courses/user-courses.service';
 import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
-import { CourseService } from '@core/services/course/course.service';
-import { ICourse, IResponseCourse } from '@core/models/course.model';
+import { IResponseCourse } from '@core/models/course.model';
 
 @Component({
   selector: 'app-user-courses',
@@ -23,8 +22,6 @@ export class UserCoursesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userCourses$ = this.userCoursesService
-      .getUserCourses(this.userId)
-      .pipe(tap((response) => console.log(response)));
+    this.userCourses$ = this.userCoursesService.getUserCourses(this.userId);
   }
 }

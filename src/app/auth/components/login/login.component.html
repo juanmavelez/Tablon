@@ -11,14 +11,14 @@
         <mat-label>email@example.com</mat-label>
         <figure matPrefix
           [ngClass]=" form.controls['email'].invalid && form.controls['email'].touched  ? 'userFigureError' : ''">
-          <img class=" login" src="../../../../assets/icons/login-profile-black-icon.svg" alt="profile-icon">
+          <img class=" login" src="../../../../assets/icons/login-profile-black-icon.svg" alt="">
         </figure>
         <input id="email" placeholder="email" formControlName="email" matInput type="email">
       </mat-form-field>
       <mat-form-field appearance="none" class="user-login-small">
         <figure matPrefix
           [ngClass]="form.controls['password'].invalid && form.controls['password'].touched ? 'passwordFigureError' : ''">
-          <img class="password" src="../../../../assets/icons/password-login-icon.svg" alt="password-icon">
+          <img class="password" src="../../../../assets/icons/password-login-icon.svg" alt="">
         </figure>
         <mat-label>********</mat-label>
         <input placeholder="password" formControlName="password" matInput type="password">
