@@ -31,7 +31,7 @@
       </div>
 
       <button class="button-small" type="button" (click)="addTagsField()">Add tags</button>
-      <div formArrayName="tags" *ngFor="let tags of tagField.controls,index as i">
+      <div formArrayName="tags" *ngFor="let tags of tagField.controls,index as j">
         <div [formGroupName]="j">
           <mat-form-field appearance="none" class="input-small">
             <mat-label>Tags</mat-label>
@@ -46,7 +46,7 @@
 
     </mat-card-content>
     <mat-card-actions>
-      <button class="button-small" type="submit" [disabled]="createRequest">Create!</button>
+      <button class="button-small" type="submit" [disabled]="!form.valid">Create!</button>
     </mat-card-actions>
   </mat-card>
 </form>

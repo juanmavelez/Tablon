@@ -69,12 +69,12 @@ function coursesApi(server: express.Express): void {
         const { body: course } = req;
         console.log(req.body);
         const { data, status } = await axios({
-          url: `${environment.API_URL}/courses/`,
+          url: `${environment.API_URL}/courses`,
           headers: { Authorization: `Bearer ${token}` },
           method: 'post',
           data: course,
         });
-        if (status !== 200) {
+        if (status !== 201) {
           return next(badImplementation());
         }
         res.status(200).json(data);

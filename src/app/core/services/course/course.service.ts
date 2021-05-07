@@ -22,8 +22,8 @@ export class CourseService {
     return this.http.get<IResponseCourse>(`/courses/${id}`).pipe(retry(3));
   }
 
-  createCourse(product: ICourse): Observable<object> {
-    return this.http.post(`/courses`, product).pipe(retry(3));
+  createCourse(course: ICourse): Observable<object> {
+    return this.http.post(`/courses`, course).pipe(retry(3));
   }
 
   updateCourse(id: string, changes: Partial<ICourse>): Observable<any> {

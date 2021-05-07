@@ -14,7 +14,6 @@ export class CreateCourseService {
     for (const object of objectsArray) {
       finalArray.push(Object.values(object)[0]);
     }
-    console.log(finalArray);
     return finalArray;
   }
 }

@@ -44,16 +44,18 @@ export class CreateCoursesComponent implements OnInit {
       .subscribe();
   }
 
-  createCourse(event: Event): any {
+  createCourse(event: Event): void {
     event.preventDefault();
     const value = this.form.value;
     if (value) {
       value.tags = this.createCourseService.objectToArray(value.tags);
       value.teacher = this.localStorageService.getItem('id');
-      this.courseService.createCourse(value).subscribe(
-        () => this.router.navigateByUrl('/app'),
-        () => (this.createRequest = true)
-      );
+      console.log(value);
+      this.courseService.createCourse(value).subscribe((res) => {
+        console.log(res);
+        this.router.navigateByUrl('/app/courses'),
+          () => (this.createRequest = true);
+      });
     } else {
       console.log('invalid input plis try again ');
     }
