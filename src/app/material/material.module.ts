@@ -6,8 +6,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatChipsModule } from '@angular/material/chips';
+import { MatStepperModule } from '@angular/material/stepper';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -18,8 +18,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatMenuModule,
     MatIconModule,
     MatInputModule,
-    MatSidenavModule,
-    MatChipsModule,
+    MatStepperModule,
   ],
   exports: [
     MatToolbarModule,
@@ -29,8 +28,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatMenuModule,
     MatIconModule,
     MatInputModule,
-    MatSidenavModule,
-    MatChipsModule,
+    MatStepperModule,
   ],
 })
 export class MaterialModule {}

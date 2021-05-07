@@ -1,21 +1,20 @@
 <form [formGroup]="form" (ngSubmit)="createCourse($event)">
-  <mat-card tabindex="0">
-    <mat-card-header>
-      <mat-card-title>Create your New Course</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-
+  <mat-horizontal-stepper linear #stepper>
+    <mat-step>
+      <ng-template matStepLabel> basic name and description</ng-template>
       <mat-form-field appearance="none" class="input-small">
         <mat-label>Course name</mat-label>
         <input placeholder="name" formControlName="name" matInput type="name">
       </mat-form-field>
-
       <mat-form-field appearance="none" class="input-small description">
         <mat-label>Course description</mat-label>
-        <textarea matInput placeholder="description" formControlName="description" matInput type="text">
-        </textarea>
+        <textarea matInput placeholder="description" formControlName="description" matInput type="text"></textarea>
       </mat-form-field>
+    </mat-step>
 
+    <mat-step>
+      <ng-template matStepLabel>lessons for your course
+      </ng-template>
       <button class="button-small" type="button" (click)="addLessonsField()">Add leasson</button>
       <div formArrayName="lessons" *ngFor="let lesson of lessonsField.controls,let i = index">
         <div [formGroupName]="i">
@@ -29,7 +28,11 @@
           </mat-form-field>
         </div>
       </div>
+    </mat-step>
 
+    <mat-step>
+      <ng-template matStepLabel>Add Taggs and Complete!
+      </ng-template>
       <button class="button-small" type="button" (click)="addTagsField()">Add tags</button>
       <div formArrayName="tags" *ngFor="let tags of tagField.controls,index as j">
         <div [formGroupName]="j">
@@ -43,10 +46,8 @@
           </mat-form-field>
         </div>
       </div>
-
-    </mat-card-content>
-    <mat-card-actions>
-      <button class="button-small" type="submit" [disabled]="!form.valid">Create!</button>
-    </mat-card-actions>
-  </mat-card>
+      {{form.valid}}
+      <button class="button-small" mat-button type="submit" [disabled]="!form.valid">Create!</button>
+    </mat-step>
+  </mat-horizontal-stepper>
 </form>
