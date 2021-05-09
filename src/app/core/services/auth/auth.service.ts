@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ISignInRequest, ISignUpRequest } from '@core/models/auth.model';
 import { tap } from 'rxjs/operators';
-import { catchError, retry } from 'rxjs/operators';
+import { retry } from 'rxjs/operators';
+import { Router } from '@angular/router';
+
+import { ISignInRequest, ISignUpRequest } from '@core/models/auth.model';
 import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
 
 @Injectable({
@@ -12,7 +14,8 @@ import { LocalStorageService } from '@core/services/local-storage/local-storage.
 export class AuthService {
   constructor(
     private http: HttpClient,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private router: Router
   ) {}
 
   login(email: string, password: string): Observable<ISignInRequest> {
@@ -40,6 +43,7 @@ export class AuthService {
     localStorage.removeItem('email');
     localStorage.removeItem('id');
     document.cookie = 'token=; Path=/;Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    this.router.navigateByUrl('/home');
   }
 
   register(user: ISignUpRequest): Observable<ISignUpRequest> {

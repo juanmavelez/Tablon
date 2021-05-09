@@ -1,0 +1,18 @@
+@import './variables';
+
+.button{
+  display: flex;
+  width: 256px;
+  height: 36px;
+  align-items: center;
+  text-align: center;
+  font-family: $contentFont;
+  font-size: 1.4rem;
+  font-weight: 700;
+  &--enabled{
+    background-color: $darkBlue;
+  }
+  &--disabled{
+    background-color: $gray;
+  }
+}

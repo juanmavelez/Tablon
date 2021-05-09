@@ -15,6 +15,6 @@ export class GravatarService {
     const formattedEmail = email.toString().trim().toLowerCase();
     /*  encoding solves theproblem with the '@' character  */
     const hash = Md5.hashStr(formattedEmail);
-    return `${base}/${hash}?d=identicon`;
+    return `${base}/${hash}?d=retro`;
   }
 }

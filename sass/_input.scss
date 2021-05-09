@@ -1,0 +1,74 @@
+@import "./variables";
+
+.input {
+  width: 283px;
+  height: 45px;
+  border-radius: 5px;
+  background-color: $white;
+  border: 1px solid $softBlack;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+
+  &--enabled {
+    border: 1px solid $softBlack;
+  }
+  &--alert {
+    border: 1px solid $red;
+  }
+  &--disabled {
+    border: 1px solid $gray;
+  }
+
+  &__password {
+    &--enabled {
+      border: 1px solid $softBlack;
+    }
+    &--alert {
+      border: 1px solid $red;
+    }
+    &--disabled {
+      border: 1px solid $gray;
+    }
+  }
+
+  &__user {
+    &--enabled {
+      border: 1px solid $softBlack;
+    }
+    &--alert {
+      border: 1px solid $red;
+    }
+    &--disabled {
+      border: 1px solid $gray;
+    }
+  }
+
+  logo__container {
+    &--enabled {
+      background: $softBlack;
+    }
+    &--alert {
+      background: $red;
+    }
+    &--disabled {
+      background: $gray;
+    }
+    logo {
+      width: 20px;
+      height: 25px;
+      background: $white;
+    }
+  }
+
+}
+
+.filter{
+  width: 120px;
+  height: 38px;
+  background: $white;
+  border: 1px solid $softBlack;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+}
