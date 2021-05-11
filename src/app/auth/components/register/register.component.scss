@@ -1,42 +1,52 @@
+@import 'src/sass/variables';
+
 .logo-container{
   margin: 0 auto;
-  margin-top: 64px;
-  width: 150px;
-  height: 117px;
-}
-form{display:grid;}
-.mat-card-header{
-  margin: 0 auto;
-  width: max-content;
-}
-.mat-card{
-  margin: 0 auto;
-  background-color: rgb(0,0,0,0%);
-  box-shadow: none;
-}
-.mat-card-content{
-  display:grid;
-  gap:10px;
-}
-.input-small{
-  margin: 0 auto;
-}
-.mat-form-field{
-  padding-left:10px
+  width: 126px;
+  img{
+    margin-top: 35px;
+    height: 98px;
+  }
 }
 
-.mat-card-actions{
-  display:grid;
-  margin:0 auto;
-  justify-content: center;
-}
-.submit-button.ng-invalid{
-  background-color: var(--color5);
-}
-.alternative-action{
-  margin-top: 20px;
-  text-align: center;
-  font-size: 1.4rem;
-  opacity: 0.9;
-  color:var(--color1);
+form{
+  .mat-card{
+    display: grid;
+    margin: 0 auto;
+    justify-items: center;
+    background-color: transparent;
+  }
+  .mat-card-header{
+    h2{
+      text-align: center;
+      font-family: $contentFont;
+    }
+    div{
+      width: 100%;
+      height: 2px;
+      background-color: $green;
+    }
+  }
+
+  .mat-card-content{
+    display:grid;
+    justify-items: center;
+    margin-top: 10px;
+    .input{
+      padding:0;
+      margin-top: 27px;
+      .mat-label{
+        font-family: $contentFont;
+      }
+    }
+  }
+
+  .mat-card-actions{
+    display:grid;
+    justify-items: center;
+    font-family: $contentFont;
+    .alternative-action{
+      margin-top:55px;
+    }
+  }
 }

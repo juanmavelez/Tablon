@@ -1,37 +1,51 @@
 <figure class="logo-container">
-  <img src="../../../../assets/icons/tablon-black-icon.svg" alt="Tablon logo">
+  <img src="/assets/icons/tablon-logo.svg" alt="Tablon logo">
 </figure>
 <form [formGroup]="form" (ngSubmit)="login($event)">
   <mat-card tabindex="0">
+
     <mat-card-header>
-      <mat-card-title>Login</mat-card-title>
+      <mat-card-title>
+        <h2>Login to Tablon</h2>
+        <div></div>
+      </mat-card-title>
     </mat-card-header>
+
     <mat-card-content>
-      <mat-form-field appearance="none" class="user-login-small">
+
+      <mat-form-field class="input"
+        [ngClass]=" form.controls['email'].invalid && form.controls['email'].touched  ? 'input--alert' : 'input--enabled'">
         <mat-label>email@example.com</mat-label>
-        <figure matPrefix
-          [ngClass]=" form.controls['email'].invalid && form.controls['email'].touched  ? 'userFigureError' : ''">
-          <img class=" login" src="../../../../assets/icons/login-profile-black-icon.svg" alt="">
+        <figure matPrefix class="icon__container"
+          [ngClass]=" form.controls['email'].invalid && form.controls['email'].touched  ? 'icon__container--alert' : 'icon__container--enabled'">
+          <img class="icon" src="./assets/icons/login-profile-black-icon.svg" alt="">
         </figure>
-        <input id="email" placeholder="email" formControlName="email" matInput type="email">
+        <input matInput id="email" placeholder="email" formControlName="email" type="email">
       </mat-form-field>
-      <mat-form-field appearance="none" class="user-login-small">
-        <figure matPrefix
-          [ngClass]="form.controls['password'].invalid && form.controls['password'].touched ? 'passwordFigureError' : ''">
-          <img class="password" src="../../../../assets/icons/password-login-icon.svg" alt="">
+
+      <mat-form-field class="input"
+        [ngClass]=" form.controls['password'].invalid && form.controls['password'].touched  ? 'input--alert' : 'input--enabled'">
+        <figure matPrefix class="icon__container"
+          [ngClass]="form.controls['password'].invalid && form.controls['password'].touched ? 'icon__container--alert' : 'icon__container--enabled'">
+          <img class="icon" src="/assets/icons/password-login-icon.svg" alt="">
         </figure>
         <mat-label>********</mat-label>
-        <input placeholder="password" formControlName="password" matInput type="password">
+        <input matInput placeholder="password" formControlName="password" type="password">
       </mat-form-field>
+
       <ng-container *ngIf="hasError">
         <p class="alert-error">User or Password invalid, please try again</p>
       </ng-container>
+
     </mat-card-content>
     <mat-card-actions>
-      <button class=" button-small" type="submit">Submit</button>
-      <p class="forgot-password">Forgot your password?</p>
-      <p class="alternative-action">Do you need an account?</p>
-      <button class="button-small" routerLink="/auth/register" type="button">Join Us!</button>
+
+      <button class="button button__enabled--blue" type="submit">Submit</button>
+      <p class="extra__one">Forgot your password?</p>
+      <p class="extra__two">Do you need an account?</p>
+      <button class="button button__small button__enabled--green" routerLink="/auth/register" type="button">Join
+        Us!</button>
+
     </mat-card-actions>
   </mat-card>
 </form>

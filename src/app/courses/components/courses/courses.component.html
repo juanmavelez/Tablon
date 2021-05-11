@@ -1,15 +1,12 @@
-<mat-card *ngIf="course" (click)="goToDetails()">
-  <mat-card-header>
-    <mat-card-title>
-      {{course.name}}
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <figure *ngIf="!showDescription">
-      <img src="{{url}}" alt="profile picture">
-    </figure>
-    <p *ngIf="showDescription">{{course.description}}</p>
-  </mat-card-content>
-  <mat-card-footer *ngIf="!showDescription">
-  </mat-card-footer>
-</mat-card>
+<section *ngIf="course && (teacher$ | async) as teacher" (click)="goToDetails()" class="card">
+  <header class="card__header card__header--red">
+    <h2>{{course.name}}</h2>
+  </header>
+  <svg width="299" height="18" viewBox="0 0 299 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0C34.8833 13.5832 143.52 32.5997 299 0H0Z" fill="{{colorComponent}}" />
+  </svg>
+  <div class="card__content">
+    <p class="content">{{course.lessons.length}} with {{teacher.data.name}}</p>
+    <img src="{{url}}" alt="profile picture">
+  </div>
+</section>

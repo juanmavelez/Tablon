@@ -1,16 +1,32 @@
 <header>
-  <figure class="header-image--container">
-    <img src="../../../../assets/icons/tablon-logo.svg" alt="Tablon Icon">
-    <h2>Tablon</h2>
-  </figure>
-  <nav>
-    <li><a routerLink="/auth/login">Login</a></li>
-    <li><a routerLink="/auth/register">Register</a></li>
-  </nav>
+  <img src="/assets/icons/tablon-logo.svg" alt="Tablon Icon">
+  <h2>Tablon</h2>
 </header>
 <main>
-  <h2>Learn, Teach and discover new skill with Tablon</h2>
-  <h3>Learn online anytime 24/7</h3>
-  <h3>Create your own corses, and share it with others</h3>
-  <h3>Choose your plan</h3>
+  <h1>Learn, Teach and discover new skills</h1>
+  <div class="green-border"></div>
+  <p>Tablon makes it easy to connect to others and share our knowledge in a simple way</p>
+
+  <img src="/assets/icons/home-page-icon.svg" alt="">
+
+  <button class="button button--shadow-text button__enabled--blue" routerLink="/auth/login">Login</button>
+  <button class="button button__enabled--green" routerLink="/auth/register">register</button>
+
+  <section class="first-section">
+    <header>
+      <h3>Problem to be solved</h3>
+    </header>
+    <div class="first-section__content">
+      <figure>
+        <img src="/assets/images/earth.svg" alt="">
+      </figure>
+      <p>In an increasingly connected world, knowing how to program is every moment more important regardless of your
+        vocations
+      </p>
+    </div>
+    <svg width="100%" height="11" viewBox="0 0 375 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 11C58.5 2.69914 216.2 -8.92206 375 11L0 11Z" fill="white" />
+    </svg>
+  </section>
+
 </main>

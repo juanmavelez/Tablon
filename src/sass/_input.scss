@@ -1,11 +1,10 @@
-@import "./variables";
 
 .input {
+  position:relative;
   width: 283px;
   height: 45px;
   border-radius: 5px;
   background-color: $white;
-  border: 1px solid $softBlack;
   font-size: $fontSize;
   line-height: $lineHeight;
 
@@ -19,31 +18,17 @@
     border: 1px solid $gray;
   }
 
-  &__password {
-    &--enabled {
-      border: 1px solid $softBlack;
-    }
-    &--alert {
-      border: 1px solid $red;
-    }
-    &--disabled {
-      border: 1px solid $gray;
-    }
-  }
+  .icon__container {
+    position: relative;
+    display: flex;
+    left: -1px;
+    width: 45px;
+    height: 45px;
+    margin: 0 5px 0 0;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
 
-  &__user {
-    &--enabled {
-      border: 1px solid $softBlack;
-    }
-    &--alert {
-      border: 1px solid $red;
-    }
-    &--disabled {
-      border: 1px solid $gray;
-    }
-  }
-
-  logo__container {
     &--enabled {
       background: $softBlack;
     }
@@ -53,13 +38,11 @@
     &--disabled {
       background: $gray;
     }
-    logo {
+    .icon {
       width: 20px;
       height: 25px;
-      background: $white;
     }
   }
-
 }
 
 .filter{

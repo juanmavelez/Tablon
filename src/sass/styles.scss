@@ -1,9 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Halant:wght@400;700&family=Nunito:wght@300;400;600;700&display=swap');
-@import './variables';
-@import './input';
-
-html{font-size: 62.5%; min-height: 100vh;min-width: 100vw;}
-body{margin: 0; padding: 0}
-a{text-decoration: none}
-li{display:inline-flex;}
+@import 'constants';
+@import 'variables';
+@import 'input';
+@import 'headers';
+@import 'cards';
+@import 'buttons';

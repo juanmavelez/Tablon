@@ -1,19 +1,21 @@
-@import "./_variables";
-
 .card{
-  width: 24.3rem;
-  height: 26.6rem;
+  width: 300px;
+  height: 266px;
+  padding: 0;
   background: $white;
   border-radius: 5px;
   border: 1px solid $softBlack-border;
   box-sizing: border-box;
 
   &__header{
-    width: 243px;
-    height: 143.56px;
+    display: flex;
+    width: 299px;
+    height: 143px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px 5px 0 0;
     font-family: $titlesFont;
-    font-size: 2.4rem;
-    line-height: 3.8rem;
+    color: white;
 
     &--red{
       background-color: $red;
@@ -27,17 +29,22 @@
     &--blue{
       background-color: $orange;
     }
+    h2{
+      text-align: center;
+    }
   }
   &__content{
-    display: grid;
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 24px 0 24px;
 
-    content{
+    .text{
       font-family: $contentFont;
       font-size: 1.2rem;
     }
-    image{
-      width: 6rem;
-      height: 6rem;
+    img{
+      width: 60px;
+      height: 60px;
       border-radius: 100px;
     }
   }
