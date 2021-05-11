@@ -1,8 +1,15 @@
+@import 'src/sass/variables';
+div{
+  width: 90%;
+  height: 2px;
+  margin: 0 auto;
+  background-color: $gray;
+}
 .header__second-item{
   display:none;
 }
-@media only screen and (max-width: 520px) {
+@media only screen and (min-width: 520px) {
     .header__second-item{
-    display:flex;
+        display:flex;
   }
 }

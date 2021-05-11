@@ -1,4 +1,5 @@
 <h2>Courses you teach</h2>
+
 <div *ngIf="(userCourses$ | async) as userCourses" class="courses-container">
   <app-courses *ngFor="let course of userCourses.data" [course]="course"
     [ngStyle]="course.teacher === userId ? {'display':'block'} : {'display': 'none'}">

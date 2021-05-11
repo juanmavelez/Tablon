@@ -6,6 +6,7 @@
   border-radius: 5px;
   border: 1px solid $softBlack-border;
   box-sizing: border-box;
+  cursor: pointer;
 
   &__header{
     display: flex;
@@ -15,7 +16,7 @@
     justify-content: center;
     border-radius: 5px 5px 0 0;
     font-family: $titlesFont;
-    color: white;
+    color: $softBlack;
 
     &--red{
       background-color: $red;
@@ -31,6 +32,7 @@
     }
     h2{
       text-align: center;
+      text-shadow: $text-shadow;
     }
   }
   &__content{
@@ -38,9 +40,10 @@
     justify-content: space-between;
     margin: 15px 24px 0 24px;
 
-    .text{
+    p{
       font-family: $contentFont;
       font-size: 1.2rem;
+      text-align: center;
     }
     img{
       width: 60px;
@@ -59,4 +62,16 @@
   font-size: $contentFont;
   line-height: $lineHeight;
 
+}
+
+.chips{
+  padding: 5px 10px;
+  margin: 5px;
+  border: none;
+  border-radius: 30px;
+  background-color: #D0D0D0;
+  font-family: 'Nunito';
+  font-weight: 700;
+  color: #3D4451;
+  cursor: pointer;
 }

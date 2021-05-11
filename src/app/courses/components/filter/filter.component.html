@@ -2,6 +2,6 @@
   aria-label="list of boobles with the diferent filters that you can use to speed up the search of your course">
 
   <li *ngFor="let tag of tagslist">
-    <button (click)="pressTag(tag)" aria-label="{{tag}}">{{tag}}</button>
+    <button class="chips" (click)="pressTag(tag)" aria-label="{{tag}}">{{tag}}</button>
   </li>
 </ul>

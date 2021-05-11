@@ -45,13 +45,17 @@
   }
 }
 
-.filter{
+.filter {
+  display: flex;
   width: 120px;
   height: 38px;
+  justify-content: space-around;
+  align-items: center;
   background: $white;
   border: 1px solid $softBlack;
   border-radius: 5px;
   box-sizing: border-box;
+  font-family: $contentFont;
   font-size: $fontSize;
   line-height: $lineHeight;
 }
