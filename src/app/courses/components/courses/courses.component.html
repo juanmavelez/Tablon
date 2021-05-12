@@ -1,4 +1,4 @@
-<section *ngIf="course && (teacher$ | async) as teacher" (click)="goToDetails()" class="card">
+<section *ngIf="course.name && (teacher$ | async) as teacher" (click)="goToDetails()" class="card">
   <header class="card__header card__header--red">
     <h2>{{course.name}}</h2>
   </header>

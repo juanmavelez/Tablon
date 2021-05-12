@@ -16,7 +16,7 @@
     </svg>
   </div>
 
-  <ul *ngIf="filterList.length > 0 && (courses$ | async) as courses" class="courses-container">
+  <ul *ngIf="filterList.length > 0 && (courses$ | async) as courses">
     <li *ngFor="let course of courses.data"
       [ngStyle]="arrayContainsArray(course.tags,filterList) ? {'display':'grid'} : {'display':'none'}">
       <app-courses [course]="course">
@@ -24,7 +24,7 @@
     </li>
   </ul>
 
-  <ul *ngIf="filterList.length === 0 && (courses$ | async) as courses" class="courses-container">
+  <ul *ngIf="filterList.length === 0 && (courses$ | async) as courses">
     <li *ngFor="let course of courses.data">
       <app-courses [course]="course">
       </app-courses>

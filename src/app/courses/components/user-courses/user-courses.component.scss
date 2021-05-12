@@ -1,0 +1,21 @@
+@import 'src/sass/variables';
+
+.mat-tab-group{
+  align-items: center;
+  margin-top: 60px;
+
+  .mat-tab-body-wrapper{
+    justify-content: center;
+  }
+
+  app-courses{
+    margin-top: 30px;
+  }
+}
+.mat-tab-body {
+    background-color: $red-background;
+}
+.mat-tab-label-container{
+    border: 1px solid $softBlack-border;
+    border-radius: 5px;
+}

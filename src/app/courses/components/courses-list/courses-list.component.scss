@@ -15,12 +15,8 @@ h2{
 section{
   position: relative;
   margin-top: 70px;
-  .svg__container{
-    position: absolute;
-    top: -16px;
-    width: 100%;
-  }
-  .courses-container{
+
+  ul{
     display: grid;
     gap: 60px;
     width: 100%;

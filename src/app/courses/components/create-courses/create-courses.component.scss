@@ -1,36 +1,32 @@
-form{
-  background-color: transparent;
+@import "src/sass/variables";
+h2 {
+  width: 100%;
+  text-align: center;
+  margin-top: 35px;
 }
-.mat-card{
- background-color: transparent;
+form {
+  margin-top: 45px;
 }
-.mat-card-header{
-  margin: 20px auto;
-  justify-content: center;
+.mat-horizontal-stepper-header-container {
+  font-family: $contentFont;
+  font-size: 1.2rem;
+  background-color: $green-background;
+  .mat-horizontal-stepper-header {
+    padding: 10px;
+  }
 }
-.mat-card-content{
-  display:grid;
-  gap:20px;
-  justify-content: center;
+
+.mat-step-icon {
+  border: 1px solid $softBlack-border;
 }
-.lesson-container{
+
+.mat-step-icon-state-number {
+  background-color: white;
+  color: $softBlack;
+}
+.mat-horizontal-stepper-content {
   display: grid;
-  gap:20px;
-  margin: 20px auto;
-  justify-content: center;
-}
-.mat-form-field-infix{
-  margin-left: 10px;
-}
-.description{
-  height: 80px;
-}
-.green{
-  background-color: var(--color9);
-}
-.mat-card-actions{
-  display: grid;
-  margin-top: 30px;
-  justify-content: center;
+  margin-top: 65px;
   gap: 30px;
+  justify-content: center;
 }

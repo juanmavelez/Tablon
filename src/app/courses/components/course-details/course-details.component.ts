@@ -7,6 +7,7 @@ import { CourseService } from '@core/services/course/course.service';
 import { UserCoursesService } from '@core/services/user-courses/user-courses.service';
 import { UserService } from '@core/services/user/user.service';
 import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
+import { GravatarService } from '@core/services/gravatar/gravatar.service';
 import {
   IResponseCourse,
   IResponseCourseId,
@@ -27,15 +28,18 @@ export class CourseDetailsComponent implements OnInit {
   hasCourse: boolean;
   courseId: string;
   userId: string;
+  url: string;
 
   constructor(
     private courseService: CourseService,
     private userCoursesService: UserCoursesService,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private gravatarService: GravatarService
   ) {
     this.userId = this.localStorageService.getItem('id');
+    this.url = this.gravatarService.createGravatarUrl(this.userId);
   }
 
   ngOnInit(): void {

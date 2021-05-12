@@ -1,10 +1,11 @@
-<header>
-  <figure>
-    <img [src]="url" alt="8-bit arcade-style pixelated face">
-  </figure>
-</header>
-<main>
-  <p>name:{{userName}}</p>
-  <p>email: {{email}}</p>
-</main>
-<button matt-button (click)="logOut()">Logout</button>
+<h2>Profile</h2>
+
+<figure>
+  <img [src]="url" alt="profile picture">
+</figure>
+
+<section class="user__data">
+  <p>Name: <b>{{userName}}</b></p>
+  <p>Email: <b>{{email}}</b></p>
+  <button class="button button--shadow-text button__enabled--blue" (click)=" logOut()">Logout</button>
+</section>

@@ -47,12 +47,10 @@ export class CreateCoursesComponent implements OnInit {
   createCourse(event: Event): void {
     event.preventDefault();
     const value = this.form.value;
-    console.log('ESTOY DANDOLE CLICK A ESTA MIERDA');
     if (value) {
       value.tags = this.createCourseService.objectToArray(value.tags);
       value.teacher = this.localStorageService.getItem('id');
       this.courseService.createCourse(value).subscribe((res) => {
-        console.log(res);
         this.router.navigateByUrl('/app/courses'),
           () => (this.createRequest = true);
       });
@@ -134,58 +132,4 @@ export class CreateCoursesComponent implements OnInit {
     this.tagField.push(this.tagsBuildForm());
     return true;
   }
-} /*
-<form [formGroup]="form" (ngSubmit)="createCourse($event)">
-  <mat-card tabindex="0">
-    <mat-card-header>
-      <mat-card-title>Create your New Course</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-
-      <mat-form-field appearance="none" class="input-small">
-        <mat-label>Course name</mat-label>
-        <input placeholder="name" formControlName="name" matInput type="name">
-      </mat-form-field>
-
-      <mat-form-field appearance="none" class="input-small description">
-        <mat-label>Course description</mat-label>
-        <textarea matInput placeholder="description" formControlName="description" matInput type="text">
-        </textarea>
-      </mat-form-field>
-
-      <button class="button-small" type="button" (click)="addLessonsField()">Add leasson</button>
-      <div formArrayName="lessons" *ngFor="let lesson of lessonsField.controls,let i = index">
-        <div [formGroupName]="i">
-          <mat-form-field appearance="none" class="input-small">
-            <mat-label>Lesson name</mat-label>
-            <input placeholder="name" formControlName="name" matInput type="name">
-          </mat-form-field>
-          <mat-form-field appearance="none" class="input-small">
-            <mat-label>Description</mat-label>
-            <input placeholder="description" formControlName="description" matInput type="text">
-          </mat-form-field>
-        </div>
-      </div>
-
-      <button class="button-small" type="button" (click)="addTagsField()">Add tags</button>
-      <div formArrayName="tags" *ngFor="let tags of tagField.controls,index as j">
-        <div [formGroupName]="j">
-          <mat-form-field appearance="none" class="input-small">
-            <mat-label>Tags</mat-label>
-            <mat-select formControlName="tags">
-              <mat-option [value]="tag" *ngFor="let tag of tagList">
-                {{tag}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-
-    </mat-card-content>
-    <mat-card-actions>
-      <button class="button-small" type="submit" [disabled]="!form.valid">Create!</button>
-    </mat-card-actions>
-  </mat-card>
-</form>
- -->
- */
+}

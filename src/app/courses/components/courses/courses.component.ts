@@ -29,8 +29,6 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {
     this.url = this.createURL(this.course.teacher);
     this.teacher$ = this.userService.getUser(this.course.teacher);
-    console.log(this.course.lessons);
-    console.log(this.course.lessons.length);
   }
 
   createURL(teacherEmail: string): string {

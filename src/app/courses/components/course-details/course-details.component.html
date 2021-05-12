@@ -1,23 +1,33 @@
-<mat-card *ngIf="(course$| async) as course">
-  <mat-card-header *ngIf="(teacher$ | async) as teacher">
-    <p>Instructed by {{teacher.data.name}}</p>
-  </mat-card-header>
-  <mat-card-content>
-    <nav *ngIf="course.data.lessons">
-      <h2 class="courseTitle">{{course.data.name}}</h2>
-      <li *ngFor="let lesson of course.data.lessons" [lesson]="lesson">
-        <h3 class="classTitle">{{lesson.name}}</h3>
+<section *ngIf="(course$| async) as course">
+  <header *ngIf="(teacher$ | async) as teacher">
+    <h1 class="courseTitle">{{course.data.name}}</h1>
+    <figure class="image__container">
+      <img src="{{url}}" alt="">
+    </figure>
+    <p class="teacher__name">With <b>{{teacher.data.name}}</b></p>
+    <p class="course__description">{{course.data.description}}</p>
+  </header>
+  <nav class="lessons__container" *ngIf="course.data.lessons">
+    <h2>What is it about</h2>
+    <li class="lessons-menu" *ngFor="let lesson of course.data.lessons" [lesson]="lesson">
+      <div class="lessons_menu__header">
+        <img src="/assets/icons/expand.svg" alt="">
+        <h3>{{lesson.name}}</h3>
+      </div>
+      <div class="lessons-menu__description">
         <p>{{lesson.description}}</p>
-      </li>
-    </nav>
-  </mat-card-content>
-  <div *ngIf="userCourses$ | async as userCourses">
-    <mat-card-actions *ngIf="hasCourse===true">
-      <button class="button-small" (click)="deleteUserCourse()">Leave the course</button>
-    </mat-card-actions>
-    <mat-card-actions *ngIf="hasCourse===false">
-      <button class="button-small" (click)="createUserCourse()">Join the Course</button>
-    </mat-card-actions>
-  </div>
+      </div>
+    </li>
+  </nav>
 
-</mat-card>
+  <div *ngIf="userCourses$ | async as userCourses">
+    <footer *ngIf="hasCourse===true">
+      <button class="button button--shadow-text button button__enabled--blue" (click)="deleteUserCourse()">Leave the
+        course</button>
+    </footer>
+    <footer *ngIf="hasCourse===false">
+      <button class="button button--shadow-text button__enabled--blue" (click)="createUserCourse()">Join the
+        Course</button>
+    </footer>
+  </div>
+</section>
