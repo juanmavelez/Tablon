@@ -18,7 +18,7 @@ function userCoursesApi(server: express.Express): void {
         const { token } = req.cookies;
         const id = req.params;
         const { data, status } = await axios({
-          url: `${environment.API_URL}/user-courses`,
+          url: `${environment.API_URL}/user-courses/${id.userCoursesId}`,
           headers: { Authorization: `Bearer ${token}` },
           method: 'get',
           params: id,
@@ -44,7 +44,7 @@ function userCoursesApi(server: express.Express): void {
         const { token } = req.cookies;
         const id = req.params;
         const { data, status } = await axios({
-          url: `${environment.API_URL}/user-courses/${id.userCoursesId}`,
+          url: `${environment.API_URL}/user-courses`,
           headers: { Authorization: `Bearer ${token}` },
           method: 'get',
         });

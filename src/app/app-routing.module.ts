@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () =>
@@ -22,6 +22,11 @@ const routes: Routes = [
     path: 'app',
     component: LayoutComponent,
     children: [
+      {
+        path: '',
+        redirectTo: 'courses',
+        pathMatch: 'full',
+      },
       {
         path: 'courses',
         loadChildren: () =>
@@ -45,6 +50,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       relativeLinkResolution: 'legacy',
       initialNavigation: 'enabled',
+      preloadingStrategy: PreloadAllModules,
     }),
   ],
   exports: [RouterModule],

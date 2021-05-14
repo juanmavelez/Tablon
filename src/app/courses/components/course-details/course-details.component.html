@@ -4,20 +4,13 @@
     <figure class="image__container">
       <img src="{{url}}" alt="">
     </figure>
-    <p class="teacher__name">With <b>{{teacher.data.name}}</b></p>
-    <p class="course__description">{{course.data.description}}</p>
+    <h3 class="teacher__name">With <b>{{teacher.data.name}}</b></h3>
+    <h3 class="course__description">{{course.data.description}}</h3>
   </header>
   <nav class="lessons__container" *ngIf="course.data.lessons">
     <h2>What is it about</h2>
-    <li class="lessons-menu" *ngFor="let lesson of course.data.lessons" [lesson]="lesson">
-      <div class="lessons_menu__header">
-        <img src="/assets/icons/expand.svg" alt="">
-        <h3>{{lesson.name}}</h3>
-      </div>
-      <div class="lessons-menu__description">
-        <p>{{lesson.description}}</p>
-      </div>
-    </li>
+    <app-lessons class="lessons-menu" *ngFor="let lesson of course.data.lessons" [lesson]="lesson">
+    </app-lessons>
   </nav>
 
   <div *ngIf="userCourses$ | async as userCourses">

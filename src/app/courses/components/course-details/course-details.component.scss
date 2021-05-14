@@ -32,27 +32,10 @@ header{
 .lessons__container{
   display: grid;
   justify-content: center;
-  margin-top: 20px;
+  margin: 30px auto;
   h2{
-    text-align: center;
-    margin: 20px;
+    margin: 30px auto;
   }
-  .lessons_menu{
-    &__header{
-      display: flex;
-      align-items: center;
-      img{
-        width: 50px;
-        height: 50px;
-      }
-      h3{
-        align-self: center;
-      }
-    }
-    &__description{
-      padding: 5px;
-    }
- }
 }
 
 .button{

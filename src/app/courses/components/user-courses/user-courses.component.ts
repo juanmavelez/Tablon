@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 import { UserCoursesService } from '@core/services/user-courses/user-courses.service';
 import { LocalStorageService } from '@core/services/local-storage/local-storage.service';

@@ -16,12 +16,14 @@ export class UserCoursesService {
   constructor(private http: HttpClient) {}
 
   getUserCourses(id: string): Observable<IResponseCourse> {
-    return this.http.get<IResponseCourse>(`/user-courses/${id}`).pipe(retry(3));
+    return this.http
+      .get<IResponseCourse>(`/user-courses/user/${id}`)
+      .pipe(retry(3));
   }
 
   getUserCoursesId(userId: string): Observable<IResponseCourseId> {
     return this.http
-      .get<IResponseCourseId>(`/user-courses/user/${userId}`)
+      .get<IResponseCourseId>(`/user-courses/${userId}`)
       .pipe(retry(3));
   }
 

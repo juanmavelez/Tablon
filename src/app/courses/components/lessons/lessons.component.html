@@ -1,0 +1,9 @@
+<div (click)="showDescription = !showDescription">
+  <div class="lessons-menu__header">
+    <img [src]=" showDescription ? '/assets/icons/expanded.svg' : '/assets/icons/expand.svg'" alt="">
+    <h3>{{lesson.name}}</h3>
+  </div>
+  <div *ngIf="showDescription" class="lessons-menu__description">
+    <p>{{lesson.description}}</p>
+  </div>
+</div>
