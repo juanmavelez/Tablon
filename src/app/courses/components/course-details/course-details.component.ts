@@ -8,11 +8,12 @@ import { UserCoursesService } from '@core/services/user-courses/user-courses.ser
 import { UserService } from '@core/services/user/user.service';
 import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
 import { GravatarService } from '@core/services/gravatar/gravatar.service';
+
+import { IResponseCourse } from '@core/models/course.model';
 import {
-  IResponseCourse,
-  IResponseCourseId,
+  IResponseUserCoursesId,
   IUserCourse,
-} from '@core/models/course.model';
+} from '@core/models/user-courses.model';
 import { IResponseUser } from '@core/models/user.model';
 
 @Component({
@@ -23,7 +24,7 @@ import { IResponseUser } from '@core/models/user.model';
 export class CourseDetailsComponent implements OnInit {
   course$: Observable<IResponseCourse>;
   teacher$: Observable<IResponseUser>;
-  userCourses$: Observable<IResponseCourseId>;
+  userCourses$: Observable<IResponseUserCoursesId>;
   userCourse: IUserCourse;
   hasCourse: boolean;
   courseId: string;
@@ -67,7 +68,7 @@ export class CourseDetailsComponent implements OnInit {
 
   private fetchUserCourses(): void {
     this.userCourses$ = this.userCoursesService
-      .getUserCoursesId(this.userId)
+      .getUserCoursesId({ user_id: this.userId })
       .pipe(
         tap((response) => (this.hasCourse = this.userHasCourse(response.data)))
       );

@@ -1,20 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry } from 'rxjs/operators';
 import {
   IResponseCourses,
-  IResponseCourseId,
   IResponseUsers,
   IResponseCreateUserCourse,
   IResnseDeleteUserCourse,
 } from '@core/models/course.model';
+import { IResponseUserCoursesId } from '@core/models/user-courses.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserCoursesService {
   constructor(private http: HttpClient) {}
+
+  getUserCoursesId(query: any): Observable<IResponseUserCoursesId> {
+    let params = new HttpParams();
+    Object.keys(query).forEach((element) => {
+      params = params.append(`${element}`, query[`${element}`]);
+    });
+    return this.http
+      .get<IResponseUserCoursesId>(`/user-courses/`, { params })
+      .pipe(retry(3));
+  }
 
   getUserCourses(id: string): Observable<IResponseCourses> {
     return this.http
@@ -24,13 +34,7 @@ export class UserCoursesService {
 
   getCourseUsers(id: string): Observable<IResponseUsers> {
     return this.http
-      .get<IResponseUsers>(`/user-courses/user/${id}`)
-      .pipe(retry(3));
-  }
-
-  getUserCoursesId(userId: string): Observable<IResponseCourseId> {
-    return this.http
-      .get<IResponseCourseId>(`/user-courses/${userId}`)
+      .get<IResponseUsers>(`/user-courses/courses/${id}`)
       .pipe(retry(3));
   }
 

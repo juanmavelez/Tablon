@@ -11,6 +11,7 @@ import { CreateCoursesComponent } from './components/create-courses/create-cours
 import { FilterComponent } from './components/filter/filter.component';
 import { LessonsComponent } from './components/lessons/lessons.component';
 import { EditCoursesComponent } from './components/edit-courses/edit-courses.component';
+import { CourseUsersComponent } from './components/course-users/course-users.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { EditCoursesComponent } from './components/edit-courses/edit-courses.com
     FilterComponent,
     LessonsComponent,
     EditCoursesComponent,
+    CourseUsersComponent,
   ],
   imports: [
     CommonModule,

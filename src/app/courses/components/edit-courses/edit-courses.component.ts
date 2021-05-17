@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { tap, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { CreateCourseService } from '@core/services/create-course/create-course.service';
+import { CourseFormsService } from '@core/services/course-forms/course-forms.service';
 import { CourseService } from '@core/services/course/course.service';
 import { TagsService } from '@core/services/tags/tags.service';
 import { ICourse, IResponseCourse } from '@core/models/course.model';
@@ -22,7 +22,7 @@ export class EditCoursesComponent implements OnInit {
   updateRequest: boolean;
   course: ICourse;
   constructor(
-    private createCourseService: CreateCourseService,
+    private courseFormsService: CourseFormsService,
     private courseService: CourseService,
     private formBuilder: FormBuilder,
     private tagsService: TagsService,
@@ -54,12 +54,12 @@ export class EditCoursesComponent implements OnInit {
     event.preventDefault();
     const value = this.form.value;
     if (value) {
-      value.tags = this.createCourseService.objectToArray(value.tags);
+      value.tags = this.courseFormsService.objectToArray(value.tags);
       value.teacher = this.course.teacher;
-      this.courseService.updateCourse(this.course._id, value).subscribe(() => {
-        this.router.navigateByUrl('/app/courses'),
-          () => (this.updateRequest = true);
-      });
+      this.courseService.updateCourse(this.course._id, value).subscribe(
+        () => this.router.navigateByUrl('/app/courses'),
+        () => (this.updateRequest = true)
+      );
     } else {
       console.log('invalid input plis try again ');
     }
@@ -77,6 +77,9 @@ export class EditCoursesComponent implements OnInit {
     return tagsArray;
   }
 
+  removeField(field: string, index: number): void {
+    this.courseFormsService.removeDynamicFormField(this.form, field, index);
+  }
   private fetchTags(): void {
     this.tagsService
       .getAllTags()

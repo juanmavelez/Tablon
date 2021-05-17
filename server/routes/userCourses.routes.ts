@@ -21,7 +21,6 @@ function userCoursesApi(server: express.Express): void {
           url: `${environment.API_URL}/user-courses/${id.user_id}`,
           headers: { Authorization: `Bearer ${token}` },
           method: 'get',
-          params: id,
           data: id,
         });
         if (status !== 200) {
@@ -44,11 +43,11 @@ function userCoursesApi(server: express.Express): void {
       try {
         const { token } = req.cookies;
         const id = req.params;
+        console.log(id);
         const { data, status } = await axios({
           url: `${environment.API_URL}/user-courses/${id.course_id}`,
           headers: { Authorization: `Bearer ${token}` },
           method: 'get',
-          params: id,
           data: id,
         });
         if (status !== 200) {
@@ -62,7 +61,7 @@ function userCoursesApi(server: express.Express): void {
   );
 
   router.get(
-    '/:user_id',
+    '/',
     async (
       req: express.Request,
       res: express.Response,
@@ -70,11 +69,12 @@ function userCoursesApi(server: express.Express): void {
     ) => {
       try {
         const { token } = req.cookies;
-        const id = req.params;
+        const id = req.query;
         const { data, status } = await axios({
           url: `${environment.API_URL}/user-courses`,
           headers: { Authorization: `Bearer ${token}` },
           method: 'get',
+          params: id,
         });
         if (status !== 200) {
           return next(badImplementation());

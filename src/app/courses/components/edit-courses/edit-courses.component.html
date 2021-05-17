@@ -15,7 +15,6 @@
       type="text"></textarea>
   </mat-form-field>
 
-
   <p>lessons for your course</p>
 
   <button class="button button__small button--shadow-text button__enabled--blue" type="button"
@@ -33,10 +32,9 @@
         <mat-label>Description</mat-label>
         <input placeholder="description" formControlName="description" matInput type="text">
       </mat-form-field>
+      <button *ngIf="i>0" (click)="removeField('lessons',i)">DeleteField</button>
     </div>
   </div>
-
-
 
   <p>Add Taggs and Done!</p>
 
@@ -54,6 +52,7 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+      <button *ngIf="x>0" (click)="removeField('tags',x)">DeleteField</button>
     </div>
   </div>
 

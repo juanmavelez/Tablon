@@ -5,6 +5,7 @@ import { CoursesListComponent } from './components/courses-list/courses-list.com
 import { UserCoursesComponent } from './components/user-courses/user-courses.component';
 import { CreateCoursesComponent } from './components/create-courses/create-courses.component';
 import { EditCoursesComponent } from './components/edit-courses/edit-courses.component';
+import { CourseUsersComponent } from './components/course-users/course-users.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'edit-course/:id',
     component: EditCoursesComponent,
+  },
+  {
+    path: 'course-users/:id',
+    component: CourseUsersComponent,
   },
   {
     path: 'user/:id',

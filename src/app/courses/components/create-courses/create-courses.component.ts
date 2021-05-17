@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 
-import { CreateCourseService } from '@core/services/create-course/create-course.service';
+import { CourseFormsService } from '@core/services/course-forms/course-forms.service';
 import { CourseService } from '@core/services/course/course.service';
 import { TagsService } from '@core/services/tags/tags.service';
 import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
@@ -21,7 +21,7 @@ export class CreateCoursesComponent implements OnInit {
   createRequest: boolean;
 
   constructor(
-    private createCourseService: CreateCourseService,
+    private courseFormsService: CourseFormsService,
     private courseService: CourseService,
     private formBuilder: FormBuilder,
     private tagsService: TagsService,
@@ -48,12 +48,12 @@ export class CreateCoursesComponent implements OnInit {
     event.preventDefault();
     const value = this.form.value;
     if (value) {
-      value.tags = this.createCourseService.objectToArray(value.tags);
+      value.tags = this.courseFormsService.objectToArray(value.tags);
       value.teacher = this.localStorageService.getItem('id');
-      this.courseService.createCourse(value).subscribe(() => {
-        this.router.navigateByUrl('/app/courses'),
-          () => (this.createRequest = true);
-      });
+      this.courseService.createCourse(value).subscribe(
+        () => this.router.navigateByUrl('/app/courses'),
+        () => (this.createRequest = true)
+      );
     } else {
       console.log('invalid input plis try again ');
     }
@@ -115,6 +115,10 @@ export class CreateCoursesComponent implements OnInit {
   addLessonsField(): boolean {
     this.lessonsField.push(this.lessonsBuildForm());
     return true;
+  }
+
+  removeField(field: string, index: number): void {
+    this.courseFormsService.removeDynamicFormField(this.form, field, index);
   }
 
   // Tags

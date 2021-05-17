@@ -37,6 +37,7 @@
             <mat-label>Description</mat-label>
             <input placeholder="description" formControlName="description" matInput type="text">
           </mat-form-field>
+          <button *ngIf="i>0" (click)="removeField('lessons',x)">DeleteField</button>
         </div>
       </div>
     </mat-step>
@@ -59,6 +60,7 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
+          <button *ngIf="j>0" (click)="removeField('tags',x)">DeleteField</button>
         </div>
       </div>
 

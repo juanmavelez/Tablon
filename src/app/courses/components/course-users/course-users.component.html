@@ -1,0 +1,9 @@
+<h2>Users</h2>
+
+<ul *ngIf="( users$ | async ) as users">
+  <li *ngFor="let user of users.data">
+    <p>{{user.name}}</p>
+    <p>{{user.email}}</p>
+    <button (click)="deleteUserCourse(user._id)"></button>
+  </li>
+</ul>

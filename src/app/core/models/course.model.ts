@@ -1,5 +1,10 @@
 import { ILesson } from '@core/models/lesson.model';
+import { IUserCourse } from './user-courses.model';
 import { IUser } from './user.model';
+export interface IResponseCourseUsers {
+  data: IUser[];
+  message: string;
+}
 
 export interface ICourse {
   _id: string;
@@ -22,17 +27,6 @@ export interface IResponseCourses {
 
 export interface IResponseCourse {
   data: ICourse;
-  message: string;
-}
-
-export interface IUserCourse {
-  _id: string;
-  courses_id: string;
-  user_id: string;
-}
-
-export interface IResponseCourseId {
-  data: IUserCourse[];
   message: string;
 }
 

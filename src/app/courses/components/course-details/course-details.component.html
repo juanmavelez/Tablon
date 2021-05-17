@@ -24,9 +24,14 @@
   <div *ngIf="course.data.teacher === userId">
     {{course.data.teacher}}
     {{userId}}
-    <a class="button button--shadow-text button__enabled--blue">Manage Students</a>
+    <a [routerLink]="['/app/courses/course-users/',course.data._id]"
+      class="button button--shadow-text button__enabled--blue">
+      Manage Students
+    </a>
     <a [routerLink]="['/app/courses/edit-course/',course.data._id]"
-      class="button button--shadow-text button__enabled--green">Edit Course</a>
+      class="button button--shadow-text button__enabled--green">
+      Edit Course
+    </a>
   </div>
 
   <div *ngIf="!(course.data.teacher === userId) && userCourses$ | async as userCourses">
