@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry } from 'rxjs/operators';
 import {
-  IResponseCourse,
+  IResponseCourses,
   IResponseCourseId,
+  IResponseUsers,
   IResponseCreateUserCourse,
   IResnseDeleteUserCourse,
 } from '@core/models/course.model';
@@ -15,9 +16,15 @@ import {
 export class UserCoursesService {
   constructor(private http: HttpClient) {}
 
-  getUserCourses(id: string): Observable<IResponseCourse> {
+  getUserCourses(id: string): Observable<IResponseCourses> {
     return this.http
-      .get<IResponseCourse>(`/user-courses/user/${id}`)
+      .get<IResponseCourses>(`/user-courses/user/${id}`)
+      .pipe(retry(3));
+  }
+
+  getCourseUsers(id: string): Observable<IResponseUsers> {
+    return this.http
+      .get<IResponseUsers>(`/user-courses/user/${id}`)
       .pipe(retry(3));
   }
 

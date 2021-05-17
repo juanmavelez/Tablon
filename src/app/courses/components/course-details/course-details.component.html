@@ -1,26 +1,44 @@
 <section *ngIf="(course$| async) as course">
+
   <header *ngIf="(teacher$ | async) as teacher">
     <h1 class="courseTitle">{{course.data.name}}</h1>
     <figure class="image__container">
       <img src="{{url}}" alt="">
     </figure>
-    <h3 class="teacher__name">With <b>{{teacher.data.name}}</b></h3>
-    <h3 class="course__description">{{course.data.description}}</h3>
+
+    <p class="teacher__name">With <b>{{teacher.data.name}}</b></p>
+    <ul class="tags__container" *ngIf="course.data.tags.length > 0">
+      <li *ngFor="let tag of course.data.tags">
+        <p>{{tag}}</p>
+      </li>
+    </ul>
+    <p class="course__description">{{course.data.description}}</p>
   </header>
+
   <nav class="lessons__container" *ngIf="course.data.lessons">
     <h2>What is it about</h2>
     <app-lessons class="lessons-menu" *ngFor="let lesson of course.data.lessons" [lesson]="lesson">
     </app-lessons>
   </nav>
 
-  <div *ngIf="userCourses$ | async as userCourses">
+  <div *ngIf="course.data.teacher === userId">
+    {{course.data.teacher}}
+    {{userId}}
+    <a class="button button--shadow-text button__enabled--blue">Manage Students</a>
+    <a [routerLink]="['/app/courses/edit-course/',course.data._id]"
+      class="button button--shadow-text button__enabled--green">Edit Course</a>
+  </div>
+
+  <div *ngIf="!(course.data.teacher === userId) && userCourses$ | async as userCourses">
     <footer *ngIf="hasCourse===true">
-      <button class="button button--shadow-text button button__enabled--blue" (click)="deleteUserCourse()">Leave the
-        course</button>
+      <button class="button button--shadow-text button__enabled--blue" (click)="deleteUserCourse()">
+        Leave the course
+      </button>
     </footer>
     <footer *ngIf="hasCourse===false">
-      <button class="button button--shadow-text button__enabled--blue" (click)="createUserCourse()">Join the
-        Course</button>
+      <button class="button button--shadow-text button__enabled--blue" (click)="createUserCourse()">
+        Join the Course
+      </button>
     </footer>
   </div>
 </section>

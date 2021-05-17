@@ -1,0 +1,66 @@
+<h2>Edit your course</h2>
+
+
+<form *ngIf="(course$| async)" [formGroup]="form" (ngSubmit)="updateCourse($event)">
+
+  <p>Course details</p>
+
+  <mat-form-field appearance="none" class="input input--enabled">
+    <mat-label>Course name</mat-label>
+    <input placeholder="name" formControlName="name" matInput type="name">
+  </mat-form-field>
+  <mat-form-field appearance="none" class="input input--enabled">
+    <mat-label>Course description</mat-label>
+    <textarea matInput class="input input--enabled" placeholder="description" formControlName="description" matInput
+      type="text"></textarea>
+  </mat-form-field>
+
+
+  <p>lessons for your course</p>
+
+  <button class="button button__small button--shadow-text button__enabled--blue" type="button"
+    (click)="addLessonsField()">
+    Add leasson
+  </button>
+
+  <div formArrayName="lessons" *ngFor="let lesson of lessonsField.controls,let i = index">
+    <div [formGroupName]="i">
+      <mat-form-field appearance="none" class="input input--enabled">
+        <mat-label>Lesson name</mat-label>
+        <input placeholder="name" formControlName="name" matInput type="name">
+      </mat-form-field>
+      <mat-form-field appearance="none" class="input input--enabled">
+        <mat-label>Description</mat-label>
+        <input placeholder="description" formControlName="description" matInput type="text">
+      </mat-form-field>
+    </div>
+  </div>
+
+
+
+  <p>Add Taggs and Done!</p>
+
+  <button class="button button__small button--shadow-text button__enabled--blue" type="button" (click)="addTagsField()">
+    Add tags
+  </button>
+
+  <div formArrayName="tags" *ngFor="let tag of tagField.controls ,let x = index">
+    <div [formGroupName]="x">
+      <mat-form-field appearance="none" class="input input--enabled">
+        <mat-label>Tags</mat-label>
+        <mat-select formControlName="tag">
+          <mat-option [value]="tag" *ngFor="let tag of tagList">
+            {{tag}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  {{form.valid}}
+  <button class="button button-small button--shadow-text button__enabled--green" mat-button type="submit"
+    [disabled]="!form.valid">
+    Create!
+  </button>
+
+</form>

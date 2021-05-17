@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
-import { take, switchMap, tap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 
 import { CourseService } from '@core/services/course/course.service';
 import { UserCoursesService } from '@core/services/user-courses/user-courses.service';
@@ -52,7 +52,7 @@ export class CourseDetailsComponent implements OnInit {
     this.course$ = this.activatedRoute.params.pipe(
       switchMap((params: Params) => {
         this.courseId = params.id;
-        return this.courseService.getCourse(params.id).pipe(take(1));
+        return this.courseService.getCourse(params.id);
       })
     );
   }
@@ -60,7 +60,7 @@ export class CourseDetailsComponent implements OnInit {
   private fetchTeacher(): void {
     this.teacher$ = this.course$.pipe(
       switchMap((response) => {
-        return this.userService.getUser(response.data.teacher).pipe(take(1));
+        return this.userService.getUser(response.data.teacher);
       })
     );
   }
@@ -86,16 +86,12 @@ export class CourseDetailsComponent implements OnInit {
   createUserCourse(): void {
     this.userCoursesService
       .createUserCourse(this.userId, this.courseId)
-      .pipe(take(1))
       .subscribe();
     this.fetchUserCourses();
   }
 
   deleteUserCourse(): void {
-    this.userCoursesService
-      .deleteUserCourse(this.userCourse._id)
-      .pipe(take(1))
-      .subscribe();
+    this.userCoursesService.deleteUserCourse(this.userCourse._id).subscribe();
     this.fetchUserCourses();
   }
 }

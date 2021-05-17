@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { UserCoursesService } from '@core/services/user-courses/user-courses.service';
 import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
-import { IResponseCourse } from '@core/models/course.model';
+import { IResponseCourses } from '@core/models/course.model';
 
 @Component({
   selector: 'app-user-courses',
@@ -12,7 +12,7 @@ import { IResponseCourse } from '@core/models/course.model';
 })
 export class UserCoursesComponent implements OnInit {
   userId: string;
-  userCourses$: Observable<IResponseCourse>;
+  userCourses$: Observable<IResponseCourses>;
   constructor(
     private userCoursesService: UserCoursesService,
     private localStorageService: LocalStorageService

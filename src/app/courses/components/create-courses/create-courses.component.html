@@ -5,7 +5,9 @@
 
   <mat-horizontal-stepper linear #stepper>
     <mat-step>
-      <ng-template matStepLabel>Course <br> details</ng-template>
+      <ng-template matStepLabel>
+        Course <br> details
+      </ng-template>
       <mat-form-field appearance="none" class="input input--enabled">
         <mat-label>Course name</mat-label>
         <input placeholder="name" formControlName="name" matInput type="name">
@@ -18,11 +20,13 @@
     </mat-step>
 
     <mat-step>
-      <ng-template matStepLabel>lessons for <br> your course
+      <ng-template matStepLabel>
+        lessons for <br> your course
       </ng-template>
       <button class="button button__small button--shadow-text button__enabled--blue" type="button"
-        (click)="addLessonsField()">Add
-        leasson</button>
+        (click)="addLessonsField()">
+        Add leasson
+      </button>
       <div formArrayName="lessons" *ngFor="let lesson of lessonsField.controls,let i = index">
         <div [formGroupName]="i">
           <mat-form-field appearance="none" class="input input--enabled">
@@ -38,11 +42,13 @@
     </mat-step>
 
     <mat-step>
-      <ng-template matStepLabel>Add Taggs <br> and Done!
+      <ng-template matStepLabel>
+        Add Taggs <br> and Done!
       </ng-template>
       <button class="button button__small button--shadow-text button__enabled--blue" type="button"
-        (click)="addTagsField()">Add
-        tags</button>
+        (click)="addTagsField()">
+        Add tags
+      </button>
       <div formArrayName="tags" *ngFor="let tags of tagField.controls,index as j">
         <div [formGroupName]="j">
           <mat-form-field appearance="none" class="input input--enabled">
@@ -55,7 +61,7 @@
           </mat-form-field>
         </div>
       </div>
-      {{form.valid}}
+
       <button class="button button-small button--shadow-text button__enabled--green" mat-button type="submit"
         [disabled]="!form.valid">Create!</button>
     </mat-step>

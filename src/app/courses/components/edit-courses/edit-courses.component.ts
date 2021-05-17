@@ -1,39 +1,83 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
+import { tap, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { CreateCourseService } from '@core/services/create-course/create-course.service';
 import { CourseService } from '@core/services/course/course.service';
 import { TagsService } from '@core/services/tags/tags.service';
-import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
+import { ICourse, IResponseCourse } from '@core/models/course.model';
 
 @Component({
-  selector: 'app-create-courses',
-  templateUrl: './create-courses.component.html',
-  styleUrls: ['./create-courses.component.scss'],
+  selector: 'app-edit-courses',
+  templateUrl: './edit-courses.component.html',
+  styleUrls: ['./edit-courses.component.scss'],
 })
-export class CreateCoursesComponent implements OnInit {
-  currentList: string[];
-  formTagList: string[];
+export class EditCoursesComponent implements OnInit {
+  course$: Observable<IResponseCourse>;
   tagList: string[];
   form: FormGroup;
-  createRequest: boolean;
-
+  updateRequest: boolean;
+  course: ICourse;
   constructor(
     private createCourseService: CreateCourseService,
     private courseService: CourseService,
     private formBuilder: FormBuilder,
     private tagsService: TagsService,
     private router: Router,
-    private localStorageService: LocalStorageService
+    private activatedRoute: ActivatedRoute
   ) {
     this.buildForm();
-    this.createRequest = false;
+    this.updateRequest = false;
     this.tagList = [];
   }
 
   ngOnInit(): void {
+    this.fetchTags();
+    this.course$ = this.activatedRoute.params.pipe(
+      switchMap((params: Params) => {
+        return this.courseService.getCourse(params.id).pipe(
+          tap((response) => {
+            this.course = response.data;
+            this.addingFieldsToPatch(response);
+            this.form.patchValue(response.data);
+            this.form.patchValue({ tags: this.creatingTagsObjects(response) });
+          })
+        );
+      })
+    );
+  }
+
+  updateCourse(event: Event): void {
+    event.preventDefault();
+    const value = this.form.value;
+    if (value) {
+      value.tags = this.createCourseService.objectToArray(value.tags);
+      value.teacher = this.course.teacher;
+      this.courseService.updateCourse(this.course._id, value).subscribe(() => {
+        this.router.navigateByUrl('/app/courses'),
+          () => (this.updateRequest = true);
+      });
+    } else {
+      console.log('invalid input plis try again ');
+    }
+  }
+
+  private addingFieldsToPatch(response: IResponseCourse): boolean {
+    response.data.lessons.forEach(() => this.addLessonsField());
+    response.data.tags.forEach(() => this.addTagsField());
+    return true;
+  }
+
+  private creatingTagsObjects(response: IResponseCourse): { tag: string }[] {
+    const tagsArray: { tag: string }[] = [];
+    response.data.tags.forEach((tags) => tagsArray.push({ tag: tags }));
+    return tagsArray;
+  }
+
+  private fetchTags(): void {
     this.tagsService
       .getAllTags()
       .pipe(
@@ -42,21 +86,6 @@ export class CreateCoursesComponent implements OnInit {
         })
       )
       .subscribe();
-  }
-
-  createCourse(event: Event): void {
-    event.preventDefault();
-    const value = this.form.value;
-    if (value) {
-      value.tags = this.createCourseService.objectToArray(value.tags);
-      value.teacher = this.localStorageService.getItem('id');
-      this.courseService.createCourse(value).subscribe(() => {
-        this.router.navigateByUrl('/app/courses'),
-          () => (this.createRequest = true);
-      });
-    } else {
-      console.log('invalid input plis try again ');
-    }
   }
 
   private buildForm(): void {
@@ -120,7 +149,7 @@ export class CreateCoursesComponent implements OnInit {
   // Tags
   private tagsBuildForm(): FormGroup {
     return this.formBuilder.group({
-      tags: ['', [Validators.required]],
+      tag: ['', [Validators.required]],
     });
   }
 

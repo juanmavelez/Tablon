@@ -2,7 +2,7 @@
 
 header{
   display: grid;
-  padding: 60px 20px ;
+  padding: 120px 20px 60px 20px;
   justify-items: flex-end;
   background-color: $orange-background;
   text-align: right;
@@ -20,12 +20,14 @@ header{
     }
   }
   .teacher__name{
-    text-align: right;
     margin-top: 50px;
+    font-size: 2.4rem;
+    text-align: right;
   }
   .course__description{
-    text-align: right;
     margin-top: 35px;
+    font-size: 2.4rem;
+    text-align: right;
   }
 }
 
