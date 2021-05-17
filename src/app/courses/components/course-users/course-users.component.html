@@ -2,8 +2,10 @@
 
 <ul *ngIf="( users$ | async ) as users">
   <li *ngFor="let user of users.data">
+    <p>{{user._id}}</p>
     <p>{{user.name}}</p>
     <p>{{user.email}}</p>
-    <button (click)="deleteUserCourse(user._id)"></button>
+    <button (click)="deleteUserCourse(user)">
+    </button>
   </li>
 </ul>
