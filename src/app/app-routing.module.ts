@@ -1,5 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import {
+  Routes,
+  RouterModule,
+  PreloadAllModules,
+  CanActivate,
+} from '@angular/router';
+import { GuardService } from '@core/services/guard/guard.service';
 import { LayoutComponent } from './layout/layout.component';
 
 export const routes: Routes = [
@@ -21,6 +27,7 @@ export const routes: Routes = [
   {
     path: 'app',
     component: LayoutComponent,
+    canActivate: [GuardService],
     children: [
       {
         path: '',
@@ -29,6 +36,7 @@ export const routes: Routes = [
       },
       {
         path: 'courses',
+        canActivate: [GuardService],
         loadChildren: () =>
           import('./courses/courses.module').then(
             (module) => module.CoursesModule
@@ -36,6 +44,7 @@ export const routes: Routes = [
       },
       {
         path: 'profile',
+        canActivate: [GuardService],
         loadChildren: () =>
           import('./profile/profile.module').then(
             (module) => module.ProfileModule
