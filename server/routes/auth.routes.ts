@@ -12,7 +12,7 @@ const TWO_HOURS_IN_SEC = 7200;
 
 function authApi(server: express.Express): void {
   const router = express.Router();
-  server.use('/auth', router);
+  server.use('/auth-proxy', router);
 
   // SIGN-IN
   router.post(

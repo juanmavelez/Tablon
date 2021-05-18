@@ -5,7 +5,7 @@ import { badImplementation } from '@hapi/boom';
 
 export default function tagsApi(server: express.Express): void {
   const router = express.Router();
-  server.use('/tags', router);
+  server.use('/tags-proxy', router);
 
   router.get(
     '/',

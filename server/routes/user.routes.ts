@@ -5,7 +5,7 @@ import { badImplementation } from '@hapi/boom';
 
 function usersApi(server: express.Express): void {
   const router = express.Router();
-  server.use('/users', router);
+  server.use('/users-proxy', router);
 
   router.get(
     '/',

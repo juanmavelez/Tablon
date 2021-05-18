@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 
 import { UserCoursesService } from '@core/services/user-courses/user-courses.service';
+import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
 
 import { IResponseUsers } from '@core/models/course.model';
 import { IUser } from '@core/models/user.model';
-import { IUserCourse } from '@core/models/user-courses.model';
 
 @Component({
   selector: 'app-course-users',
@@ -18,10 +18,13 @@ export class CourseUsersComponent implements OnInit {
   users$: Observable<IResponseUsers>;
   courseId: string;
   deletingUser: boolean;
+  userId: string;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private userCoursesService: UserCoursesService
+    private userCoursesService: UserCoursesService,
+    private localStorageService: LocalStorageService
   ) {
+    this.userId = this.localStorageService.getItem('id');
     this.deletingUser = false;
   }
 
@@ -29,7 +32,6 @@ export class CourseUsersComponent implements OnInit {
     this.users$ = this.activatedRoute.params.pipe(
       switchMap((params: Params) => {
         this.courseId = params.id;
-        console.log(this.courseId);
         return this.userCoursesService
           .getCourseUsers(this.courseId)
           .pipe(tap((response) => console.log(response)));
@@ -43,7 +45,6 @@ export class CourseUsersComponent implements OnInit {
       .getUserCoursesId(params)
       .pipe(
         switchMap((response) => {
-          console.log('response is', response);
           return this.userCoursesService.deleteUserCourse(response.data[0]._id);
         })
       )

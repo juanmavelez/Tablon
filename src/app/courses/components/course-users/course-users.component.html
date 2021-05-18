@@ -5,7 +5,7 @@
     <p>{{user._id}}</p>
     <p>{{user.name}}</p>
     <p>{{user.email}}</p>
-    <button (click)="deleteUserCourse(user)">
+    <button *ngIf="!user._id !== userId" (click)="deleteUserCourse(user)">
     </button>
   </li>
 </ul>

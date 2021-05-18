@@ -12,7 +12,7 @@ export class TagsService {
   constructor(private http: HttpClient) {}
 
   getAllTags(): Observable<ITagResponse> {
-    return this.http.get<ITagResponse>(`/tags`).pipe(retry(3));
+    return this.http.get<ITagResponse>(`/tags-proxy`).pipe(retry(3));
   }
 
   createTagList(tags: ITag[]): string[] {

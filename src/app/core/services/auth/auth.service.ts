@@ -27,7 +27,7 @@ export class AuthService {
       }),
     };
     return this.http
-      .post<ISignInRequest>('/auth/sign-in', '', headerOptions)
+      .post<ISignInRequest>('/auth-proxy/sign-in', '', headerOptions)
       .pipe(
         retry(3),
         tap((response) => {
@@ -48,7 +48,7 @@ export class AuthService {
 
   register(user: ISignUpRequest): Observable<ISignUpRequest> {
     return this.http
-      .post<ISignUpRequest>('/auth/register', user)
+      .post<ISignUpRequest>('/auth-proxy/register', user)
       .pipe(retry(3));
   }
 }

@@ -22,19 +22,19 @@ export class UserCoursesService {
       params = params.append(`${element}`, query[`${element}`]);
     });
     return this.http
-      .get<IResponseUserCoursesId>(`/user-courses/`, { params })
+      .get<IResponseUserCoursesId>(`/user-courses-proxy/`, { params })
       .pipe(retry(3));
   }
 
   getUserCourses(id: string): Observable<IResponseCourses> {
     return this.http
-      .get<IResponseCourses>(`/user-courses/user/${id}`)
+      .get<IResponseCourses>(`/user-courses-proxy/user/${id}`)
       .pipe(retry(3));
   }
 
   getCourseUsers(id: string): Observable<IResponseUsers> {
     return this.http
-      .get<IResponseUsers>(`/user-courses/courses/${id}`)
+      .get<IResponseUsers>(`/user-courses-proxy/courses/${id}`)
       .pipe(retry(3));
   }
 
@@ -43,7 +43,7 @@ export class UserCoursesService {
     courseId: string
   ): Observable<IResponseCreateUserCourse> {
     return this.http
-      .post<IResponseCreateUserCourse>(`/user-courses/${userId}`, {
+      .post<IResponseCreateUserCourse>(`/user-courses-proxy/${userId}`, {
         user_id: userId,
         courses_id: courseId,
       })
@@ -52,7 +52,7 @@ export class UserCoursesService {
 
   deleteUserCourse(userCourseId: string): Observable<IResnseDeleteUserCourse> {
     return this.http
-      .delete<IResnseDeleteUserCourse>(`/user-courses/${userCourseId}`)
+      .delete<IResnseDeleteUserCourse>(`/user-courses-proxy/${userCourseId}`)
       .pipe(retry(3));
   }
 }
