@@ -23,9 +23,17 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  get email() {
+    return this.form.get('email');
+  }
+  get password() {
+    return this.form.get('password');
+  }
+
   login(event: Event): void {
     event.preventDefault();
     const value = this.form.value;
+    this.form.markAllAsTouched();
     if (value) {
       this.authService.login(value.email, value.password).subscribe(
         () => this.router.navigateByUrl('/app'),
@@ -37,7 +45,7 @@ export class LoginComponent implements OnInit {
   }
   private buildForm(): void {
     this.form = this.formBuilder.group({
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       password: [
         '',
         [

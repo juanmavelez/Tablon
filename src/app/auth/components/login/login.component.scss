@@ -14,6 +14,7 @@ form{
     display: grid;
     margin: 0 auto;
     justify-items: center;
+    box-shadow: none;
     background-color: transparent;
   }
   .mat-card-header{
@@ -38,6 +39,12 @@ form{
       .mat-label{
         font-family: $contentFont;
       }
+    }
+    .mat-error{
+      margin-top: 5px;
+    }
+    .alert-error{
+      color: $red;
     }
   }
 

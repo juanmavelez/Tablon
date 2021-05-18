@@ -13,25 +13,41 @@
 
     <mat-card-content>
 
-      <mat-form-field class="input"
-        [ngClass]=" form.controls['email'].invalid && form.controls['email'].touched  ? 'input--alert' : 'input--enabled'">
-        <mat-label>email@example.com</mat-label>
+      <mat-form-field class="input" [ngClass]=" email.invalid && email.touched ? 'input--alert' : 'input--enabled'">
+        <mat-label>Email Address</mat-label>
         <figure matPrefix class="icon__container"
-          [ngClass]=" form.controls['email'].invalid && form.controls['email'].touched  ? 'icon__container--alert' : 'icon__container--enabled'">
+          [ngClass]=" email.invalid && email.touched ? 'icon__container--alert' : 'icon__container--enabled'">
           <img class="icon" src="./assets/icons/login-profile-black-icon.svg" alt="">
         </figure>
-        <input matInput id="email" placeholder="email" formControlName="email" type="email">
+        <input matInput id="email" appearance="none" placeholder="email" formControlName="email" type="email">
       </mat-form-field>
 
+
+      <div *ngIf="email.invalid && email.touched">
+        <mat-error *ngIf="email.errors?.required">This field is required</mat-error>
+        <mat-error *ngIf="email.errors?.email">Introduce a valid email</mat-error>
+      </div>
+
       <mat-form-field class="input"
-        [ngClass]=" form.controls['password'].invalid && form.controls['password'].touched  ? 'input--alert' : 'input--enabled'">
+        [ngClass]=" password.invalid && password.touched ? 'input--alert' : 'input--enabled'">
         <figure matPrefix class="icon__container"
-          [ngClass]="form.controls['password'].invalid && form.controls['password'].touched ? 'icon__container--alert' : 'icon__container--enabled'">
+          [ngClass]="password.invalid && password.touched ? 'icon__container--alert' : 'icon__container--enabled'">
           <img class="icon" src="/assets/icons/password-login-icon.svg" alt="">
         </figure>
-        <mat-label>********</mat-label>
-        <input matInput placeholder="password" formControlName="password" type="password">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="password" appearance="none" formControlName="password" type="password">
       </mat-form-field>
+
+      <div *ngIf="password.invalid && password.touched">
+        <mat-error *ngIf="password.errors?.required">This field is required</mat-error>
+        <mat-error *ngIf="password.errors?.minlength">
+          This field must be longer than {{password.errors.minlength.requiredLength}} characters
+        </mat-error>
+        <mat-error *ngIf="password.errors?.maxlength">
+          This field must can not be longer than
+          {{password.errors.maxlength.requiredLength}} characters
+        </mat-error>
+      </div>
 
       <ng-container *ngIf="hasError">
         <p class="alert-error">User or Password invalid, please try again</p>
@@ -43,9 +59,9 @@
       <button mat-button class="button button--shadow-text button__enabled--blue" type="submit">Submit</button>
       <p class="extra__one">Forgot your password?</p>
       <p class="extra__two">Do you need an account?</p>
-      <button mat-button class="button button__small button__enabled--green" routerLink="/auth/register"
-        type="button">Join
-        Us!</button>
+      <button mat-button class="button button__small button__enabled--green" routerLink="/auth/register" type="button">
+        Join Us!
+      </button>
 
     </mat-card-actions>
   </mat-card>

@@ -56,6 +56,9 @@ main{
     height: 360px;
     margin-top: 75px;
     background-image: url('/assets/backgrounds/homaPage.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
 
     header{
       padding-top:65px;

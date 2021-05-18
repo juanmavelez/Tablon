@@ -23,8 +23,19 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  get name() {
+    return this.form.get('name');
+  }
+  get email() {
+    return this.form.get('email');
+  }
+  get password() {
+    return this.form.get('password');
+  }
+
   register(event: Event): any {
     event.preventDefault();
+    this.form.markAllAsTouched();
     const value = this.form.value;
     const user: ISignUpRequest = value;
     if (value) {
@@ -55,11 +66,11 @@ export class RegisterComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(8),
-          patternValidator(/\d/, { hasNumber: false }),
-          patternValidator(/[A-Z]/, { hasCapitalCase: false }),
-          patternValidator(/[a-z]/, { hasSmallCase: false }),
+          patternValidator(/\d/, { hasNumber: true }),
+          patternValidator(/[A-Z]/, { hasCapitalCase: true }),
+          patternValidator(/[a-z]/, { hasSmallCase: true }),
           patternValidator(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, {
-            hasSpecialCharacters: false,
+            hasSpecialCharacters: true,
           }),
         ],
       ],

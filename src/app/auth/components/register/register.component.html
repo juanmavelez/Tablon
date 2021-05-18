@@ -7,29 +7,58 @@
 
     <mat-card-header>
       <mat-card-title>
-        <h2>Signup to Tablon</h2>
+        <h2>Sign up to Tablon</h2>
         <div></div>
       </mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
-      <mat-form-field class="input"
-        [ngClass]=" form.controls['name'].invalid && form.controls['name'].touched  ? 'input--alert' : 'input--enabled'">
+      <mat-form-field class="input" [ngClass]=" name.invalid && name.touched  ? 'input--alert' : 'input--enabled'">
         <mat-label>Username</mat-label>
-        <input placeholder="name" formControlName="name" matInput type="name">
+        <input matInput placeholder="name" appearance="none" formControlName="name" type="name">
       </mat-form-field>
 
-      <mat-form-field class="input"
-        [ngClass]=" form.controls['email'].invalid && form.controls['email'].touched  ? 'input--alert' : 'input--enabled'">
-        <mat-label>email@example.com</mat-label>
-        <input placeholder="email" formControlName="email" matInput type="email">
+      <div *ngIf="name.invalid && name.touched">
+        <mat-error *ngIf="name.errors?.required">This field is required</mat-error>
+        <mat-error *ngIf="name.errors?.minlength">
+          This field can not be shorter than {{name.errors.minlength.requiredLength}} characters
+        </mat-error>
+        <mat-error *ngIf="name.errors?.maxlength">
+          This field can not be longer than {{name.errors.maxlength.requiredLength}} characters
+        </mat-error>
+        <mat-error *ngIf="name.errors?.pattern">The name can only contain characters</mat-error>
+      </div>
+
+      <mat-form-field class="input" [ngClass]=" email.invalid && email.touched  ? 'input--alert' : 'input--enabled'">
+        <mat-label>Email</mat-label>
+        <input matInput appearance="none" placeholder="email" formControlName="email" type="email">
       </mat-form-field>
 
+      <div *ngIf="email.invalid && email.touched">
+        <mat-error *ngIf="email.errors?.required">This field is required</mat-error>
+        <mat-error *ngIf="email.errors?.email"> Introduce a valid email</mat-error>
+      </div>
+
       <mat-form-field class="input"
-        [ngClass]=" form.controls['password'].invalid && form.controls['password'].touched  ? 'input--alert' : 'input--enabled'">
+        [ngClass]=" password.invalid && password.touched ? 'input--alert' : 'input--enabled'">
         <mat-label>********</mat-label>
-        <input placeholder="password" formControlName="password" matInput type="password">
+        <input placeholder="password" appearance="none" formControlName="password" matInput type="password">
       </mat-form-field>
+
+      <div *ngIf="password.invalid && password.touched">
+        <mat-error *ngIf="password.errors?.required">This field is required</mat-error>
+        <mat-error *ngIf="password.errros?.minlength">
+          This field can not be longer than {{password.errors.minlength.requiredLength}} characters
+        </mat-error>
+        <mat-error *ngIf="password.errors?.hasNumber">The password must have at least one number
+        </mat-error>
+        <mat-error *ngIf="password.errros?.hasCapitalCase">The password must have at least one capital Letter
+        </mat-error>
+        <mat-error *ngIf="password.errors?.hasSmallCase">The password must have at least one letter</mat-error>
+        <mat-error *ngIf="password.errors?.hasSpecialCharacters">The password must have at least one special character
+        </mat-error>
+      </div>
+
     </mat-card-content>
 
     <mat-card-actions>

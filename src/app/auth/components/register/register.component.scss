@@ -15,6 +15,7 @@ form{
     margin: 0 auto;
     justify-items: center;
     background-color: transparent;
+    box-shadow: none;
   }
   .mat-card-header{
     h2{
@@ -31,7 +32,6 @@ form{
   .mat-card-content{
     display:grid;
     justify-items: center;
-    margin-top: 10px;
     .input{
       padding:0;
       margin-top: 27px;
@@ -43,7 +43,6 @@ form{
 
   .mat-card-actions{
     display:grid;
-    justify-items: center;
     font-family: $contentFont;
     .alternative-action{
       margin-top:55px;
