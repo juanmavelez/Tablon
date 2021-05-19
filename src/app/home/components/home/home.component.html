@@ -7,7 +7,11 @@
   <div class="green-border"></div>
   <p>Tablon makes it easy to connect to others and share our knowledge in a simple way</p>
 
-  <img src="/assets/icons/home-page-icon.svg" alt="">
+  <picture>
+    <source media="(min-width:1000px)" srcset="/assets/images/home-page-desktop-icon.svg">
+    <source media=" (min-width:600px)" srcset="/assets/images/home-page-tablet-icon.svg">
+    <img src="/assets/images/home-page-phone-icon.svg" alt="two people studying in a online course">
+  </picture>
 
   <button class="button button--shadow-text button__enabled--blue" routerLink="/auth/login">Login</button>
   <button class="button button__enabled--green" routerLink="/auth/register">register</button>

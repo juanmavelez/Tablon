@@ -1,0 +1,21 @@
+.horizontal-scroll{
+  display: flex;
+  flex-direction: row;
+}
+
+.horizontal-scroll {
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.cdk-virtual-scroll-content-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.chips{
+  height: 100%;
+  writing-mode: vertical-lr;
+}

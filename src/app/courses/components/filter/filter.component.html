@@ -1,7 +1,8 @@
-<ul *ngIf="(tags$ | async) as tags"
+<ul *ngIf="(tags$ | async) as tags" class="cdk-virtual-scroll-data-source-example"
   aria-label="list of boobles with the diferent filters that you can use to speed up the search of your course">
-
-  <li *ngFor="let tag of tagslist">
-    <button class="chips" (click)="pressTag(tag)" aria-label="{{tag}}">{{tag}}</button>
-  </li>
+  <cdk-virtual-scroll-viewport class="horizontal-scroll" orientation="horizontal" itemSize="150">
+    <div *cdkVirtualFor="let tag of tagslist">
+      <button class="chips" (click)="pressTag(tag)" aria-label="{{tag}}">{{tag}}</button>
+    </div>
+  </cdk-virtual-scroll-viewport>
 </ul>
