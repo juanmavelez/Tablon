@@ -1,11 +1,18 @@
 <h2>Users</h2>
-
 <ul *ngIf="( users$ | async ) as users">
-  <li *ngFor="let user of users.data">
-    <p>{{user._id}}</p>
-    <p>{{user.name}}</p>
-    <p>{{user.email}}</p>
-    <button *ngIf="!user._id !== userId" (click)="deleteUserCourse(user)">
+  <li class="user-card" *ngFor="let user of users.data">
+    <img [src]="url" alt="">
+    <div class="user-card__data">
+      <p>{{user.name}}</p>
+      <p>{{user.email}}</p>
+    </div>
+    <button class="user-card__delete-button" *ngIf="!user._id !== userId" (click)="deleteUserCourse(user)">
+      <svg width="15" height="19" viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M14.4854 1.10938V3.125H0.516602V1.10938H3.98535L5.0166 0.125H9.98535L11.0166 1.10938H14.4854ZM1.50098 16.1094V4.10938H13.501V16.1094C13.501 16.6406 13.2979 17.1094 12.8916 17.5156C12.4854 17.9219 12.0166 18.125 11.4854 18.125H3.5166C2.98535 18.125 2.5166 17.9219 2.11035 17.5156C1.7041 17.1094 1.50098 16.6406 1.50098 16.1094Z"
+          fill="#3D4451" />
+      </svg>
+      delete
     </button>
   </li>
 </ul>

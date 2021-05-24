@@ -2,31 +2,11 @@
 h2 {
   width: 100%;
   text-align: center;
-  margin-top: 85px;
+  margin-top: 150px;
 }
 form {
   margin-top: 45px;
-}
-.mat-horizontal-stepper-header-container {
-  font-family: $contentFont;
-  font-size: 1.2rem;
-  background-color: $green-background;
-  .mat-horizontal-stepper-header {
-    padding: 10px;
+  button {
+    justify-self: center;
   }
-}
-
-.mat-step-icon {
-  border: 1px solid $softBlack-border;
-}
-
-.mat-step-icon-state-number {
-  background-color: white;
-  color: $softBlack;
-}
-.mat-horizontal-stepper-content {
-  display: grid;
-  margin-top: 65px;
-  gap: 30px;
-  justify-content: center;
 }

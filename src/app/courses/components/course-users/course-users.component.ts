@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 
+import { GravatarService } from '@core/services/gravatar/gravatar.service';
 import { UserCoursesService } from '@core/services/user-courses/user-courses.service';
 import { LocalStorageService } from '@core/services/local-storage/local-storage.service';
 
@@ -19,13 +20,16 @@ export class CourseUsersComponent implements OnInit {
   courseId: string;
   deletingUser: boolean;
   userId: string;
+  url: string;
   constructor(
     private activatedRoute: ActivatedRoute,
     private userCoursesService: UserCoursesService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private gravatarService: GravatarService
   ) {
     this.userId = this.localStorageService.getItem('id');
     this.deletingUser = false;
+    this.url = this.gravatarService.createGravatarUrl(this.userId);
   }
 
   ngOnInit(): void {

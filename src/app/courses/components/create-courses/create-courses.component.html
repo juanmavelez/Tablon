@@ -6,50 +6,110 @@
   <mat-horizontal-stepper linear #stepper>
     <mat-step>
       <ng-template matStepLabel>
-        Course <br> details
+        Details
       </ng-template>
+
+
       <mat-form-field appearance="none" class="input input--enabled">
         <mat-label>Course name</mat-label>
         <input placeholder="name" formControlName="name" matInput type="name">
       </mat-form-field>
+
+      <div *ngIf="name.invalid && name.touched">
+        <mat-error *ngIf="name.errors?.required">This field is required</mat-error>
+        <mat-error *ngIf="name.errors?.minlength">
+          This field must be longer than {{name.errors.minlength.requiredLength}} characters
+        </mat-error>
+        <mat-error *ngIf="name.errors?.maxlength">
+          This field must can not be longer than
+          {{name.errors.maxlength.requiredLength}} characters
+        </mat-error>
+        <mat-error *ngIf="name.errors?.pattern">
+          this may not have any special character
+        </mat-error>
+      </div>
+
       <mat-form-field appearance="none" class="input input--enabled">
         <mat-label>Course description</mat-label>
         <textarea matInput class="input input--enabled" placeholder="description" formControlName="description" matInput
           type="text"></textarea>
       </mat-form-field>
-    </mat-step>
 
-    <mat-step>
-      <ng-template matStepLabel>
-        lessons for <br> your course
-      </ng-template>
-      <button class="button button__small button--shadow-text button__enabled--blue" type="button"
-        (click)="addLessonsField()">
-        Add leasson
-      </button>
-      <div formArrayName="lessons" *ngFor="let lesson of lessonsField.controls,let i = index">
-        <div [formGroupName]="i">
-          <mat-form-field appearance="none" class="input input--enabled">
-            <mat-label>Lesson name</mat-label>
-            <input placeholder="name" formControlName="name" matInput type="name">
-          </mat-form-field>
-          <mat-form-field appearance="none" class="input input--enabled">
-            <mat-label>Description</mat-label>
-            <input placeholder="description" formControlName="description" matInput type="text">
-          </mat-form-field>
-          <button *ngIf="i>0" (click)="removeField('lessons',x)">DeleteField</button>
-        </div>
+      <div *ngIf="description.invalid && description.touched">
+        <mat-error *ngIf="description.errors?.required">This field is required</mat-error>
+        <mat-error *ngIf="description.errors?.minlength">
+          This field must be longer than {{description.errors.minlength.requiredLength}} characters
+        </mat-error>
+        <mat-error *ngIf="description.errors?.maxlength">
+          This field must can not be longer than
+          {{description.errors.maxlength.requiredLength}} characters
+        </mat-error>
+        <mat-error *ngIf="description.errors?.pattern">
+          this may not have any special character
+        </mat-error>
+      </div>
+
+      <div>
+        <button mat-button matStepperNext>Next</button>
       </div>
     </mat-step>
 
     <mat-step>
       <ng-template matStepLabel>
-        Add Taggs <br> and Done!
+        Lessons
       </ng-template>
+
+      <div formArrayName="lessons" *ngFor="let lesson of lessonsField.controls,index as i">
+        <div [formGroupName]="i">
+          <mat-form-field appearance="none" class="input input--enabled">
+            <mat-label>Lesson name</mat-label>
+            <input placeholder="name" formControlName="name" matInput type="name">
+          </mat-form-field>
+
+          <div *ngIf="lessonName(i).invalid && lessonName(i).touched">
+            <mat-error *ngIf="lessonName(i).errors?.required">This field is required</mat-error>
+            <mat-error *ngIf="lessonName(i).errors?.minlength">
+              This field must be longer than {{lessonName(i).errors.minlength.requiredLength}} characters
+            </mat-error>
+            <mat-error *ngIf="lessonName(i).errors?.maxlength">
+              This field must can not be longer than
+              {{lessonName(i).errors.maxlength.requiredLength}} characters
+            </mat-error>
+          </div>
+
+          <mat-form-field appearance="none" class="input input--enabled">
+            <mat-label>Description</mat-label>
+            <input placeholder="description" formControlName="description" matInput type="text">
+          </mat-form-field>
+
+          <div *ngIf="lessonDescription(i).invalid && lessonDescription(i).touched">
+            <mat-error *ngIf="lessonDescription(i).errors?.required">This field is required</mat-error>
+            <mat-error *ngIf="lessonDescription(i).errors?.minlength">
+              This field must be longer than {{lessonDescription(i).errors.minlength.requiredLength}} characters
+            </mat-error>
+            <mat-error *ngIf="lessonDescription(i).errors?.maxlength">
+              This field must can not be longer than
+              {{lessonDescription(i).errors.maxlength.requiredLength}} characters
+            </mat-error>
+          </div>
+
+          <button *ngIf="i>0" (click)="removeField('lessons',x)">DeleteField</button>
+        </div>
+      </div>
       <button class="button button__small button--shadow-text button__enabled--blue" type="button"
-        (click)="addTagsField()">
-        Add tags
+        (click)="addLessonsField()">
+        Add lesson
       </button>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>
+        Taggs & Done
+      </ng-template>
       <div formArrayName="tags" *ngFor="let tags of tagField.controls,index as j">
         <div [formGroupName]="j">
           <mat-form-field appearance="none" class="input input--enabled">
@@ -62,10 +122,22 @@
           </mat-form-field>
           <button *ngIf="j>0" (click)="removeField('tags',x)">DeleteField</button>
         </div>
-      </div>
 
+        <div *ngIf="lessonName(i).invalid && lessonName(i).touched">
+          <mat-error *ngIf="lessonName(i).errors?.required">This field is required</mat-error>
+        </div>
+
+      </div>
+      <button class="button button__small button--shadow-text button__enabled--blue" type="button"
+        (click)="addTagsField()">
+        Add tags
+      </button>
       <button class="button button-small button--shadow-text button__enabled--green" mat-button type="submit"
         [disabled]="!form.valid">Create!</button>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
     </mat-step>
   </mat-horizontal-stepper>
 </form>

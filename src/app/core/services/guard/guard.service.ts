@@ -1,16 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GuardService implements CanActivate {
   cookie: string;
-  constructor(private router: Router) {
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private router: Router
+  ) {
     this.cookie = '';
   }
+
   canActivate(): boolean {
-    this.cookie = document.cookie;
+    this.cookie = this.document.cookie;
     if (this.cookie) {
       return true;
     }

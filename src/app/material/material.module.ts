@@ -8,7 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [],
@@ -22,7 +21,6 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     MatInputModule,
     MatStepperModule,
     MatTabsModule,
-    ScrollingModule,
   ],
   exports: [
     MatToolbarModule,
@@ -34,7 +32,6 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     MatInputModule,
     MatStepperModule,
     MatTabsModule,
-    ScrollingModule,
   ],
 })
 export class MaterialModule {}
