@@ -43,6 +43,10 @@
       height: 25px;
     }
   }
+  .mat-input-element,
+  .mat-form-field-label{
+    padding-left: 10px;
+  }
 }
 
 .filter {

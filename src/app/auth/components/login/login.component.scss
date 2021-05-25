@@ -42,6 +42,8 @@ form{
     }
     .mat-error{
       margin-top: 5px;
+      font-size: 1.2rem;
+      text-align: start;
     }
     .alert-error{
       color: $red;
@@ -50,8 +52,9 @@ form{
 
   .mat-card-actions{
     display:grid;
-    justify-items: center;
+    margin-top: 30px;
     font-family: $contentFont;
+
     .extra__one{
       margin: 6px auto 0 auto;
       opacity: 70%;

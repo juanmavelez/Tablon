@@ -136,12 +136,16 @@
 
 
 .mat-stepper-horizontal {
-    background-color: $green-background;
-    margin-top: 50px;
+  margin-top: 65px;
+  height: 100%;
 
   .mat-horizontal-stepper-header-container {
+    display: flex;
+    width: 333px;
+    margin: 0 auto;
+    justify-content: center;
     font-family: $contentFont;
-    font-size: 1.2rem;
+
     .mat-horizontal-stepper-header {
       padding: 10px;
     }
@@ -151,9 +155,16 @@
 
     .mat-horizontal-stepper-content {
       display: grid;
-      margin-top: 65px;
-      gap: 30px;
       justify-content: center;
+
+      .mat-form-field{
+        margin-top: 30px;
+      }
     }
   }
+
+}
+
+.mat-error{
+  margin-top: 5px;
 }

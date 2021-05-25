@@ -39,11 +39,23 @@ form{
         font-family: $contentFont;
       }
     }
+    .mat-error{
+      margin-top: 5px;
+      font-size: 1.2rem;
+      text-align: start;
+    }
+
+    .alert-error{
+      color: $red;
+    }
   }
 
   .mat-card-actions{
     display:grid;
     font-family: $contentFont;
+    font-size: 1.2rem;
+    margin-top: 30px;
+
     .alternative-action{
       margin-top:55px;
     }

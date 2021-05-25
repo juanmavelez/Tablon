@@ -1,4 +1,9 @@
 @import "src/sass/variables";
+.page{
+  min-height: 100vh;
+  background-color: $red-background;
+}
+
 h2 {
   width: 100%;
   text-align: center;
@@ -6,7 +11,73 @@ h2 {
 }
 form {
   margin-top: 45px;
+
+  .stepper-actions {
+    display: grid;
+    margin-top: 90px;
+    justify-content: center;
+
+    &__button {
+      height: 40px;
+      width: 70px;
+      background-color: $white;
+      border: 1px solid $softBlack;
+      border-radius: 5px;
+    }
+  }
+}
+
+.lesson {
+  display: grid;
+
+  &__container {
+    margin-top: 10px;
+    p {
+      margin: 0;
+    }
+    .lesson {
+      margin-top: 10px;
+    }
+    .lesson__footer {
+      display: flex;
+      margin-top: 15px;
+      justify-content: flex-end;
+
+      button {
+        display: flex;
+        width: 70px;
+        height: 25px;
+        align-items: center;
+        justify-content: space-around;
+        background-color: $red-background;
+        border-radius: 5px;
+        border: 0.25px solid $softBlack;
+        text-align: center;
+
+        img {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+}
+
+.tags {
   button {
-    justify-self: center;
+    display: flex;
+    width: 70px;
+    height: 25px;
+    align-items: center;
+    justify-content: space-around;
+    background-color: $red-background;
+    border-radius: 5px;
+    border: 0.25px solid $softBlack;
+    text-align: center;
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
   }
 }
