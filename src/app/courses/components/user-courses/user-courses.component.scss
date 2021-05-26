@@ -1,9 +1,23 @@
 @import 'src/sass/variables';
+.page{
+  position: fixed;
+  top: 0;
+
+  img{
+    width: 100%;
+  }
+}
 
 .mat-tab-group{
   align-items: center;
-  margin-top: 110px;
+  padding-top: 110px;
+  padding-bottom: 100px;
+  background-color: $red-background;
 
+
+  .mat-tab-header{
+    margin-bottom: 60px;
+  }
   .mat-tab-body-wrapper{
     justify-content: center;
   }

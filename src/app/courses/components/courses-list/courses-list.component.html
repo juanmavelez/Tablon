@@ -1,3 +1,7 @@
+<div class="page">
+  <img src="/assets/backgrounds/white-blue-tablet-bottom.svg">
+</div>
+
 <h2>All Courses</h2>
 <div class="filter__container">
   <button class="filter" (click)="showFilters = !showFilters">
@@ -7,16 +11,8 @@
 
 <app-filter *ngIf="showFilters" (pressedTag)="addElementToFilter($event)"></app-filter>
 
-
-
-<section>
-  <div class="svg__container">
-    <svg width="100%" height="20" viewBox="0 0 374 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 13.0308C58.5 3.19745 215.2 -10.5692 374 13.0308H0Z" fill="#E8F3FD" />
-    </svg>
-  </div>
-
-  <ul *ngIf="filterList.length > 0 && (courses$ | async) as courses">
+<section *ngIf="(courses$ | async) as courses">
+  <ul *ngIf="filterList.length > 0 ">
     <li *ngFor="let course of courses.data"
       [ngStyle]="arrayContainsArray(course.tags,filterList) ? {'display':'grid'} : {'display':'none'}">
       <app-courses [course]="course">
@@ -24,7 +20,8 @@
     </li>
   </ul>
 
-  <ul *ngIf="filterList.length === 0 && (courses$ | async) as courses">
+  <ul *ngIf="filterList.length === 0">
+
     <li *ngFor="let course of courses.data">
       <app-courses [course]="course">
       </app-courses>

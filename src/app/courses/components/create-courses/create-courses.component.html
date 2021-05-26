@@ -8,7 +8,6 @@
           Details
         </ng-template>
 
-
         <mat-form-field appearance="none" class="input input--enabled">
           <mat-label>Course name</mat-label>
           <input placeholder="name" formControlName="name" matInput type="name">
@@ -131,12 +130,10 @@
             <mat-error *ngIf="tagControl(j).errors?.required">This field is required</mat-error>
           </div>
         </div>
-
         <button class="button button__small button--shadow-text button__enabled--blue" type="button"
           (click)="addTagsField()">
           Add tags
         </button>
-
         <button class="button button-small button--shadow-text button__enabled--green" mat-button type="submit"
           [disabled]="!form.valid">
           Create!
@@ -145,5 +142,8 @@
       </mat-step>
     </mat-horizontal-stepper>
   </form>
+  <div class="background">
+    <img src="/assets/backgrounds/white-tablet-top.svg">
+  </div>
 
 </div>

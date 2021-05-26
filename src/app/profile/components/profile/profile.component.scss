@@ -1,8 +1,9 @@
 @import 'src/sass/variables';
 
 h2{
-  margin-top: 105px;
+  padding-top: 105px;
   text-align: center;
+  font-weight: 600;
 }
 figure{
   display: flex;
@@ -21,7 +22,9 @@ figure{
   margin-top: 48px;
   padding-top: 48px;
   justify-content: center;
-  background-color: $orange-background;
+  background-image: url('/assets/backgrounds/orange-tablet-top.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
   text-align: center;
 
   button{

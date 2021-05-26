@@ -1,4 +1,4 @@
-<ul *ngIf="(tags$ | async) as tags"
+<ul class="tags" *ngIf="(tags$ | async) as tags"
   aria-label="list of boobles with the diferent filters that you can use to speed up the search of your course">
   <li *ngFor="let tag of tagslist">
     <button class="chips" (click)="pressTag(tag)" aria-label="{{tag}}">{{tag}}</button>
