@@ -1,8 +1,12 @@
 @import "src/sass/variables";
 .page{
   min-height: 100vh;
+  padding-bottom: 200px;
   background-color: $green-background;
 }
+.button{
+  margin-top: 20px;
+  }
 
 h2 {
   width: 100%;
@@ -13,9 +17,11 @@ form {
   margin-top: 45px;
 
   .stepper-actions {
-    display: grid;
+    position: relative;
+    display: flex;
+    z-index: 5;
     margin-top: 90px;
-    justify-content: center;
+    justify-content: space-around;
     z-index: 5;
 
     &__button {

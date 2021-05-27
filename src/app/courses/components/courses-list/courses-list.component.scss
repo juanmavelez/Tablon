@@ -1,4 +1,8 @@
 @import 'src/sass/variables';
+.background{
+  background-color: $blue-background;
+}
+
 .page{
   position: fixed;
   top: 0;
@@ -21,13 +25,13 @@ h2{
   width:100%;
   padding-top: 80px;
   justify-content: center;
-  background-color: $blue-background;
+
 }
 
 section{
   position: relative;
   padding-top: 70px;
-  background-color: $blue-background;
+
 
   ul{
     position: relative;

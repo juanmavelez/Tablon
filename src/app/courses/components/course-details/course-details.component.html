@@ -1,5 +1,7 @@
 <section *ngIf="(course$| async) as course">
-
+  <div class="page">
+    <img src="/assets/backgrounds/orange-tablet-bottom.svg" alt="">
+  </div>
   <header *ngIf="(teacher$ | async) as teacher">
     <h1 class="courseTitle">{{course.data.name}}</h1>
     <figure class="image__container">
@@ -22,8 +24,6 @@
   </nav>
 
   <div *ngIf="course.data.teacher === userId">
-    {{course.data.teacher}}
-    {{userId}}
     <a [routerLink]="['/app/courses/course-users/',course.data._id]"
       class="button button--shadow-text button__enabled--blue">
       Manage Students

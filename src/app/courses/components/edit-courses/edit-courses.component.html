@@ -1,65 +1,151 @@
-<h2>Edit your course</h2>
+<div class="page">
+  <h2>Edit your course</h2>
+  <form *ngIf="(course$| async)" [formGroup]="form" (ngSubmit)="updateCourse($event)">
 
+    <p class="section-title">Course details</p>
 
-<form *ngIf="(course$| async)" [formGroup]="form" (ngSubmit)="updateCourse($event)">
-
-  <p>Course details</p>
-
-  <mat-form-field appearance="none" class="input input--enabled">
-    <mat-label>Course name</mat-label>
-    <input placeholder="name" formControlName="name" matInput type="name">
-  </mat-form-field>
-  <mat-form-field appearance="none" class="input input--enabled">
-    <mat-label>Course description</mat-label>
-    <textarea matInput class="input input--enabled" placeholder="description" formControlName="description" matInput
-      type="text"></textarea>
-  </mat-form-field>
-
-  <p>lessons for your course</p>
-
-  <button class="button button__small button--shadow-text button__enabled--blue" type="button"
-    (click)="addLessonsField()">
-    Add leasson
-  </button>
-
-  <div formArrayName="lessons" *ngFor="let lesson of lessonsField.controls,let i = index">
-    <div [formGroupName]="i">
+    <div class="course__details">
       <mat-form-field appearance="none" class="input input--enabled">
-        <mat-label>Lesson name</mat-label>
+        <mat-label>Course name</mat-label>
         <input placeholder="name" formControlName="name" matInput type="name">
       </mat-form-field>
-      <mat-form-field appearance="none" class="input input--enabled">
-        <mat-label>Description</mat-label>
-        <input placeholder="description" formControlName="description" matInput type="text">
+
+      <div *ngIf="name.invalid && name.touched">
+        <mat-error *ngIf="name.errors?.required">This field is required</mat-error>
+        <mat-error *ngIf="name.errors?.minlength">
+          This field must be longer than {{name.errors.minlength.requiredLength}} characters
+        </mat-error>
+        <mat-error *ngIf="name.errors?.maxlength">
+          This field must can not be longer than
+          {{name.errors.maxlength.requiredLength}} characters
+        </mat-error>
+        <mat-error *ngIf="name.errors?.pattern">
+          this may not have any special character
+        </mat-error>
+      </div>
+
+      <mat-form-field appearance="none" class="input input--text-area input--enabled">
+        <mat-label>Course description</mat-label>
+        <textarea matInput placeholder="description" formControlName="description" matInput type="text"></textarea>
       </mat-form-field>
-      <button *ngIf="i>0" (click)="removeField('lessons',i)">DeleteField</button>
+
+      <div *ngIf="description.invalid && description.touched">
+        <mat-error *ngIf="description.errors?.required">This field is required</mat-error>
+        <mat-error *ngIf="description.errors?.minlength">
+          This field must be longer than {{description.errors.minlength.requiredLength}} characters
+        </mat-error>
+        <mat-error *ngIf="description.errors?.maxlength">
+          This field must can not be longer than
+          {{description.errors.maxlength.requiredLength}} characters
+        </mat-error>
+        <mat-error *ngIf="description.errors?.pattern">
+          this may not have any special character
+        </mat-error>
+      </div>
     </div>
+
+
+
+    <section class="field">
+
+      <p class="field-title">lessons for your course</p>
+
+      <div formArrayName="lessons" *ngFor="let lesson of lessonsField.controls,index as i">
+        <div [formGroupName]="i" class="field__container">
+
+          <p>Lesson {{i}}</p>
+
+          <mat-form-field appearance="none" class="input input--enabled">
+            <mat-label>Lesson name</mat-label>
+            <input placeholder="name" formControlName="name" matInput type="name">
+          </mat-form-field>
+
+          <div *ngIf="lessonName(i).invalid && lessonName(i).touched">
+            <mat-error *ngIf="lessonName(i).errors?.required">This field is required</mat-error>
+            <mat-error *ngIf="lessonName(i).errors?.minlength">
+              This field must be longer than {{lessonName(i).errors.minlength.requiredLength}} characters
+            </mat-error>
+            <mat-error *ngIf="lessonName(i).errors?.maxlength">
+              This field must can not be longer than
+              {{lessonName(i).errors.maxlength.requiredLength}} characters
+            </mat-error>
+          </div>
+
+          <mat-form-field appearance="none" class="input input--text-area input--enabled">
+            <mat-label>Description</mat-label>
+            <input placeholder="description" formControlName="description" matInput type="text">
+          </mat-form-field>
+
+          <div *ngIf="lessonDescription(i).invalid && lessonDescription(i).touched">
+            <mat-error *ngIf="lessonDescription(i).errors?.required">This field is required</mat-error>
+            <mat-error *ngIf="lessonDescription(i).errors?.minlength">
+              This field must be longer than {{lessonDescription(i).errors.minlength.requiredLength}} characters
+            </mat-error>
+            <mat-error *ngIf="lessonDescription(i).errors?.maxlength">
+              This field must can not be longer than
+              {{lessonDescription(i).errors.maxlength.requiredLength}} characters
+            </mat-error>
+          </div>
+          <div class="field__footer">
+            <button *ngIf="lessonsField.length>0" (click)="removeField('lessons',i)" aria-label="clear button">
+              <img src="/assets/icons/clear.svg" alt="">
+              clear</button>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="button button__small button--shadow-text button__enabled--blue" type="button"
+        (click)="addLessonsField()">
+        Add lesson
+      </button>
+
+    </section>
+
+
+
+    <section class="field">
+
+      <p class="field-title">Add Taggs and Done!</p>
+
+      <div formArrayName="tags" *ngFor="let tag of tagField.controls ,index as x">
+        <div [formGroupName]="x" class="field__container">
+          <mat-form-field appearance="none" class="input input--enabled">
+            <mat-label>Tags</mat-label>
+            <mat-select formControlName="tag">
+              <mat-option [value]="tag" *ngFor="let tag of tagList">
+                {{tag}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div *ngIf="tagControl(x).invalid && tagControl(x).touched">
+            <mat-error *ngIf="tagControl(x).errors?.required">This field is required</mat-error>
+          </div>
+
+          <div class="field__footer">
+            <button *ngIf="lessonsField.length>0" (click)="removeField('tag',x)" aria-label="clear button">
+              <img src="/assets/icons/clear.svg" alt="">
+              clear</button>
+          </div>
+        </div>
+      </div>
+
+      <button class="button button__small button--shadow-text button__enabled--blue" type="button"
+        (click)="addTagsField()">
+        Add tags
+      </button>
+
+    </section>
+
+
+    <button class="button button-small button--shadow-text button__enabled--green" mat-button type="submit"
+      [disabled]="!form.valid">
+      Create!
+    </button>
+
+  </form>
+  <div class="background">
+    <img src="/assets/backgrounds/white-tablet-top.svg" alt="">
   </div>
-
-  <p>Add Taggs and Done!</p>
-
-  <button class="button button__small button--shadow-text button__enabled--blue" type="button" (click)="addTagsField()">
-    Add tags
-  </button>
-
-  <div formArrayName="tags" *ngFor="let tag of tagField.controls ,let x = index">
-    <div [formGroupName]="x">
-      <mat-form-field appearance="none" class="input input--enabled">
-        <mat-label>Tags</mat-label>
-        <mat-select formControlName="tag">
-          <mat-option [value]="tag" *ngFor="let tag of tagList">
-            {{tag}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <button *ngIf="x>0" (click)="removeField('tags',x)">DeleteField</button>
-    </div>
-  </div>
-
-  {{form.valid}}
-  <button class="button button-small button--shadow-text button__enabled--green" mat-button type="submit"
-    [disabled]="!form.valid">
-    Create!
-  </button>
-
-</form>
+</div>

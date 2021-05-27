@@ -8,6 +8,10 @@
   font-size: $fontSize;
   line-height: $lineHeight;
 
+  &--text-area{
+    height: auto;
+    min-height: 45px;
+  }
   &--enabled {
     border: 1px solid $softBlack;
   }

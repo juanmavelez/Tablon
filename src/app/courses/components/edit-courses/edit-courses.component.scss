@@ -1,0 +1,81 @@
+@import "src/sass/variables";
+.input{
+  margin-top: 25px;
+}
+.button{
+  margin-top: 20px;
+  }
+
+.page {
+  min-height: 100vh;
+  padding-bottom: 200px;
+  background-color: $green-background;
+
+  h2 {
+    width: 100%;
+    text-align: center;
+    padding-top: 85px;
+  }
+
+  form {
+    position: relative;
+    z-index: 5;
+    padding-top: 45px;
+    background-color: transparent;
+
+    .section-title {
+      width: 100%;
+      text-align: center;
+    }
+
+    .course__details {
+      display: grid;
+      justify-content: center;
+    }
+
+    .field {
+      .field-title{
+        width: 100%;
+        text-align: center;
+      }
+      .field__container {
+        display: grid;
+        justify-content: center;
+      }
+       .field__footer {
+          display: flex;
+          width: 100%;
+          padding-top: 15px;
+          justify-content: flex-end;
+
+          button {
+            display: flex;
+            width: 70px;
+            height: 25px;
+            align-items: center;
+            justify-content: space-around;
+            background-color: $red-background;
+            border-radius: 5px;
+            border: 0.25px solid $softBlack;
+            text-align: center;
+
+            img {
+              width: 16px;
+              height: 16px;
+            }
+          }
+        }
+    }
+  }
+  .background {
+    position: fixed;
+    bottom: 75px;
+    width: 100%;
+
+    img {
+      position: absolute;
+      top: -100px;
+      width: 100%;
+    }
+  }
+}

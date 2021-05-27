@@ -1,30 +1,32 @@
-<div class="page">
-  <img src="/assets/backgrounds/white-blue-tablet-bottom.svg">
-</div>
+<div class="background">
+  <div class="page">
+    <img src="/assets/backgrounds/white-blue-tablet-bottom.svg">
+  </div>
 
-<h2>All Courses</h2>
-<div class="filter__container">
-  <button class="filter" (click)="showFilters = !showFilters">
-    <img src="/assets/icons/filter.svg" alt="">Filters
-  </button>
-</div>
+  <h2>All Courses</h2>
+  <div class="filter__container">
+    <button class="filter" (click)="showFilters = !showFilters">
+      <img src="/assets/icons/filter.svg" alt="">Filters
+    </button>
+  </div>
 
-<app-filter *ngIf="showFilters" (pressedTag)="addElementToFilter($event)"></app-filter>
+  <app-filter *ngIf="showFilters" (pressedTag)="addElementToFilter($event)"></app-filter>
 
-<section *ngIf="(courses$ | async) as courses">
-  <ul *ngIf="filterList.length > 0 ">
-    <li *ngFor="let course of courses.data"
-      [ngStyle]="arrayContainsArray(course.tags,filterList) ? {'display':'grid'} : {'display':'none'}">
-      <app-courses [course]="course">
-      </app-courses>
-    </li>
-  </ul>
+  <section *ngIf="(courses$ | async) as courses">
+    <ul *ngIf="filterList.length > 0 ">
+      <li *ngFor="let course of courses.data"
+        [ngStyle]="arrayContainsArray(course.tags,filterList) ? {'display':'grid'} : {'display':'none'}">
+        <app-courses [course]="course">
+        </app-courses>
+      </li>
+    </ul>
 
-  <ul *ngIf="filterList.length === 0">
+    <ul *ngIf="filterList.length === 0">
 
-    <li *ngFor="let course of courses.data">
-      <app-courses [course]="course">
-      </app-courses>
-    </li>
-  </ul>
-</section>
+      <li *ngFor="let course of courses.data">
+        <app-courses [course]="course">
+        </app-courses>
+      </li>
+    </ul>
+  </section>
+<div>

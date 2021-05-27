@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { tap, switchMap } from 'rxjs/operators';
@@ -48,6 +54,25 @@ export class EditCoursesComponent implements OnInit {
         );
       })
     );
+  }
+
+  get name(): AbstractControl {
+    return this.form.get('name');
+  }
+  get description(): AbstractControl {
+    return this.form.get('description');
+  }
+
+  lessonName(index: number): AbstractControl {
+    return this.lessonsField.at(index).get('name');
+  }
+
+  lessonDescription(index: number): AbstractControl {
+    return this.lessonsField.at(index).get('description');
+  }
+
+  tagControl(index: number): AbstractControl {
+    return this.tagField.at(index).get('tag');
   }
 
   updateCourse(event: Event): void {

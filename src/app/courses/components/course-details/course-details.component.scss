@@ -1,45 +1,68 @@
-@import 'src/sass/variables';
+@import "src/sass/variables";
+a {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+section {
+  padding-bottom: 200px;
 
-header{
-  display: grid;
-  padding: 120px 20px 60px 20px;
-  justify-items: flex-end;
-  background-color: $orange-background;
-  text-align: right;
-
-  h1{
-    text-shadow: $text-shadow;
-  }
-
-  .image__container{
-    margin: 60px 0 0 0;
-    img{
-      width: 100px;
-      height: 100px;
-      border-radius: 100%;
+  .page {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    img {
+      width: 100%;
     }
   }
-  .teacher__name{
-    margin-top: 50px;
-    font-size: 2.4rem;
-    text-align: right;
-  }
-  .course__description{
-    margin-top: 35px;
-    font-size: 2.4rem;
-    text-align: right;
-  }
-}
 
-.lessons__container{
-  display: grid;
-  justify-content: center;
-  margin: 30px auto;
-  h2{
+  header {
+    position: relative;
+    z-index: 5;
+    display: grid;
+    padding: 120px 20px 60px 20px;
+    justify-items: flex-end;
+    text-align: right;
+
+    h1 {
+      text-shadow: $text-shadow;
+    }
+
+    .image__container {
+      margin: 60px 0 0 0;
+      img {
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+      }
+    }
+    .teacher__name {
+      margin-top: 50px;
+      font-size: 2.4rem;
+      text-align: right;
+    }
+    .course__description {
+      margin-top: 35px;
+      font-size: 2.4rem;
+      text-align: right;
+    }
+  }
+
+  .lessons__container {
+    position: relative;
+    z-index: 5;
+    display: grid;
+    justify-content: center;
+    margin: 30px auto;
+    h2 {
+      margin: 30px auto;
+    }
+  }
+
+  .button {
     margin: 30px auto;
   }
-}
-
-.button{
-  margin: 30px auto;
 }

@@ -1,12 +1,13 @@
 <header class="header">
   <figure class="header__first-item">
-    <img class="logo" src="../../../../assets/icons/tablon-logo.svg" alt="Back to the menu">
-    <a mat-button routerLink="/courses" routerLinkActive="active">Tablon</a>
+    <img class="logo" src="/assets/icons/tablon-logo.svg" alt="Back to the menu">
+    <a mat-button routerLink="/app/courses" routerLinkActive="active">Tablon</a>
   </figure>
 
   <nav class="header__second-item">
-    <li><a routerLink="['/app/courses',userId]" routerLinkActive="active">My Courses</a></li>
-    <li><a routerLink="/profile">Profile</a></li>
-    <li><a routerLink="/home">logout</a></li>
+    <li><a routerLink="/app" routerLinkActive="active">Home</a></li>
+    <li><a [routerLink]="['/app/courses/user',userId]" routerLinkActive="active">My Courses</a></li>
+    <li><a routerLink="/app/profile" routerLinkActive="active">Profile</a></li>
+    <li><a routerLink="/app/courses/create-course" routerLinkActive="active">Create Course</a></li>
   </nav>
 </header>

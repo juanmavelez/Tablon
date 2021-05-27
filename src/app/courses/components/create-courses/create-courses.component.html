@@ -27,9 +27,10 @@
           </mat-error>
         </div>
 
-        <mat-form-field appearance="none" class="input input--enabled">
+        <mat-form-field appearance="none" class="input input--text-area input--enabled">
           <mat-label>Course description</mat-label>
-          <textarea matInput class="input input--enabled" placeholder="description" formControlName="description"
+          <textarea textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5" placeholder="description" placeholder="description" formControlName="description"
             matInput type="text"></textarea>
         </mat-form-field>
 
@@ -59,6 +60,7 @@
 
         <div formArrayName="lessons" class="lesson" *ngFor=" let lesson of lessonsField.controls,index as i">
           <div [formGroupName]="i" class="lesson__container">
+
             <p>Lesson {{i}}</p>
 
             <mat-form-field appearance="none" class="input input--enabled lesson">
@@ -77,9 +79,10 @@
               </mat-error>
             </div>
 
-            <mat-form-field appearance="none" class="input input--enabled">
+            <mat-form-field appearance="none" class="input input--text-area input--enabled">
               <mat-label>Description</mat-label>
-              <input placeholder="description" formControlName="description" matInput type="text">
+              <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5" placeholder="description" formControlName="description" type="text"></textarea>
             </mat-form-field>
 
             <div *ngIf="lessonDescription(i).invalid && lessonDescription(i).touched">
@@ -103,7 +106,7 @@
           (click)="addLessonsField()">
           Add lesson
         </button>
-        <div class="stepper-actions__button__container">
+        <div class="stepper-actions">
           <button mat-button class="stepper-actions__button" matStepperPrevious>Back</button>
           <button mat-button class="stepper-actions__button" matStepperNext>Next</button>
         </div>
