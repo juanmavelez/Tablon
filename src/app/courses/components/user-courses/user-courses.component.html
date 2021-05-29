@@ -1,26 +1,26 @@
-<div class="page">
-  <img src="/assets/backgrounds/white-red-tablet-bottom.svg">
+<div class="background">
+  <div class="page">
+    <img src="/assets/backgrounds/white-red-tablet-bottom.svg">
+  </div>
+  <mat-tab-group dynamicHeight mat-align-tabs="center" animationDuration="0ms"
+    *ngIf="(userCourses$ | async) as userCourses">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <h2>You teach</h2>
+      </ng-template>
+      <ng-template matTabContent>
+        <app-courses *ngFor="let course of userIsTeacherOf(userCourses.data)" [course]="course">
+        </app-courses>
+      </ng-template>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <h2>Your courses</h2>
+      </ng-template>
+      <ng-template matTabContent>
+        <app-courses *ngFor="let course of  userIsStudentOf(userCourses.data)" [course]="course">
+        </app-courses>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
 </div>
-<mat-tab-group dynamicHeight mat-align-tabs="center" animationDuration="0ms"
-  *ngIf="(userCourses$ | async) as userCourses">
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <h2>You teach</h2>
-    </ng-template>
-    <ng-template matTabContent>
-      <app-courses *ngFor="let course of userCourses.data" [course]="course"
-        [ngStyle]="course.teacher === userId ? {'display':'block'} : {'display': 'none'}">
-      </app-courses>
-    </ng-template>
-  </mat-tab>
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <h2>Your courses</h2>
-    </ng-template>
-    <ng-template matTabContent>
-      <app-courses *ngFor="let course of userCourses.data" [course]="course"
-        [ngStyle]="course.teacher === userId ? {'display': 'none'} : {'display':'block'}">
-      </app-courses>
-    </ng-template>
-  </mat-tab>
-</mat-tab-group>

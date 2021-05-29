@@ -35,7 +35,9 @@ form {
 }
 
 .lesson {
+  position: relative;
   display: grid;
+  z-index: 5;
 
   &__container {
     margin-top: 10px;
@@ -71,6 +73,7 @@ form {
 }
 
 .tags {
+
   button {
     display: flex;
     width: 70px;

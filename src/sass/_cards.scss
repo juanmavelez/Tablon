@@ -90,7 +90,11 @@
   font-weight: 700;
   color: $softBlack;
   cursor: pointer;
+  &--touched{
+    background-color: #BEE34E;
+  }
 }
+
 
 .user-card{
   position: relative;

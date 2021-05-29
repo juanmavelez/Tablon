@@ -1,11 +1,16 @@
-<h2>Profile</h2>
+<div class="background">
+  <h2>Profile</h2>
 
-<figure>
-  <img [src]="url" alt="profile picture">
-</figure>
+  <figure>
+    <img [src]="url" alt="profile picture">
+  </figure>
 
-<section class="user__data">
-  <p>Name: <b>{{userName}}</b></p>
-  <p>Email: <b>{{email}}</b></p>
-  <button class="button button--shadow-text button__enabled--blue" (click)=" logOut()">Logout</button>
-</section>
+  <section class="user__data">
+    <p>Name: <b>{{userName}}</b></p>
+    <p>Email: <b>{{email}}</b></p>
+    <button class="button button--shadow-text button__enabled--blue" (click)=" logOut()">Logout</button>
+  </section>
+  <div class="page">
+    <img src="/assets/backgrounds/orange-tablet-top.svg">
+  </div>
+<div>

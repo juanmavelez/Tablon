@@ -12,6 +12,7 @@ import { FilterComponent } from './components/filter/filter.component';
 import { LessonsComponent } from './components/lessons/lessons.component';
 import { EditCoursesComponent } from './components/edit-courses/edit-courses.component';
 import { CourseUsersComponent } from './components/course-users/course-users.component';
+import { ChipsComponent } from './components/chips/chips.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CourseUsersComponent } from './components/course-users/course-users.com
     LessonsComponent,
     EditCoursesComponent,
     CourseUsersComponent,
+    ChipsComponent,
   ],
   imports: [
     CommonModule,

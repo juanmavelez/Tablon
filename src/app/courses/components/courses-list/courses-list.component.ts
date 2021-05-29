@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { IResponseCourses } from '@core/models/course.model';
+import { IResponseCourses, ICourse } from '@core/models/course.model';
 import { CourseService } from '@core/services/course/course.service';
 
 @Component({
@@ -29,6 +29,16 @@ export class CoursesListComponent implements OnInit {
     } else {
       this.filterList.push(name);
     }
+  }
+
+  filteredCourses(array1: ICourse[], array2): ICourse[]{
+    if(array1.length === 0){
+      return [];
+    }
+    if(array2.length ===0 ){
+      return array1;
+    }
+    return array1.filter(item => this.arrayContainsArray(item.tags, array2));
   }
 
   /**

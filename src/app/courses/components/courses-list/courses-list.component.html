@@ -13,13 +13,22 @@
   <app-filter *ngIf="showFilters" (pressedTag)="addElementToFilter($event)"></app-filter>
 
   <section *ngIf="(courses$ | async) as courses">
-    <ul *ngIf="filterList.length > 0 ">
-      <li *ngFor="let course of courses.data"
-        [ngStyle]="arrayContainsArray(course.tags,filterList) ? {'display':'grid'} : {'display':'none'}">
-        <app-courses [course]="course">
-        </app-courses>
-      </li>
-    </ul>
+    <div *ngIf="filteredCourses(courses.data,filterList).length > 0">
+      <ul *ngIf="filterList.length > 0 ">
+        <li *ngFor="let course of filteredCourses(courses.data,filterList)">
+          <app-courses [course]="course">
+          </app-courses>
+        </li>
+      </ul>
+    </div>
+    <div class="not-found" *ngIf="filteredCourses(courses.data,filterList).length === 0">
+      <p>Ups!, We couldnt find what you were looking for, try again with other parameters</p>
+      <picture>
+        <source media="(min-width:500px)" srcset="/assets/images/not-found-tablet-icon.svg">
+        <img src="/assets/images/not-found-phone-icon.svg" alt="A man looking around">
+      </picture>
+    </div>
+
 
     <ul *ngIf="filterList.length === 0">
 
@@ -29,4 +38,4 @@
       </li>
     </ul>
   </section>
-<div>
+  <div>
