@@ -30,7 +30,7 @@
       align-items: center;
       justify-content: center;
 
-      a{
+      a {
         display: flex;
         justify-content: center;
       }
@@ -59,20 +59,20 @@
 
     .footer__button {
       display: grid;
-      align-items: center;
-      justify-content: center;
-      width: calc(100vw / 4);
-      height: 100%;
 
-      image {
-        display: flex;
-        height: 25px;
-        width: 25px;
+      a {
+        display: grid;
         align-items: center;
         justify-content: center;
-      }
-      p{
-        font-size: 1.2rem;
+        margin: 10px;
+        img {
+          justify-self: center;
+          height: 25px;
+          width: 25px;
+        }
+        p {
+          font-size: 1.2rem;
+        }
       }
     }
   }

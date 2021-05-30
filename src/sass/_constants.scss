@@ -7,7 +7,7 @@ h1,h2,h3{ font-family: $titlesFont; list-style: none; font-style: normal; margin
 h1{font-size: clamp(3.6rem,3.5vw,6rem); line-height: clamp(4.4rem, 3.8vw, 6.8rem);}
 h2{font-size: clamp(2.4rem, 2vw, 4.5rem); line-height: clamp(3.4rem, 2.2vw, 5rem);}
 h3{font-size: clamp(1.8rem, 1.5vw, 3.2rem); line-height: 2.4rem;}
-p{font-size: clamp(1.4rem, 2vw, 2rem);line-height: clamp(1.9rem, 1.3vw,2.2rem); font-family: $contentFont}
+p{font-size: clamp(1.2rem, 2vw, 2rem);line-height: clamp(1.6rem, 1.3vw,2.2rem); font-family: $contentFont}
 
 .display-large, .display-medium, .display-small, .display-xsmall{font-family: $titlesFont, sans-serif; list-style: none; font-style: normal; }
 .display-large{ font-size: 6rem; line-height: 6.8rem;}
@@ -24,4 +24,3 @@ p{font-size: clamp(1.4rem, 2vw, 2rem);line-height: clamp(1.9rem, 1.3vw,2.2rem); 
 .mat-form-field-underline {
     display: none;
 }
-

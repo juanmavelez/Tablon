@@ -1,6 +1,5 @@
 @import 'src/sass/variables';
-.background{
- background-color: $orange-background;
+.page{
  min-height: 100vh;
 }
 
@@ -10,6 +9,8 @@ h2{
   font-weight: 600;
 }
 figure{
+  position: relative;
+  z-index: 5;
   display: flex;
   margin: 55px auto 0 auto;
   justify-content: center;
@@ -22,8 +23,9 @@ figure{
 }
 
 .user__data{
+  position:relative;
+  z-index:5;
   display: grid;
-  margin-top: 48px;
   padding-top: 48px;
   justify-content: center;
   text-align: center;
@@ -33,11 +35,9 @@ figure{
   }
 }
 
-.page{
-  position: absolute;
+.background{
+  position: fixed;
   bottom: 0;
-  width: 100%;
-  z-index:2;
   img{
     width: 100%;
   }

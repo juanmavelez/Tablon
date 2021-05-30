@@ -9,8 +9,16 @@
         <h2>You teach</h2>
       </ng-template>
       <ng-template matTabContent>
-        <app-courses *ngFor="let course of userIsTeacherOf(userCourses.data)" [course]="course">
-        </app-courses>
+        <div *ngIf="userIsTeacherOf(userCourses.data).length > 0; else isNotTeacher">
+          <app-courses *ngFor="let course of userIsTeacherOf(userCourses.data)" [course]="course">
+          </app-courses>
+        </div>
+        <ng-template #isNotTeacher>
+          <h3 class="alternative-messages">We have not found any course that belongs to you.
+            course now </h3>
+          <a class="button button__small button--shadow-text button__enabled--blue"
+            routerLink="/app/courses/create-course">Create your Course now!</a>
+        </ng-template>
       </ng-template>
     </mat-tab>
     <mat-tab>
@@ -18,8 +26,14 @@
         <h2>Your courses</h2>
       </ng-template>
       <ng-template matTabContent>
-        <app-courses *ngFor="let course of  userIsStudentOf(userCourses.data)" [course]="course">
-        </app-courses>
+        <div *ngIf="userIsStudentOf(userCourses.data).length > 0; else hasNotCourses">
+          <app-courses *ngFor=" let course of userIsStudentOf(userCourses.data)" [course]="course"></app-courses>
+        </div>
+        <ng-template #hasNotCourses>
+          <h3 class="alternative-messages">You dont belong to any course at the monment.</h3>
+          <a class="button button__small button--shadow-text button__enabled--blue" routerLink="/app/courses">Start
+            learning Now</a>
+        </ng-template>
       </ng-template>
     </mat-tab>
   </mat-tab-group>

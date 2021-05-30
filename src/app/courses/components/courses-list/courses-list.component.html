@@ -13,7 +13,7 @@
   <app-filter *ngIf="showFilters" (pressedTag)="addElementToFilter($event)"></app-filter>
 
   <section *ngIf="(courses$ | async) as courses">
-    <div *ngIf="filteredCourses(courses.data,filterList).length > 0">
+    <div *ngIf="filteredCourses(courses.data,filterList).length > 0" ; else notCoursesFound>
       <ul *ngIf="filterList.length > 0 ">
         <li *ngFor="let course of filteredCourses(courses.data,filterList)">
           <app-courses [course]="course">
@@ -21,13 +21,14 @@
         </li>
       </ul>
     </div>
-    <div class="not-found" *ngIf="filteredCourses(courses.data,filterList).length === 0">
+
+    <ng-template #notCoursesFound>
       <p>Ups!, We couldnt find what you were looking for, try again with other parameters</p>
       <picture>
         <source media="(min-width:500px)" srcset="/assets/images/not-found-tablet-icon.svg">
         <img src="/assets/images/not-found-phone-icon.svg" alt="A man looking around">
       </picture>
-    </div>
+    </ng-template>
 
 
     <ul *ngIf="filterList.length === 0">

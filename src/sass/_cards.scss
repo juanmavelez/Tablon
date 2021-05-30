@@ -1,4 +1,4 @@
-.card{
+.card {
   width: 300px;
   height: 266px;
   padding: 0;
@@ -8,7 +8,7 @@
   box-sizing: border-box;
   cursor: pointer;
 
-  &__header{
+  &__header {
     display: flex;
     width: 299px;
     height: 143px;
@@ -18,34 +18,34 @@
     font-family: $titlesFont;
     color: $softBlack;
 
-    &--red{
+    &--red {
       background-color: $red;
     }
-    &--green{
+    &--green {
       background-color: $green;
     }
-    &--blue{
+    &--blue {
       background-color: $lightBlue;
     }
-    &--blue{
+    &--blue {
       background-color: $orange;
     }
-    h2{
+    h2 {
       text-align: center;
       text-shadow: $text-shadow;
     }
   }
-  &__content{
+  &__content {
     display: flex;
     justify-content: space-between;
     margin: 15px 24px 0 24px;
 
-    p{
+    p {
       font-family: $contentFont;
       font-size: 1.2rem;
       text-align: center;
     }
-    img{
+    img {
       width: 60px;
       height: 60px;
       border-radius: 100px;
@@ -53,25 +53,25 @@
   }
 }
 
-.lessons-menu{
+.lessons-menu {
   display: grid;
   width: 300px;
   background: $white;
   border: 1px solid $softBlack-border;
   box-sizing: border-box;
-  &__header{
+  &__header {
     display: flex;
     height: 75px;
     align-items: center;
-    img{
+    img {
       width: 50px;
       height: 50px;
     }
-    h3{
+    h3 {
       margin: 0;
     }
   }
-  &__description{
+  &__description {
     height: fit-content;
     padding: 10px;
     min-height: 75px;
@@ -79,24 +79,23 @@
   }
 }
 
-.chips{
+.chips {
   padding: 5px 10px;
   margin: 5px;
   border: none;
   border-radius: 30px;
   border: 1px solid $softBlack;
   background-color: $white;
-  font-family: 'Nunito';
+  font-family: "Nunito";
   font-weight: 700;
   color: $softBlack;
   cursor: pointer;
-  &--touched{
-    background-color: #BEE34E;
+  &--touched {
+    background-color: #bee34e;
   }
 }
 
-
-.user-card{
+.user-card {
   position: relative;
   display: grid;
   grid-template-columns: 1fr 30%;
@@ -108,7 +107,7 @@
   border: 2px solid $red;
   border-radius: 5px;
 
-  img{
+  img {
     top: -40px;
     left: 50px;
     width: 60px;
@@ -116,15 +115,14 @@
     position: absolute;
     border-radius: 500px;
   }
-  &__data{
+  &__data {
     height: fit-content;
     padding-left: 5px;
     margin-left: 20px;
     border-left: 1px solid $red;
     font-weight: 700;
-
   }
-  &__delete-button{
+  &__delete-button {
     display: grid;
     margin: 0 auto;
     padding: 5px;
@@ -134,11 +132,11 @@
     background-color: transparent;
     border: 1px solid $softBlack;
     border-radius: 5px;
-    color: $softBlack
+    color: $softBlack;
   }
 }
 
-
+// Stepper in Create Course Component
 .mat-stepper-horizontal {
   margin-top: 65px;
   height: 100%;
@@ -157,19 +155,44 @@
   }
 
   .mat-horizontal-content-container {
-
     .mat-horizontal-stepper-content {
       display: grid;
       justify-content: center;
 
-      .mat-form-field{
+      .mat-form-field {
         margin-top: 30px;
       }
     }
   }
-
 }
 
-.mat-error{
+.mat-error {
   margin-top: 5px;
+}
+
+// Tab for the User courses component
+.mat-tab-group {
+  align-items: center;
+  padding-top: 110px;
+  padding-bottom: 100px;
+
+  .mat-tab-header {
+    margin-bottom: 60px;
+  }
+  .mat-tab-body-wrapper {
+    justify-content: center;
+  }
+
+  app-courses {
+    margin-top: 30px;
+  }
+
+  .mat-tab-body-content {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+  }
+  .card {
+    margin-top: 30px;
+  }
 }
