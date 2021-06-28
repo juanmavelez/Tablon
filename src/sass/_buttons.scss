@@ -11,6 +11,7 @@
   font-size: 1.4rem;
   font-weight: 700;
   color: $darkBlack;
+  transition: transform 500ms;
 
 
   &__small{
@@ -32,5 +33,6 @@
   }
   &:hover{
     background-color: $gray;
+    transform: translate(5px);
   }
 }

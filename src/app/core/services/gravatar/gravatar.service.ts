@@ -11,10 +11,14 @@ export class GravatarService {
    3 md5 hash the final string
 */
   createGravatarUrl(email: string): string {
-    const base = 'https://gravatar.com/avatar';
-    const formattedEmail = email.toString().trim().toLowerCase();
-    /*  encoding solves theproblem with the '@' character  */
-    const hash = Md5.hashStr(formattedEmail);
-    return `${base}/${hash}?d=retro`;
+    if (!email) {
+      return '';
+    } else {
+      const base = 'https://gravatar.com/avatar';
+      const formattedEmail = email.toString().trim().toLowerCase();
+      /*  encoding solves theproblem with the '@' character  */
+      const hash = Md5.hashStr(formattedEmail);
+      return `${base}/${hash}?d=retro`;
+    }
   }
 }
