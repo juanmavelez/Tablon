@@ -31,14 +31,15 @@ export class CoursesListComponent implements OnInit {
     }
   }
 
-  filteredCourses(array1: ICourse[], array2): ICourse[]{
-    if(array1.length === 0){
+  filteredCourses(array1: ICourse[], array2: string[]): ICourse[] {
+    if (array1.length === 0) {
       return [];
     }
-    if(array2.length ===0 ){
+    if (array2.length === 0) {
       return array1;
     }
-    return array1.filter(item => this.arrayContainsArray(item.tags, array2));
+
+    return array1.filter((item) => this.arrayContainsArray(item.tags, array2));
   }
 
   /**

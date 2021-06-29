@@ -13,7 +13,7 @@
   <app-filter *ngIf="showFilters" (pressedTag)="addElementToFilter($event)"></app-filter>
 
   <section *ngIf="(courses$ | async) as courses">
-    <div *ngIf="filteredCourses(courses.data,filterList).length > 0" ; else notCoursesFound>
+    <div *ngIf="filteredCourses(courses.data,filterList).length > 0 ; else notCoursesFound">
       <ul *ngIf="filterList.length > 0 ">
         <li *ngFor="let course of filteredCourses(courses.data,filterList)">
           <app-courses [course]="course">
@@ -32,7 +32,6 @@
 
 
     <ul *ngIf="filterList.length === 0">
-
       <li *ngFor="let course of courses.data">
         <app-courses [course]="course">
         </app-courses>

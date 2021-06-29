@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Output, EventEmitter } from '@angular/core';
 
-import { ITag, ITagResponse } from '@core/models/tags.model';
+import { ITagResponse } from '@core/models/tags.model';
 import { TagsService } from '@core/services/tags/tags.service';
 
 @Component({
